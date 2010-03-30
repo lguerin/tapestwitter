@@ -1,0 +1,33 @@
+/************** Common **************/
+
+div.clear {
+	clear: both;
+}
+
+/************** Tweet Infos Box **************/
+
+#comp-tweet-infos {
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #eee;
+	height: 55px;
+	min-height: 55px;
+}
+
+#comp-tweet-infos .comp-tweet-infos-thumb {
+	float: left;
+	width: 50px;
+}
+
+#comp-tweet-infos .comp-tweet-infos-text {
+	padding-top: 5px;	
+	padding-left: 10px;
+	padding-right: 5px;
+	margin-left: 50px;
+	font-size: 1.1em;
+}
+
+#comp-tweet-infos .comp-tweet-infos-status {
+	font-size: 0.8em;
+	color: #999;
+}

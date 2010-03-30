@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			xmlns:beans="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+ 	<global-method-security secured-annotations="enabled" />
+
+	<beans:bean id="tapestwitterSecurityContext" class="com.tapestwitter.services.security.TapestwitterSecurityContextImpl"/>
+
+	<beans:bean id="tapestwitterUserDetailService" class="com.tapestwitter.services.security.UserDetailsServiceImpl">
+		<beans:constructor-arg ref="userManager" />
+	</beans:bean>
+	
+	<beans:bean id="tapestwitterPasswordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" />
+
+	<beans:bean id="tapestwitterSaltSource"
+		class="org.springframework.security.authentication.dao.SystemWideSaltSource">
+		<beans:property name="systemWideSalt" value="tapestwitttertwit" />
+	</beans:bean>
+	
+	<beans:bean id="userManager" class="com.tapestwitter.domain.business.impl.UserManagerImpl">
+		<beans:property name="securityContext" ref="tapestwitterSecurityContext" />
+		<beans:property name="saltSource" ref="tapestwitterSaltSource"/>
+    	<beans:property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>
+	</beans:bean>
+	
+	<beans:bean id="tapestwitterAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="tapestwitterUserDetailService"/>
+		<beans:property name="saltSource" ref="tapestwitterSaltSource"/>
+		<beans:property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>
+	</beans:bean>
+
+	<http use-expressions="true">
+		<intercept-url pattern="/login*" filters="none"/>
+		<intercept-url pattern="/login/error*" filters="none"/>
+		<intercept-url pattern="/signup*" filters="none"/>
+		<intercept-url pattern="/assets/**" access="permitAll"/>
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login login-page="/login" 
+					authentication-failure-url="/login/error"
+					default-target-url="/homepage"
+					always-use-default-target="true"/>
+					
+		<logout />
+		
+   </http>
+		
+	<authentication-manager>
+		<authentication-provider ref="tapestwitterAuthenticationProvider"/>
+	</authentication-manager>
+	
+</beans:beans>
+
+

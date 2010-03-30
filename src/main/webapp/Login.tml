@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html t:type="layout" p:title="Login"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+	
+
+	<h2>
+		Se connecter à Twitter
+	</h2>
+	
+	<p>	Si vous utilisez déjà Twitter depuis votre téléphone, <a href="/account/complete">
+		cliquez ici</a> et nous vous guiderons pour votre inscription sur le site.
+	</p>
+	
+	<form class="signin" action="${loginUrl}" method="post">
+		<t:if test="error">
+			<p>
+				${message:login.error}
+			</p>
+		</t:if> 
+		<fieldset class="common-form standard-form">
+			<table cellspacing="0">	
+				<tbody>
+				<tr>
+					<th><label for="j_username">Nom d'utilisateur ou e-mail</label></th>
+					<td><input class="username" id="j_username" name="j_username" type="text" maxlength="30" value=""/></td>
+				</tr>
+				<tr>
+					<th><label for="j_password">Mot de passe</label></th>
+					<td><input class="password" id="j_password" name="j_password" type="password" maxlength="30" value="" /><small><a href="/account/resend_password">Oublié ?</a></small></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="checkbox" name="_spring_security_remember_me" id="remember_me"/> <label class="inline" for="remember_me">Se souvenir de moi</label></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="submit" value="Connexion" name="commit" id="signin_submit"/></td>
+				</tr>
+			    </tbody>
+		    </table>
+		    
+		</fieldset>
+	
+	</form>
+
+
+</html>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dataset.xsd">
+    <Tweet id="1001" tweet="Mon premier message tapestweet" author="lguerin" creationDate="2010-01-14"/>
+    <Tweet id="1002" tweet="Mon deuxieme message tapestweet" author="karesti" creationDate="2010-02-10"/>
+    <Tweet id="1003" tweet="Mon message tapestweet d'aujourd'hui" author="lguerin" creationDate="2010-03-14"/>
+</dataset>

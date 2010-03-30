@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
+        <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:forms/forms.css}" rel="stylesheet" type="text/css"/> 
+        <title>TapesTwitter / Créer un compte </title>
+    </head>
+    <body>
+    	   	
+    	<!-- Debut Zone #wrapper -->
+        <div id="wrapper">
+          <!-- Debut Zone #header -->       
+          <div id="header">
+			<div id="headerG">
+				<div id="logo">
+					<a accesskey="1" title="TapesTwitter / Créer un compte " href="Index">
+	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
+	  				</a>
+				</div>
+			</div>
+			
+		  <div class="clear"></div>
+		  </div>          
+          <!-- Fin Zone #header -->
+
+          <!-- Debut Zone #page -->
+          <div class="page-top"></div>
+          <div class="round">       
+             	  
+          	  <!-- Debut Zone #content -->
+              <div id="content" style="width: 765px" class="round">
+              		<div id="signup-form">
+              		<form t:type="form" t:id="signupForm">
+              		<fieldset>
+              		<table class="input-form">
+              			<tbody>
+              				<tr>
+              					<th>
+              						<label for="fullName">Nom complet</label>
+              					</th>
+              					<td class="col-field">
+              						<input type="text" t:type="textfield" t:id="fullName" class="text_field with-box" />
+              					</td>
+              					<td class="col-help">
+						            	<div class="label-box info">
+							              Entrez votre prénom et votre nom
+							            </div>
+							            <div class="label-box good">Ok</div>
+							            <div class="label-box error"/>
+					               
+					            </td>
+					        </tr>
+					        <tr>
+              					<th>
+              						<label for="login">Nom d'utilisateur</label>
+              					</th>
+              					<td class="col-field">
+              						<input type="text" t:type="textfield" t:id="login" class="text_field with-box"/>
+              					</td>
+              					<td class="col-help">
+						            	<div class="label-box info">
+							              Entrez votre prénom et votre nom
+							            </div>
+							            <div class="label-box good">Ok</div>
+							            <div class="label-box error"/>
+					               
+					            </td>
+					        </tr>
+	              			<tr>
+              					<th>
+              						<label for="password">Mot de passe</label>
+              					</th>
+              					<td class="col-field">
+              						<input type="password" t:type="passwordfield" t:id="password" class="text_field with-box"/>
+              					</td>
+              					<td class="col-help">
+						            	<div class="label-box info">
+							              Entrez votre prénom et votre nom
+							            </div>
+							            <div class="label-box good">Ok</div>
+							            <div class="label-box error"/>
+					               
+					            </td>
+					        </tr>
+	              			<tr>
+              					<th>
+              						<label for="email">E-mail</label>
+              					</th>
+              					<td class="col-field">
+              						<input type="text" t:type="textfield" t:id="email" class="text_field with-box"/>
+              					</td>
+              					<td class="col-help">
+						            	<div class="label-box info">
+							              Entrez votre prénom et votre nom
+							            </div>
+							            <div class="label-box good">Ok</div>
+							            <div class="label-box error"/>
+					               
+					            </td>
+					        </tr>
+					        <tr>
+					        	<th></th>
+					        	<td colspan="2">
+					        		<t:kaptchaimage t:id="kaptcha"/><br/>
+					        		<t:kaptchafield image="kaptcha" class="text_field with-box"/>
+    				        	</td>
+					        </tr>
+					        
+					        <tr>
+              					<th>
+              						<label for="conditions">Conditions</label>
+              					</th>
+              					<td class="col-field" colspan="2">
+              						<code id="tos">
+              							${message:conditions}
+              						</code>
+              						
+              					</td>
+              					
+					        </tr>
+	              			
+	              			<tr>
+              					<th>
+              						
+              					</th>
+              					<td class="col-field" colspan="2">
+              						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Créer mon compte.">
+              							Créer mon compte
+              						</button>
+              					</td>
+              					
+					        </tr>
+	              			
+              				            				
+              			</tbody>
+              		</table>
+              		          		
+              		</fieldset>
+              		</form>
+              	</div> <!-- fin div signup form -->
+              </div>
+              <!--Fin Zone #content -->
+
+			
+			<div class="clear"></div>
+        </div>
+        
+        </div>
+        <!-- Fin Zone #wrapper -->
+        
+    </body>
+</html>
