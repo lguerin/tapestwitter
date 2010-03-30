@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import org.apache.tapestry5.ioc.internal.util.Defense;
+import org.springframework.util.Assert;
 
 /**
  * Implementation de la classe de service permettant de gerer
@@ -41,7 +40,7 @@ public class TweetManagerImpl implements TweetManager
 	@Transactional(readOnly = false)
 	public Tweet createTweet(String msg)
 	{
-		Defense.notNull(msg, "message");
+		Assert.notNull(msg, "message");
 		Tweet tweet = new Tweet();
 
 		// Remplissage des proprietes
@@ -61,7 +60,7 @@ public class TweetManagerImpl implements TweetManager
 	@Transactional(readOnly = false)
 	public void deleteTweet(Long tweetId)
 	{
-		Defense.notNull(tweetId, "tweetId");
+		Assert.notNull(tweetId, "tweetId");
 
 		// Recuperation du tweet a supprimer
 		Tweet t = tweetDAO.findById(tweetId);
@@ -84,7 +83,7 @@ public class TweetManagerImpl implements TweetManager
 
 	public void updateTweet(Tweet tweet)
 	{
-		Defense.notNull(tweet, "tweet");
+		Assert.notNull(tweet, "tweet");
 		tweetDAO.update(tweet);
 	}
 }

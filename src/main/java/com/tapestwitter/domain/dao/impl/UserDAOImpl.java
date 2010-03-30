@@ -6,8 +6,7 @@ import com.tapestwitter.domain.dao.IUserDAO;
 import com.tapestwitter.domain.model.User;
 
 import org.springframework.stereotype.Repository;
-
-import org.apache.tapestry5.ioc.internal.util.Defense;
+import org.springframework.util.Assert;
 
 /**
  * Implementation du DAO {@link IUserDAO}.
@@ -21,7 +20,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements IUserDAO
 
 	public User findByUsername(String username)
 	{
-		Defense.notNull(username, "username");
+		Assert.notNull(username, "username");
 
 		Query query = entityManager.createQuery("SELECT u FROM " + getEntityType() + " u WHERE u.login LIKE :un");
 		query.setParameter("un", username.toLowerCase());

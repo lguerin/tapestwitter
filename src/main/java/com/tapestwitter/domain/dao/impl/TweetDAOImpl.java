@@ -8,8 +8,7 @@ import com.tapestwitter.domain.dao.ITweetDAO;
 import com.tapestwitter.domain.model.Tweet;
 
 import org.springframework.stereotype.Repository;
-
-import org.apache.tapestry5.ioc.internal.util.Defense;
+import org.springframework.util.Assert;
 
 /**
  * Implementation du DAO {@link ITweetDAO}.
@@ -27,7 +26,7 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Long> implements ITweetD
 	@SuppressWarnings("unchecked")
 	public List<Tweet> findTweetByKeyword(String keyword)
 	{
-		Defense.notNull(keyword, "keyword");
+		Assert.notNull(keyword, "keyword");
 		Query query = entityManager.createQuery("SELECT t FROM " + getEntityType() + " t WHERE t.tweet LIKE :keyword");
 		query.setParameter("keyword", "%" + keyword + "%");
 		return (List<Tweet>) query.getResultList();
