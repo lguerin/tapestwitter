@@ -110,19 +110,7 @@
 					        		<t:kaptchafield image="kaptcha" class="text_field with-box"/>
     				        	</td>
 					        </tr>
-					        
-					        <tr>
-              					<th>
-              						<label for="conditions">Conditions</label>
-              					</th>
-              					<td class="col-field" colspan="2">
-              						<code id="tos">
-              							${message:conditions}
-              						</code>
-              						
-              					</td>
-              					
-					        </tr>
+					       				       
 	              			
 	              			<tr>
               					<th>
