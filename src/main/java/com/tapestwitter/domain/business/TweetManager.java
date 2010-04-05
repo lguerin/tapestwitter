@@ -52,4 +52,19 @@ public interface TweetManager
 	 * @return		Liste de {@link Tweet}
 	 */
 	List<Tweet> listAllTweet();
+
+	/**
+	 * Find a range of recent tweets
+	 * @param id		The start id of tweet for the research
+	 * @param range		The number of tweets to get
+	 * @return			List of tweets
+	 */
+	List<Tweet> findRecentTweets(Long id, Integer range);
+
+	/**
+	 * Find a range of recent tweets
+	 * @param range		The number of tweets to get
+	 * @return			List of tweets
+	 */
+	List<Tweet> findRecentTweets(Integer range);
 }

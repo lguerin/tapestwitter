@@ -1,5 +1,5 @@
 <html t:type="layout" p:title="Accueil"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd"
       xmlns:p="tapestry:parameter">
 
 	<div id="publish-tweet-box"> 
@@ -42,6 +42,19 @@
 			<t:tweetInfosBox p:tweet="currentTweet" />
 		</li>
 	</t:block>
-	
+
+	<t:block t:id="ajaxResponse">
+		<ul>
+			<t:loop source="ajaxResult" value="current">
+				<li>
+					<t:tweetInfosBox p:tweet="current" />
+				</li>
+			</t:loop>
+		</ul>
+	</t:block>	
+	<t:if test="displayAjaxMoreResultsLink">
+		<t:ajaxmoreresults t:id="test" p:renderable="block:ajaxResponse" />
+	</t:if>
+
 </html>
 

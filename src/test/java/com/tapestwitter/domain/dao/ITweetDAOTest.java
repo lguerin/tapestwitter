@@ -85,8 +85,6 @@ public class ITweetDAOTest extends UnitilsTestNG
 		Assert.assertEquals(0, tweets.size());
 	}
 
-	
-
 	@DataSet
 	@Test
 	public void testFindTweetByKeywordWithEmpty()
@@ -104,5 +102,17 @@ public class ITweetDAOTest extends UnitilsTestNG
 		tweetDAO.delete(tweet);
 		final List<Tweet> tweets = tweetDAO.listAll();
 		Assert.assertEquals(DEFAULT_NB_TWEETS_DATASET - 1, tweets.size());
+	}
+
+	@DataSet
+	@Test
+	public void testFindRecentTweets()
+	{
+		Integer rangeSize = 2;
+		List<Tweet> tweets = tweetDAO.findRecentTweets(DEFAULT_FIRST_TWEET_DATASET + 2, rangeSize);
+		Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET - 1);
+
+		tweets = tweetDAO.findRecentTweets(DEFAULT_FIRST_TWEET_DATASET + 1, rangeSize);
+		Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET - 2);
 	}
 }

@@ -86,4 +86,15 @@ public class TweetManagerImpl implements TweetManager
 		Assert.notNull(tweet, "tweet");
 		tweetDAO.update(tweet);
 	}
+
+	public List<Tweet> findRecentTweets(Long id, Integer range)
+	{
+		Assert.notNull(range, "range");
+		return tweetDAO.findRecentTweets(id, range);
+	}
+
+	public List<Tweet> findRecentTweets(Integer range)
+	{
+		return findRecentTweets(null, range);
+	}
 }

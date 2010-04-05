@@ -25,4 +25,13 @@ public interface ITweetDAO extends IGenericDAO<Tweet, Long>
 	 * @return			Liste de tweets tries du plus recent au plus ancien
 	 */
 	List<Tweet> listAllByCreationDateDesc();
+
+	/**
+	 * Get a range of recent tweets
+	 * @param id		The id of tweet
+	 * @param range		The number of tweets to get
+	 * @return			List of tweets
+	 */
+	List<Tweet> findRecentTweets(Long id, Integer range);
+
 }
