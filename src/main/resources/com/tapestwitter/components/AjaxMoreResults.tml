@@ -1,0 +1,6 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" xmlns:p="tapestry:parameter">
+	<div class="comp-ajax-more-results">
+		<t:zone id="ajaxResponse" t:visible="true" t:show="none" t:update="none"/>
+		<a class="comp-ajax-more-results-link round" t:type="actionlink" t:zone="ajaxResponse" href="#">${message:ajax-more-results-label}</a>
+	</div>
+</t:container>
