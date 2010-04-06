@@ -104,4 +104,22 @@ public class TweetManagerTest extends UnitilsTestNG
 		actual = tweetManager.findTweetById(DEFAULT_FIRST_TWEET_DATASET);
 		Assert.assertEquals(newAuthor, actual.getAuthor());
 	}
+
+	@DataSet
+	@Test
+	public void testFindRecentTweets()
+	{
+		Integer rangeSize = 2;
+		List<Tweet> tweets = tweetManager.findRecentTweets(DEFAULT_FIRST_TWEET_DATASET + 2, rangeSize);
+		Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET - 1);
+	}
+
+	@DataSet
+	@Test
+	public void testFindRecentTweetsWithNullId()
+	{
+		Integer rangeSize = 3;
+		List<Tweet> tweets = tweetManager.findRecentTweets(rangeSize);
+		Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET);
+	}
 }

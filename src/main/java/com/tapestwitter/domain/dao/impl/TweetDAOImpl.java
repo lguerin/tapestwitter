@@ -39,4 +39,22 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Long> implements ITweetD
 		List<Tweet> resultList = (List<Tweet>) query.getResultList();
 		return resultList;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Tweet> findRecentTweets(Long id, Integer range)
+	{
+		Query query = null;
+		if (id == null)
+		{
+			query = this.entityManager.createQuery("FROM " + getEntityType() + " t ORDER BY t.creationDate DESC");
+		}
+		else
+		{
+			query = this.entityManager.createQuery("FROM " + getEntityType() + " t WHERE t.id < :id ORDER BY t.creationDate DESC");
+			query.setParameter("id", id);
+		}
+		query.setMaxResults(range);
+		List<Tweet> resultList = (List<Tweet>) query.getResultList();
+		return resultList;
+	}
 }

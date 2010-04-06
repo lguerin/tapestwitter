@@ -31,3 +31,32 @@ div.clear {
 	font-size: 0.8em;
 	color: #999;
 }
+
+/************** Ajax More Results **************/
+
+.comp-ajax-more-results {
+	width: 518px;	
+}
+
+.comp-ajax-more-results-link {
+	background-image: url('components/ajaxmoreresults/images/more.gif);
+	background-position: left top;
+	background-repeat: repeat-x;
+	background-color: #fff;	
+	border-color: #ddd #aaa #aaa #ddd;
+	border-style: solid;
+	border-width: 1px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	height: 22px;
+	line-height: 1.5em;
+	margin-bottom: 6px;
+	outline-color: -moz-use-text-color;
+	outline-style: none;
+	outline-width: medium;
+	padding: 6px 0;
+	text-align: center;
+	text-shadow: 1px 1px 1px #fff;
+	width: 100%;
+}

@@ -1,7 +1,6 @@
 // A class that implement the "Twitter-like" char's counter.
 // @author Laurent Guerin
-var TextCounter = Class.create();
-TextCounter.prototype = {
+var TextCounter = Class.create({
 		initialize: function(textareaId, elementId, maxlength, warningLimit, warningStyle)
 		{
 			// The textarea to inspect
@@ -39,4 +38,4 @@ TextCounter.prototype = {
 			}
 			this.element.update(currentCount);
 		}
-}
+});
