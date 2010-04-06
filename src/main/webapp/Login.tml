@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="checkbox" name="_spring_security_remember_me" id="remember_me"/> <label class="inline" for="remember_me">Se souvenir de moi</label></td>
+					<td><input type="checkbox" name="j_spring_security_remember_me" id="remember_me"/> <label class="inline" for="remember_me">Se souvenir de moi</label></td>
 				</tr>
 				<tr>
 					<th></th>

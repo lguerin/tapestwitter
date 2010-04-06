@@ -9,9 +9,7 @@
 
  	<global-method-security secured-annotations="enabled" />
 
-	<beans:bean id="tapestwitterSecurityContext" class="com.tapestwitter.services.security.TapestwitterSecurityContextImpl"/>
-
-	<beans:bean id="tapestwitterUserDetailService" class="com.tapestwitter.services.security.UserDetailsServiceImpl">
+	<beans:bean id="tapestwitterUserDetailService" class="com.tapestwitter.services.security.impl.UserDetailsServiceImpl">
 		<beans:constructor-arg ref="userManager" />
 	</beans:bean>
 	
@@ -35,25 +33,24 @@
 		<beans:property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>
 	</beans:bean>
 
-	<http use-expressions="true">
-		<intercept-url pattern="/login*" filters="none"/>
-		<intercept-url pattern="/login/error*" filters="none"/>
-		<intercept-url pattern="/signup*" filters="none"/>
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/login*" access="permitAll" />
+		<intercept-url pattern="/login/error*" access="permitAll" />
+		<intercept-url pattern="/signup*" access="permitAll" />
 		<intercept-url pattern="/assets/**" access="permitAll"/>
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<intercept-url pattern="/**" access="isAuthenticated() or isRememberMe()" />
 		<form-login login-page="/login" 
 					authentication-failure-url="/login/error"
 					default-target-url="/homepage"
 					always-use-default-target="true"/>
 					
+		<anonymous />
+		<remember-me key="tapestwitter"/>
 		<logout />
-		
    </http>
 		
-	<authentication-manager>
+	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="tapestwitterAuthenticationProvider"/>
 	</authentication-manager>
 	
 </beans:beans>
-
-

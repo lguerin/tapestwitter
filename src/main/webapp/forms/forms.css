@@ -235,3 +235,36 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	padding:5px 15px 6px;
 }
 
+/* Label box */
+
+#signup-form div.col-help .t-label-box {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-topright:10px;
+	background:#F2F2F2 url(https://s3.amazonaws.com/twitter_production/a/1269553143/images/signup_info.gif) no-repeat scroll 13px 50%;
+	border-color:#DBDBDB;
+	border-style:solid;
+	border-width:1px 1px 1px 2px;
+	color:#666666;
+	display:none;
+	font-size:12px;
+	line-height:1.45em;
+	padding:0.85em 10px 0.85em 30px;
+	text-transform:lowercase;
+}
+
+#signup-form table div.col-help .t-label-box.good {
+	background-color:#F0FEE9;
+	background-image:url(https://s3.amazonaws.com/twitter_production/a/1269553143/images/signup_check.gif);
+	border-color:#E1EFDB;
+}
+
+#signup-form table div.col-help .t-label-box.error {
+	background-color:#FFCFCF;
+	background-image:none;
+	border-color:#E5A3A3;
+	color:#801B1B;
+	padding-left:10px;
+}

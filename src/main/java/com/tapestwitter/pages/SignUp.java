@@ -63,7 +63,7 @@ public class SignUp
 	private TextField emailText;
 
 	@Inject
-	private UserManager service;
+	private UserManager userManager;
 
 	@Inject
 	private TapestwitterSecurityContext securityCtx;
@@ -71,6 +71,15 @@ public class SignUp
 	@InjectPage
 	private SignUpSuccess signSuccess;
 
+	
+	
+	public boolean onCocoFromLogin(String userLogin)
+	{
+		Boolean result = userManager.isAvailableName(userLogin);
+		
+		return result;
+	}
+	
 	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "signupForm")
 	public void onValidate()
 	{
@@ -90,7 +99,7 @@ public class SignUp
 		user.setEmail(email);
 		try
 		{
-			service.addUser(user);
+			userManager.addUser(user);
 			securityCtx.logIn(user);
 		}
 		catch (CreateUserException e)

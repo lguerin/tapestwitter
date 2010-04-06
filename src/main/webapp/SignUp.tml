@@ -46,30 +46,16 @@
               					<td class="col-field">
               						<input type="text" t:type="textfield" t:id="fullName" class="text_field with-box" />
               					</td>
-              					<td class="col-help">
-						            	<div class="label-box info">
-							              Entrez votre prénom et votre nom
-							            </div>
-							            <div class="label-box good">Ok</div>
-							            <div class="label-box error"/>
-					               
-					            </td>
+              					
 					        </tr>
 					        <tr>
               					<th>
               						<label for="login">Nom d'utilisateur</label>
               					</th>
               					<td class="col-field">
-              						<input type="text" t:type="textfield" t:id="login" class="text_field with-box"/>
+              						<input type="text" t:type="textfield" t:id="login" t:mixins="validation" class="text_field with-box"/>
               					</td>
-              					<td class="col-help">
-						            	<div class="label-box info">
-							              Entrez votre prénom et votre nom
-							            </div>
-							            <div class="label-box good">Ok</div>
-							            <div class="label-box error"/>
-					               
-					            </td>
+              					
 					        </tr>
 	              			<tr>
               					<th>
@@ -78,14 +64,7 @@
               					<td class="col-field">
               						<input type="password" t:type="passwordfield" t:id="password" class="text_field with-box"/>
               					</td>
-              					<td class="col-help">
-						            	<div class="label-box info">
-							              Entrez votre prénom et votre nom
-							            </div>
-							            <div class="label-box good">Ok</div>
-							            <div class="label-box error"/>
-					               
-					            </td>
+              					
 					        </tr>
 	              			<tr>
               					<th>
@@ -94,29 +73,21 @@
               					<td class="col-field">
               						<input type="text" t:type="textfield" t:id="email" class="text_field with-box"/>
               					</td>
-              					<td class="col-help">
-						            	<div class="label-box info">
-							              Entrez votre prénom et votre nom
-							            </div>
-							            <div class="label-box good">Ok</div>
-							            <div class="label-box error"/>
-					               
-					            </td>
+              					
 					        </tr>
 					        <tr>
 					        	<th></th>
-					        	<td colspan="2">
+					        	<td>
 					        		<t:kaptchaimage t:id="kaptcha"/><br/>
 					        		<t:kaptchafield image="kaptcha" class="text_field with-box"/>
     				        	</td>
 					        </tr>
-					       				       
-	              			
-	              			<tr>
+					        
+					       <tr>
               					<th>
               						
               					</th>
-              					<td class="col-field" colspan="2">
+              					<td class="col-field">
               						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Créer mon compte.">
               							Créer mon compte
               						</button>

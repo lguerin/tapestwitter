@@ -49,6 +49,10 @@ public class User implements UserDetails
 
 	private String password;
 
+	/**
+	 * Fetch.EAGER because User needs all the authorities
+	 * all the time  
+	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_user", nullable = false)
 	private List<Authority> authorities;

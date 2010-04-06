@@ -18,4 +18,6 @@ public interface UserManager
 	void addAuthority(User user, Authority authority) throws CreateAuthorityException;
 
 	User findByUsername(String username);
+	
+	boolean isAvailableName(String username);
 }

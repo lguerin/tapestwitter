@@ -31,6 +31,7 @@ public class UserManagerImpl implements UserManager
 
 	private static final Logger logger = LoggerFactory.getLogger(UserManagerImpl.class);
 
+	@Autowired
 	private TapestwitterSecurityContext securityContext;
 
 	@Autowired
@@ -87,6 +88,11 @@ public class UserManagerImpl implements UserManager
 		return userDao.findByUsername(username);
 	}
 
+	public boolean isAvailableName(String username) {
+		 User user = userDao.findByUsername(username);
+		 return user == null;
+	}
+	
 	public TapestwitterSecurityContext getSecurityContext()
 	{
 		return securityContext;
