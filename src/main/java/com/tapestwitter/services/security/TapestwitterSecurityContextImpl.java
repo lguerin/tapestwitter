@@ -39,4 +39,17 @@ public class TapestwitterSecurityContextImpl implements TapestwitterSecurityCont
 		return false;
 	}
 
+	public User getUser()
+	{
+		User user = null;
+		if (isLoggedIn())
+		{
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User)
+			{
+				user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+			}
+		}
+		return user;
+	}
+
 }

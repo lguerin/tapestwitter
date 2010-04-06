@@ -9,19 +9,25 @@ import com.tapestwitter.domain.model.User;
  * @author karesti
  *
  */
-public interface TapestwitterSecurityContext {
+public interface TapestwitterSecurityContext
+{
 
 	/**
-	 * 
+	 * Authenticate the user
 	 * @param user
 	 */
 	void logIn(User user);
-	
+
 	/**
-	 * Vérification si l'utilisateur est connecté
+	 * Test if the user is connected.
 	 * 
-	 * @return
+	 * @return	true if the user is connected
 	 */
 	boolean isLoggedIn();
 
+	/**
+	 * Get the authenticated {@link User}
+	 * @return current authenticated user
+	 */
+	User getUser();
 }
