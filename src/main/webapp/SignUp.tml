@@ -53,7 +53,7 @@
               						<label for="login">Nom d'utilisateur</label>
               					</th>
               					<td class="col-field">
-              						<input type="text" t:type="textfield" t:id="login" t:mixins="validation" class="text_field with-box"/>
+              						<input type="text" t:type="textfield" t:id="login" t:mixins="ajaxValidation" class="text_field with-box"/>
               					</td>
               					
 					        </tr>

@@ -268,3 +268,10 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	color:#801B1B;
 	padding-left:10px;
 }
+#signup-form table div.col-help .show {
+	display : block;
+}
+
+#signup-form table div.col-help .hide{
+	display : none;
+}

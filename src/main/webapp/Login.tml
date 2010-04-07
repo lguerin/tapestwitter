@@ -6,12 +6,8 @@
 	
 
 	<h2>
-		Se connecter à Twitter
+		${message:page-title}
 	</h2>
-	
-	<p>	Si vous utilisez déjà Twitter depuis votre téléphone, <a href="/account/complete">
-		cliquez ici</a> et nous vous guiderons pour votre inscription sur le site.
-	</p>
 	
 	<form class="signin" action="${loginUrl}" method="post">
 		<t:if test="error">
@@ -23,20 +19,20 @@
 			<table cellspacing="0">	
 				<tbody>
 				<tr>
-					<th><label for="j_username">Nom d'utilisateur ou e-mail</label></th>
+					<th><label for="j_username">${message:label-username}</label></th>
 					<td><input class="username" id="j_username" name="j_username" type="text" maxlength="30" value=""/></td>
 				</tr>
 				<tr>
-					<th><label for="j_password">Mot de passe</label></th>
-					<td><input class="password" id="j_password" name="j_password" type="password" maxlength="30" value="" /><small><a href="/account/resend_password">Oublié ?</a></small></td>
+					<th><label for="j_password">${message:label-password}</label></th>
+					<td><input class="password" id="j_password" name="j_password" type="password" maxlength="30" value="" /><small><a href="/account/resend_password">${message:text-forget}</a></small></td>
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="checkbox" name="j_spring_security_remember_me" id="remember_me"/> <label class="inline" for="remember_me">Se souvenir de moi</label></td>
+					<td><input type="checkbox" name="j_spring_security_remember_me" id="remember_me"/> <label class="inline" for="remember_me">${message:text-rememberme}</label></td>
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" value="Connexion" name="commit" id="signin_submit"/></td>
+					<td><input type="submit" value="${message:button-login}" name="commit" id="signin_submit"/></td>
 				</tr>
 			    </tbody>
 		    </table>

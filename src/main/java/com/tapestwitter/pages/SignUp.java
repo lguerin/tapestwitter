@@ -1,5 +1,12 @@
 package com.tapestwitter.pages;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.tapestwitter.common.EnumValidation;
+
 import com.tapestwitter.domain.business.UserManager;
 import com.tapestwitter.domain.exception.CreateAuthorityException;
 import com.tapestwitter.domain.exception.CreateUserException;
@@ -13,12 +20,15 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 
 /**
  * This page creates one user
@@ -71,13 +81,25 @@ public class SignUp
 	@InjectPage
 	private SignUpSuccess signSuccess;
 
+	@Inject
+	private Messages messages ;
 	
 	
-	public boolean onCocoFromLogin(String userLogin)
+	
+	@SuppressWarnings("unchecked")
+	@Log
+	@OnEvent(value = EventConstants.VALIDATE, component = "login")
+	public EnumValidation validateLogin(String userLogin)
 	{
+		
 		Boolean result = userManager.isAvailableName(userLogin);
 		
-		return result;
+		if(result){
+			return EnumValidation.OK;
+		}
+		
+		return EnumValidation.INVALIDE;
+		
 	}
 	
 	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "signupForm")
