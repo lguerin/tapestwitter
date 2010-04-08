@@ -115,4 +115,13 @@ public class ITweetDAOTest extends UnitilsTestNG
 		tweets = tweetDAO.findRecentTweets(DEFAULT_FIRST_TWEET_DATASET + 1, rangeSize);
 		Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET - 2);
 	}
+
+	@DataSet
+	@Test
+	public void testGetNbTweetsByUser()
+	{
+		String author = "lguerin";
+		Integer expected = tweetDAO.getNbTweetsByUser(author);
+		Assert.assertEquals(new Integer(2), expected);
+	}
 }

@@ -6,6 +6,7 @@ package com.tapestwitter.domain.business;
 import java.util.List;
 
 import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
 
 /**
  * @author lguerin
@@ -67,4 +68,11 @@ public interface TweetManager
 	 * @return			List of tweets
 	 */
 	List<Tweet> findRecentTweets(Integer range);
+
+	/**
+	 * Get the count of tweets for a given user identified by his login.
+	 * @param login		The login of the {@link User}
+	 * @return			The number of tweets created by a {@link User}
+	 */
+	Integer getNbTweetsByUser(String login);
 }

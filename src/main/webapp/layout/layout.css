@@ -210,6 +210,14 @@ fieldset.tapestwitter-form textarea {
 	padding: 4px 2px;
 }
 
+fieldset.tapestwitter-form textarea:focus {
+	-moz-box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
+	border: 1px solid rgba(82, 168, 236, 0.75) !important;
+    outline-color: -moz-use-text-color;
+	outline-style: none;
+	outline-width: medium;		
+}
+
 fieldset, img {
 	border-color:transparent;
 	border-width:0;

@@ -1,8 +1,9 @@
-#Sun Apr 04 20:33:32 CEST 2010
+#Thu Apr 08 17:14:06 CEST 2010
 eclipse.preferences.version=1
 encoding//src/main/resources/com/tapestwitter/components/AjaxMoreResults.properties=UTF-8
 encoding//src/main/resources/com/tapestwitter/components/Layout.properties=UTF-8
 encoding//src/main/resources/com/tapestwitter/components/PublicationIntervalRenderer.properties=UTF-8
 encoding//src/main/resources/com/tapestwitter/components/TweetInfosBox.tml=UTF-8
+encoding//src/main/resources/com/tapestwitter/pages/Login.properties=UTF-8
 encoding//src/main/webapp/components/components.css=UTF-8
 encoding/<project>=UTF-8

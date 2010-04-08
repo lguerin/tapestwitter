@@ -69,21 +69,7 @@
 					
             		<p:else>
             			<div id="rightbar-content">        	
-			                <ul>
-			                    <li>
-			                    	<h2>AAA</h2>
-			       					<ul>
-						        		<li>
-						        			aaa
-						        		</li>
-									</ul>
-									<h2>BBB</h2>
-									<ul>
-							        	bbb
-									</ul>						
-			
-			                    </li>
-			                </ul>
+			              <t:rightBar />
 		                </div>
             		</p:else>
             	</t:security.isAnonymous>

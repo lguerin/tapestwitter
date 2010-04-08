@@ -48,7 +48,7 @@ public class TweetManagerImpl implements TweetManager
 		Date creationDate = Calendar.getInstance().getTime();
 		tweet.setCreationDate(creationDate);
 		// TODO : remplacer par le user connecte
-		String author = "lguerin";
+		String author = "laurent";
 		tweet.setAuthor(author);
 
 		// Sauvegarde du tweet
@@ -96,5 +96,10 @@ public class TweetManagerImpl implements TweetManager
 	public List<Tweet> findRecentTweets(Integer range)
 	{
 		return findRecentTweets(null, range);
+	}
+
+	public Integer getNbTweetsByUser(String login)
+	{
+		return tweetDAO.getNbTweetsByUser(login);
 	}
 }
