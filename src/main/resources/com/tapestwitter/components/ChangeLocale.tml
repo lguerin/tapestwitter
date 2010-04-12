@@ -1,0 +1,6 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" xmlns:p="tapestry:parameter">
+	
+	<t:form id="changeLocale">
+		 <t:select t:value="selectedLocale" t:model="model" onchange="document.getElementById('changeLocale').submit();" />
+	</t:form>
+</t:container>

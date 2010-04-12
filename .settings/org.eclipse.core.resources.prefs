@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+#Fri Apr 09 14:54:24 CEST 2010
+eclipse.preferences.version=1
+encoding//src/main/resources/com/tapestwitter/components/AjaxMoreResults.properties=UTF-8
+encoding//src/main/resources/com/tapestwitter/components/Layout.properties=UTF-8
+encoding//src/main/resources/com/tapestwitter/components/PublicationIntervalRenderer.properties=UTF-8
+encoding//src/main/resources/com/tapestwitter/components/TweetInfosBox.tml=UTF-8
+encoding//src/main/resources/com/tapestwitter/pages/Login.properties=UTF-8
+encoding//src/main/resources/com/tapestwitter/pages/SignUp.properties=UTF-8
+encoding//src/main/webapp/SearchErrorPage.tml=UTF-8
+encoding//src/main/webapp/components/components.css=UTF-8
+encoding/<project>=UTF-8
+=======
 #Thu Apr 08 17:14:06 CEST 2010
 eclipse.preferences.version=1
 encoding//src/main/resources/com/tapestwitter/components/AjaxMoreResults.properties=UTF-8
@@ -7,3 +20,4 @@ encoding//src/main/resources/com/tapestwitter/components/TweetInfosBox.tml=UTF-8
 encoding//src/main/resources/com/tapestwitter/pages/Login.properties=UTF-8
 encoding//src/main/webapp/components/components.css=UTF-8
 encoding/<project>=UTF-8
+>>>>>>> e10ae70dd058fa59e11c6c0d2b4472c118f3cec2

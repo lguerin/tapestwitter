@@ -1,37 +1,34 @@
 package com.tapestwitter.pages;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.lang.StringUtils;
+import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.PersistenceConstants;
+import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Mixins;
+import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
+import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.tapestwitter.common.EnumValidation;
-
+import com.tapestwitter.common.TapesTwitterEventConstants;
 import com.tapestwitter.domain.business.UserManager;
 import com.tapestwitter.domain.exception.CreateAuthorityException;
 import com.tapestwitter.domain.exception.CreateUserException;
 import com.tapestwitter.domain.model.User;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Log;
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.corelib.components.PasswordField;
-import org.apache.tapestry5.corelib.components.TextField;
-import org.apache.tapestry5.ioc.Messages;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
+import com.tapestwitter.util.ValidationUtils;
 
 /**
- * This page creates one user
+ * This page creates a new user
  * 
  * @author karesti
  *
@@ -42,35 +39,66 @@ public class SignUp
 	private static final Logger logger = LoggerFactory.getLogger(SignUp.class);
 
 	@Property
+	@Persist(PersistenceConstants.FLASH)
 	private String fullName;
 
 	@Property
+	@Persist(PersistenceConstants.FLASH)
 	private String login;
 
 	@Property
+	@Persist(PersistenceConstants.FLASH)
 	private String password;
 
 	@Property
+	@Persist(PersistenceConstants.FLASH)
 	private String email;
 
 	@InjectComponent
 	private Form signupForm;
 
 	@SuppressWarnings("unused")
-	@InjectComponent(value = "fullName")
+	@Component(id = "fullName", parameters="AjaxValidation.etat=valideFullName")
+	@Mixins("AjaxValidation")
 	private TextField fullNameText;
 
 	@SuppressWarnings("unused")
-	@InjectComponent(value = "login")
+	@Component(id = "login",  parameters={
+							"AjaxValidation.etat=valideLogin",
+							"AjaxValidation.whenValidate=keyup",
+							"AjaxValidation.timer=1000"
+	})
+ 
+				   
+	@Mixins("AjaxValidation")
 	private TextField loginText;
 
 	@SuppressWarnings("unused")
-	@InjectComponent(value = "password")
+	@Component(id = "password", parameters="AjaxValidation.etat=validePassword")
+	@Mixins("AjaxValidation")
 	private PasswordField passwordText;
 
 	@SuppressWarnings("unused")
-	@InjectComponent(value = "email")
+	@Component(id = "email", parameters="AjaxValidation.etat=valideEmail")
+	@Mixins("AjaxValidation")
 	private TextField emailText;
+	
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private EnumValidation valideFullName;
+
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private EnumValidation valideLogin;
+	
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private EnumValidation valideEmail;
+	
+	@Property
+	@Persist(PersistenceConstants.FLASH)
+	private EnumValidation validePassword;
+	
 
 	@Inject
 	private UserManager userManager;
@@ -79,36 +107,66 @@ public class SignUp
 	private TapestwitterSecurityContext securityCtx;
 
 	@InjectPage
-	private SignUpSuccess signSuccess;
+	private HomePage homePage;
 
-	@Inject
-	private Messages messages ;
 	
 	
-	
-	@SuppressWarnings("unchecked")
 	@Log
-	@OnEvent(value = EventConstants.VALIDATE, component = "login")
-	public EnumValidation validateLogin(String userLogin)
+	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "login")
+	public EnumValidation ajaxLoginValidation(String userLogin)
 	{
-		
-		Boolean result = userManager.isAvailableName(userLogin);
-		
-		if(result){
-			return EnumValidation.OK;
-		}
-		
-		return EnumValidation.INVALIDE;
+		validateLogin(userLogin);
+		return valideLogin;
 		
 	}
 	
+	
+	@Log
+	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "fullName")
+	public EnumValidation ajaxFullNameValidation(String fullName)
+	{
+		validateFullName(fullName);
+		return valideFullName;
+		
+	}
+	
+	
+	@Log
+	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "password")
+	public EnumValidation ajaxPasswordValidation(String password)
+	{
+		validatePassword(password);
+		return validePassword;
+		
+	}
+	
+	
+	@Log
+	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "email")
+	public EnumValidation ajaxEmailValidation(String email)
+	{
+		validationEmail(email);
+		return valideEmail;
+		
+	}
+		
 	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "signupForm")
 	public void onValidate()
 	{
-		if (StringUtils.isEmpty(fullName) || StringUtils.isEmpty(login) || StringUtils.isEmpty(password) || StringUtils.isEmpty(email))
-		{
-			signupForm.recordError("Problemo!!!");
+		validationEmail(email);
+		validateFullName(fullName);
+		validateLogin(login);
+		validatePassword(password);
+		
+		boolean result = EnumValidation.OK.equals(valideEmail);
+		result = result &&  EnumValidation.OK.equals(valideFullName);
+		result = result &&  EnumValidation.OK.equals(valideLogin);
+		result = result &&  EnumValidation.OK.equals(validePassword);
+		
+		if(!result){
+			signupForm.recordError("Validation not succeded");
 		}
+		 
 	}
 
 	@OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
@@ -127,18 +185,85 @@ public class SignUp
 		catch (CreateUserException e)
 		{
 			logger.error("User not created", e);
-			signupForm.recordError("Problemo!!!");
+			signupForm.recordError("Validation not succeded");
 			return this;
 		}
 		catch (CreateAuthorityException e)
 		{
 			logger.error("User not created", e);
-			signupForm.recordError("Problemo!!!");
+			signupForm.recordError("Validation not succeded");
 			return this;
 		}
 
-		signSuccess.setEmail(email);
+		homePage.setFirstTime(true);
 
-		return signSuccess;
+		return homePage;
 	}
+	
+	
+	private void validationEmail(String email){
+		
+		valideEmail = EnumValidation.INVALIDE;
+		
+		if(StringUtils.isEmpty(email) ){
+			valideEmail = EnumValidation.EMPTY;
+			
+		}else if(!ValidationUtils.isEmail(email)){
+			valideEmail =  EnumValidation.FORMAT;
+			
+		}else{
+			Boolean result = userManager.isAvailableEmail(email);
+			
+			if(result){
+				valideEmail = EnumValidation.OK;
+			}
+			
+		}
+	}
+	
+	private void validatePassword(String password){
+		validePassword =  EnumValidation.EMPTY;
+		
+		if(StringUtils.isEmpty(password)){
+			validePassword =  EnumValidation.EMPTY;
+		} else 
+		if(StringUtils.isEmpty(password.trim()) || password.trim().length() < 6){
+			validePassword =  EnumValidation.FORMAT;
+			
+		} else {
+			validePassword = EnumValidation.OK;
+		}
+	}
+	
+	private void validateFullName(String fullName){
+		
+		valideFullName =  EnumValidation.EMPTY;
+		
+		if(StringUtils.isEmpty(fullName)){
+			valideFullName =  EnumValidation.EMPTY;
+		} else 
+		if(StringUtils.isEmpty(fullName.trim())){
+			valideFullName =  EnumValidation.INVALIDE;
+			
+		} else {
+			valideFullName = EnumValidation.OK;
+		}
+	}
+	
+	private void validateLogin(String userLogin){
+		valideLogin = EnumValidation.INVALIDE;
+		
+		if(StringUtils.isEmpty(userLogin) ){
+			valideLogin = EnumValidation.EMPTY;
+		}else {
+		
+			Boolean result = userManager.isAvailableName(userLogin);
+		
+			if(result){
+				valideLogin = EnumValidation.OK;
+			}
+		}
+	}
+	
+	
 }

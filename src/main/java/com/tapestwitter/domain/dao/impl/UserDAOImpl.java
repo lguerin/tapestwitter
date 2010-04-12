@@ -35,4 +35,20 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements IUserDAO
 		}
 	}
 
+	public User findByEmail(String email) {
+		Assert.notNull(email, "email");
+
+		Query query = entityManager.createQuery("SELECT u FROM " + getEntityType() + " u WHERE u.email LIKE :em");
+		query.setParameter("em", email.toLowerCase());
+
+		try
+		{
+			return (User) query.getSingleResult();
+		}
+		catch (RuntimeException re)
+		{
+			return null;
+		}
+	}
+
 }

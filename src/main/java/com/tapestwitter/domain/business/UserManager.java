@@ -20,4 +20,6 @@ public interface UserManager
 	User findByUsername(String username);
 	
 	boolean isAvailableName(String username);
+	
+	boolean isAvailableEmail(String email);
 }

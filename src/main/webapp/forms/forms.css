@@ -85,6 +85,94 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	outline-width : medium;		
 }
 
+input.text_field {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	border:1px solid #DDDDDD;
+	font-size:14px;
+	margin:0;
+	padding:8px;
+	width:200px;
+}
+
+/* button */
+
+input.submit, button, input[type="submit"], input[type="button"], input[type="file"] > input[type="button"] {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	background-color:#E6E6E6;
+	border:1px solid #CCCCCC;
+	color:#000000;
+	cursor:pointer;
+	font-size:x-small;
+	padding:4px 8px;
+	vertical-align:top;
+}
+
+.btn, input.btn[type="submit"], input.btn[type="button"] {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-bottomright:4px;
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+	-x-system-font:none;
+	background:#DDDDDD url(../img/bg-btn.gif) repeat-x scroll 0 0;
+	border-color:#DDDDDD #DDDDDD #CCCCCC;
+	border-style:solid;
+	border-width:1px;
+	color:#333333;
+	cursor:pointer;
+	font-family:"Lucida Grande",sans-serif;
+	font-size:11px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:14px;
+	margin:0;
+	overflow:visible;
+	padding:4px 8px 5px;
+	text-shadow:1px 1px 0 #FFFFFF;
+	width:auto;
+}
+
+#login_submit {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-bottomright:4px;
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+	background:#3399DD url("../img/bg-btn-blue.png") repeat-x scroll 0 0;
+	border:1px solid #3399DD;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+	margin:0 5px 0 0;
+	padding:4px 10px 5px;
+	text-shadow:0 -1px 0 #3399DD;
+	width: auto;
+}
+
+.btn-m, input.btn-m[type="submit"], input.btn-m[type="button"] {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	background-position:0 -200px;
+	font-size:15px;
+	line-height:20px !important;
+	padding:5px 15px 6px;
+}
+
 /**
  
  SIDE
@@ -113,129 +201,43 @@ div.join input {
 
 /* SIGN UP */
 
-#signup-form table {
-	border-collapse:collapse;
-	margin-bottom:20px;
+#signup-form div.formContent {
+	width:650px;
 }
 
-#signup-form td, #signup-form th {
-	padding:0 0 15px;
-	vertical-align:top;
-}
-
-#signup-form th {
-	color:#666666;
-	font-size:16px;
-	font-weight:normal;
-	padding-right:10px;
-	text-align:right;
-	vertical-align:middle;
-	width:180px;
-}
-
-#signup-form td.col-field {
-	width:200px;
-}
 
 #signup-form input.text_field {
 	font-size:18px;
+	width: 185px;
 }
 
-#signup-form td.col-help {
-	width:250px;
+/* ============
+
+	Field box
+	
+   ============
+*/
+
+#signup-form div.col-field {
+	width: 200px;
+	float : left;
+	padding: 0 0 15px;
+	vertical-align : top;
 }
 
-input.text_field {
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-	border:1px solid #DDDDDD;
-	font-size:14px;
-	margin:0;
-	padding:8px;
-	width:200px;
+/* ==============
+
+	Label box 
+	
+   ==============	
+*/
+
+#signup-form div.col-help {
+	width : 250px;
+	float: right;
+	padding: 0 0 15px;
+	vertical-align : top;
 }
-
-#signup-form input.text_field {
-	font-size:18px;
-}
-
-#signup-form td #tos, #signup-form td .tos-agree {
-	width:455px;
-}
-
-#signup-form td #tos {
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-	border:1px solid #DDDDDD;
-	display:block;
-	height:5em;
-	overflow-x:hidden;
-	overflow-y:auto;
-	padding:8px 0 8px 8px;
-}
-
-/* button */
-
-input.submit, button, input[type="submit"], input[type="button"], input[type="file"] > input[type="button"] {
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-	background-color:#E6E6E6;
-	border:1px solid #CCCCCC;
-	color:#000000;
-	cursor:pointer;
-	font-size:x-small;
-	padding:4px 8px;
-	vertical-align:top;
-}
-
-.btn, input.btn[type="submit"], input.btn[type="button"] {
-	-moz-background-clip:border;
-	-moz-background-inline-policy:continuous;
-	-moz-background-origin:padding;
-	-moz-border-radius-bottomleft:4px;
-	-moz-border-radius-bottomright:4px;
-	-moz-border-radius-topleft:4px;
-	-moz-border-radius-topright:4px;
-	-x-system-font:none;
-	background:#DDDDDD url(https://s3.amazonaws.com/twitter_production/a/1269553143/images/buttons/bg-btn.gif) repeat-x scroll 0 0;
-	border-color:#DDDDDD #DDDDDD #CCCCCC;
-	border-style:solid;
-	border-width:1px;
-	color:#333333;
-	cursor:pointer;
-	font-family:"Lucida Grande",sans-serif;
-	font-size:11px;
-	font-size-adjust:none;
-	font-stretch:normal;
-	font-style:normal;
-	font-variant:normal;
-	font-weight:normal;
-	line-height:14px;
-	margin:0;
-	overflow:visible;
-	padding:4px 8px 5px;
-	text-shadow:1px 1px 0 #FFFFFF;
-	width:auto;
-}
-
-.btn-m, input.btn-m[type="submit"], input.btn-m[type="button"] {
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-	background-position:0 -200px;
-	font-size:15px;
-	line-height:20px !important;
-	padding:5px 15px 6px;
-}
-
-/* Label box */
 
 #signup-form div.col-help .t-label-box {
 	-moz-background-clip:border;
@@ -243,7 +245,7 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	-moz-background-origin:padding;
 	-moz-border-radius-bottomright:10px;
 	-moz-border-radius-topright:10px;
-	background:#F2F2F2 url(https://s3.amazonaws.com/twitter_production/a/1269553143/images/signup_info.gif) no-repeat scroll 13px 50%;
+	background:#F2F2F2 url(../img/signup_info.gif) no-repeat scroll 13px 50%;
 	border-color:#DBDBDB;
 	border-style:solid;
 	border-width:1px 1px 1px 2px;
@@ -255,23 +257,94 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	text-transform:lowercase;
 }
 
-#signup-form table div.col-help .t-label-box.good {
+#signup-form div div.col-help .t-label-box.good {
 	background-color:#F0FEE9;
-	background-image:url(https://s3.amazonaws.com/twitter_production/a/1269553143/images/signup_check.gif);
+	background-image:url(../img/signup_check.gif);
 	border-color:#E1EFDB;
 }
 
-#signup-form table div.col-help .t-label-box.error {
+#signup-form div div.col-help .t-label-box.error {
 	background-color:#FFCFCF;
 	background-image:none;
 	border-color:#E5A3A3;
 	color:#801B1B;
 	padding-left:10px;
 }
-#signup-form table div.col-help .show {
+
+#signup-form div div.col-help .show {
 	display : block;
 }
 
-#signup-form table div.col-help .hide{
+#signup-form div div.col-help .hide {
 	display : none;
+}
+
+.clearFloat {
+	clear:both;
+}
+
+.formleftCol{
+	color:#666666;
+	font-size:16px;
+	font-weight:normal;
+	padding-right:10px;
+	text-align:right;
+	vertical-align:middle;
+	width:180px;
+	float: left;
+	padding: 0 0 15px;
+}
+
+.formRigthCol{
+	width : 450px;
+	float: right;
+	padding: 0 0 15px;
+	vertical-align : top;
+}
+
+#signup-form div div.col-help .t-ajaxvalidation-icon {
+	background-image:url(../img/indicator_arrows_circle.gif);
+	width: 10px;
+	height: 10px;
+}
+
+.content-heading {
+	margin:20px 25px 25px;
+}
+
+subpage #content p {
+	line-height:1.2;
+	margin:5px 0;
+}
+
+
+.content-heading p {
+	color:#666666;
+	font-size:14px;
+}
+
+
+
+
+
+subpage #content p {
+	line-height:1.2;
+	margin:5px 0;
+}
+
+.content-heading .heading h2 {
+	font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-size:26px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	margin:0 !important;
+}
+
+.content-heading .heading .sign-in {
+	float:right;
+	font-size:10px;
+}
+.content-heading .heading {
+	line-height:1;
+	padding-bottom:24px;
 }

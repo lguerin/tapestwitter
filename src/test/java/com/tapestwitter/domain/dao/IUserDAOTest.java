@@ -47,6 +47,15 @@ public class IUserDAOTest extends UnitilsJUnit4
 		Assert.assertNotNull(user);
 
 	}
+	
+	@DataSet
+	@Test
+	public void testFindUserByEmail()
+	{
+		User user = userDAO.findByEmail("katiaaresti@gmail.com");
+		Assert.assertNotNull(user);
+
+	}
 
 	@DataSet
 	@Test
@@ -60,4 +69,6 @@ public class IUserDAOTest extends UnitilsJUnit4
 		authorizationDAO.create(authority);
 		Assert.assertEquals(user.getAuthorities().size(), 1);
 	}
+	
+	
 }

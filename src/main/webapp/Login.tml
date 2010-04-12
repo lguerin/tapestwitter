@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" value="${message:button-login}" name="commit" id="signin_submit"/></td>
+					<td><input id="login_submit" class="btn" type="submit" value="${message:button-login}" name="commit"/></td>
 				</tr>
 			    </tbody>
 		    </table>

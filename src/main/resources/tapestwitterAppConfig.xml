@@ -22,6 +22,9 @@
 				<value>
 					classpath*:config/database.properties
 				</value>
+				<value>
+					classpath*:config/security.properties
+				</value>
 			</list>
 		</property>
 	</bean>

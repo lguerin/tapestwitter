@@ -19,4 +19,10 @@ public class TapesTwitterEventConstants
 	 * clicked.
 	 */
 	public static final String PROVIDE_MORE_RESULTS = "provideMoreResults";
+	
+	/**
+	 * Event triggered when the {@link AjaxValidation} mixin is 
+	 * activated.
+	 */
+	public static final String AJAX_VALIDATE = "ajaxValidate";
 }

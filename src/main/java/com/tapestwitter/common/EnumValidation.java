@@ -2,5 +2,5 @@ package com.tapestwitter.common;
 
 public enum EnumValidation {
 
-	FORMAT, EMPTY, INVALIDE, OK 
+	INFO, FORMAT, EMPTY, INVALIDE, OK ;
 }
