@@ -3,6 +3,7 @@ package com.tapestwitter.domain.dao;
 import java.util.List;
 
 import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
 
 /**
  * DAO responsable de la manipulation des {@link Tweet}.
@@ -34,4 +35,10 @@ public interface ITweetDAO extends IGenericDAO<Tweet, Long>
 	 */
 	List<Tweet> findRecentTweets(Long id, Integer range);
 
+	/**
+	 * Get the count of tweets for a given user identified by his login.
+	 * @param login		The login of the {@link User}
+	 * @return			The number of tweets created by a {@link User}
+	 */
+	Integer getNbTweetsByUser(String login);
 }

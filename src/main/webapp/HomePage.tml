@@ -17,7 +17,7 @@
 			<div id="publish-tweet-box-bottom">			
 				<div class="publish-tweet-submit">
 					<div class="tapestwitter-form-submit">
-		                <input t:type="submit" value="Actualiser" />
+		                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
 		            </div>
 				</div>
 			</div>

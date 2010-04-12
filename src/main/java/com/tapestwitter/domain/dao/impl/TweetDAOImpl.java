@@ -57,4 +57,13 @@ public class TweetDAOImpl extends GenericDAOImpl<Tweet, Long> implements ITweetD
 		List<Tweet> resultList = (List<Tweet>) query.getResultList();
 		return resultList;
 	}
+
+	public Integer getNbTweetsByUser(String login)
+	{
+		Assert.notNull(login, "login");
+		Query query = this.entityManager.createQuery("SELECT COUNT(t.author) FROM " + getEntityType() + " t WHERE t.author = :author");
+		query.setParameter("author", login);
+		Number countResult = (Number) query.getSingleResult();
+		return countResult.intValue();
+	}
 }
