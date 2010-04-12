@@ -28,10 +28,9 @@
 				  	<ul class="top-navigation">
 					  	<t:security.isAnonymous>
 					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >Connexion</a></li>
-          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >A propos</a></li>	
-	                		
+          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >A propos</a></li>		                		
 	                		<p:else>
-	                			<li><a href="${logoutUrl}">Deconnexion</a></li>
+	                			<li><a t:type="ActionLink" t:id="logout" href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
 	                		</p:else>
 	                	</t:security.isAnonymous>
 				  	</ul>
