@@ -54,6 +54,8 @@
 
 			<!-- Debut Zone #rightbar -->
             <div id="rightbar" class="round-right">
+            	<t:changelocale/>
+            	
             	<t:security.isAnonymous>
             		
 					  <div class="section">

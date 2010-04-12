@@ -18,7 +18,7 @@
 
 	<beans:bean id="tapestwitterSaltSource"
 		class="org.springframework.security.authentication.dao.SystemWideSaltSource">
-		<beans:property name="systemWideSalt" value="tapestwitttertwit" />
+		<beans:property name="systemWideSalt" value="${tapestwitter.salt}" />
 	</beans:bean>
 	
 	<beans:bean id="userManager" class="com.tapestwitter.domain.business.impl.UserManagerImpl">
@@ -34,15 +34,17 @@
 	</beans:bean>
 
 	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/index*" access="permitAll" />
 		<intercept-url pattern="/login*" access="permitAll" />
 		<intercept-url pattern="/login/error*" access="permitAll" />
 		<intercept-url pattern="/signup*" access="permitAll" />
 		<intercept-url pattern="/assets/**" access="permitAll"/>
-		<intercept-url pattern="/**" access="isAuthenticated() or isRememberMe()" />
-		<form-login login-page="/login" 
-					authentication-failure-url="/login/error"
-					default-target-url="/homepage"
-					always-use-default-target="true"/>
+		<intercept-url pattern="/homepage**" access="isAuthenticated() or isRememberMe()" />
+		<intercept-url pattern="/**" access="permitAll"/>
+		<form-login login-page="${loginFormUrl}" 
+					authentication-failure-url="${authenticationFailureUrl}"
+					default-target-url="${defaultTargetUrl}"
+					always-use-default-target="false"/>
 					
 		<anonymous />
 		<remember-me key="tapestwitter"/>

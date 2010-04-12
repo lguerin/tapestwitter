@@ -93,6 +93,11 @@ public class UserManagerImpl implements UserManager
 		 return user == null;
 	}
 	
+	public boolean isAvailableEmail(String email) {
+		 User user = userDao.findByEmail(email);
+		 return user == null;
+	}
+	
 	public TapestwitterSecurityContext getSecurityContext()
 	{
 		return securityContext;

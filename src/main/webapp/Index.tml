@@ -1,8 +1,60 @@
-<html t:type="layout" p:title="Accueil"
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
+        <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:forms/forms.css}" rel="stylesheet" type="text/css"/> 
+        <title>${message:signup.title}</title>
+    </head>
+    <body>
+    	   	
+    	<!-- Init Zone #wrapper -->
+        <div id="wrapper">
+          <!-- Init Zone #header -->       
+          <div id="header">
+			<div id="headerG">
+				<div id="logo">
+					<a accesskey="1" title="TapesTwitter / Créer un compte " href="Index">
+	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
+	  				</a>
+				</div>
+			</div>
+			
+		  <div class="clear"></div>
+		  </div>          
+          <!-- End Zone #header -->
+
+          <!-- Init Zone #page -->
+          
+          <div class="page-top"></div>
+          <div class="round">       
+             	  
+          	  <!-- Debut Zone #content -->
+          	  
+              <div id="content" style="width: 765px" class="round">
+  		
+       Cette application c'est une DEMO J2EE qui a pour propose tester essentiallement
+       Tapestry 5.1 (dernière version) en ensemble avec : <br/>
+       
+       <ul>
+       		<li> Spring </li>
+       		<li> JPA </li>
+       		<li> HSQL </li>
+       		<li> DbUnit </li>
+       </ul>
+
+		Le propose de cette application est purement didactique.
+		
+        <t:pageLink page="login">Entrer dans la DEMO</t:pageLink>
+   
+    </div>
+    </div>
+    </div>
+    </body>
+    
 	
-
-	<span>Affichage pour les anonymes</span>
-
 </html>

@@ -8,13 +8,13 @@
         <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
         <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>
         <link href="${asset:context:forms/forms.css}" rel="stylesheet" type="text/css"/> 
-        <title>TapesTwitter / Créer un compte </title>
+        <title>${message:signup.title}</title>
     </head>
     <body>
     	   	
-    	<!-- Debut Zone #wrapper -->
+    	<!-- Init Zone #wrapper -->
         <div id="wrapper">
-          <!-- Debut Zone #header -->       
+          <!-- Init Zone #header -->       
           <div id="header">
 			<div id="headerG">
 				<div id="logo">
@@ -26,91 +26,108 @@
 			
 		  <div class="clear"></div>
 		  </div>          
-          <!-- Fin Zone #header -->
+          <!-- End Zone #header -->
 
-          <!-- Debut Zone #page -->
+          <!-- Init Zone #page -->
+          
           <div class="page-top"></div>
           <div class="round">       
              	  
           	  <!-- Debut Zone #content -->
+          	  
               <div id="content" style="width: 765px" class="round">
+              		<div class="content-heading">
+						  <div class="heading">
+						    <p class="sign-in">
+						      Déjà sur Tapestwitter ? <t:pageLink page="login">Connectez-vous</t:pageLink>.
+						    </p>
+						    <h2>Rejoindre la conversation</h2>
+						    <p class="finish-signup">
+						      Vous utilisez déjà Tapewtwitter sur votre téléphone ? <t:pageLink page="login">Terminez votre inscription maintenant</t:pageLink>.
+						    </p>
+						  </div>
+					</div>
               		<div id="signup-form">
               		<form t:type="form" t:id="signupForm">
               		<fieldset>
-              		<table class="input-form">
-              			<tbody>
-              				<tr>
-              					<th>
-              						<label for="fullName">Nom complet</label>
-              					</th>
-              					<td class="col-field">
-              						<input type="text" t:type="textfield" t:id="fullName" class="text_field with-box" />
-              					</td>
-              					
-					        </tr>
-					        <tr>
-              					<th>
-              						<label for="login">Nom d'utilisateur</label>
-              					</th>
-              					<td class="col-field">
-              						<input type="text" t:type="textfield" t:id="login" t:mixins="ajaxValidation" class="text_field with-box"/>
-              					</td>
-              					
-					        </tr>
-	              			<tr>
-              					<th>
-              						<label for="password">Mot de passe</label>
-              					</th>
-              					<td class="col-field">
-              						<input type="password" t:type="passwordfield" t:id="password" class="text_field with-box"/>
-              					</td>
-              					
-					        </tr>
-	              			<tr>
-              					<th>
-              						<label for="email">E-mail</label>
-              					</th>
-              					<td class="col-field">
-              						<input type="text" t:type="textfield" t:id="email" class="text_field with-box"/>
-              					</td>
-              					
-					        </tr>
-					        <tr>
-					        	<th></th>
-					        	<td>
-					        		<t:kaptchaimage t:id="kaptcha"/><br/>
-					        		<t:kaptchafield image="kaptcha" class="text_field with-box"/>
-    				        	</td>
-					        </tr>
+              			<div class="formContent">         				
+              				<div>
+              					<div class="formleftCol">
+              						<label for="fullName">${message:signup.fullName}</label>
+              					</div>
+              					<div class="formRigthCol" >
+              						<div class="clear"/>
+              						<input type="text" t:id="fullName" class="text_field with-box" />
+              					</div>
+              					<div class="clear"/>
+              				</div>
+					        <div>
+              					<div class="formleftCol">
+              						<label for="login">${message:signup.login}</label>
+              					</div>
+              					<div class="formRigthCol">
+              						<div class="clear"/>
+              						<input type="text" t:id="login" class="text_field with-box"/>
+              					</div>
+              					<div class="clear"/>
+					        </div>
+	              			<div>
+              					<div class="formleftCol">
+              						<label for="password">${message:signup.password}</label>
+              					</div>
+              					<div class="formRigthCol">
+              						<div class="clear"/>
+              						<input type="password" t:id="password" class="text_field with-box"/>
+              					</div>
+              					<div class="clear"/>
+					        </div>
+	              			<div>
+              					<div class="formleftCol">
+              						<label for="email">${message:signup.email}</label>
+              					</div>
+              					<div class="formRigthCol">
+              						<div class="clear"/>
+              						<input type="text" t:id="email" class="text_field with-box"/>
+              					</div>
+              					<div class="clear"/>
+					        </div>
+					        <div>
+					        	<div class="formleftCol">
+					        		<label for="kaptcha">${message:signup.kapcha}</label>
+					        	</div>
+              					<div class="formRigthCol">
+              						<div class="clear"/>
+              						<div>
+              							<t:kaptchaimage t:id="kaptcha"/>
+              						</div>
+              						<div>
+					        			<t:kaptchafield image="kaptcha" class="text_field with-box"/>
+					        		</div>
+    				        	</div>
+    				        	<div class="clear"/>
+					        </div>
 					        
-					       <tr>
-              					<th>
-              						
-              					</th>
-              					<td class="col-field">
-              						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Créer mon compte.">
-              							Créer mon compte
-              						</button>
-              					</td>
+					       <div>
+					       		<div class="formleftCol"/>
+					       		<div class="formRigthCol">
+	              					<div class="col-field">
+	              						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Créer mon compte.">
+	              							${message:signup.submit}
+	              						</button>
+	              					</div>
+              					</div>
               					
-					        </tr>
-	              			
-              				            				
-              			</tbody>
-              		</table>
+					        </div>
+	              		       			
+              			</div>
               		          		
               		</fieldset>
               		</form>
-              	</div> <!-- fin div signup form -->
+              	</div> <!-- end div signup form -->
               </div>
-              <!--Fin Zone #content -->
-
-			
-			<div class="clear"></div>
+      		<div class="clear"></div>
         </div>
         
         </div>
-        <!-- Fin Zone #wrapper -->
-        
     </body>
 </html>

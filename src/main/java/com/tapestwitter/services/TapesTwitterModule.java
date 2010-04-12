@@ -14,6 +14,8 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.ioc.internal.services.ClasspathResourceSymbolProvider;
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
@@ -46,7 +48,7 @@ public class TapesTwitterModule
 		// you can extend this list of locales (it's a comma separated series of locale names;
 		// the first locale name is the default when there's no reasonable match).
 
-		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr, en");
+		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr, es, en");
 
 		// The factory default is true but during the early stages of an application
 		// overriding to false is a good idea. In addition, this is often overridden
@@ -118,5 +120,9 @@ public class TapesTwitterModule
 		// within the pipeline.
 
 		configuration.add("Timing", filter);
+	}
+	
+	public static void contributeSymbolSource(OrderedConfiguration<SymbolProvider> providers) {
+		providers.add("springSecurity", new ClasspathResourceSymbolProvider("config/security.properties"));
 	}
 }
