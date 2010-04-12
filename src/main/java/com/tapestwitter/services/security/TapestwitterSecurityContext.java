@@ -30,4 +30,9 @@ public interface TapestwitterSecurityContext
 	 * @return current authenticated user
 	 */
 	User getUser();
+
+	/**
+	 * Logout the current user
+	 */
+	void logout();
 }

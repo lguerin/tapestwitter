@@ -7,6 +7,7 @@ import com.tapestwitter.domain.exception.CreateUserException;
 import com.tapestwitter.domain.model.Authority;
 import com.tapestwitter.domain.model.User;
 import com.tapestwitter.services.DataSetLoaderService;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,12 +39,10 @@ public class DataSetLoaderServiceImpl implements DataSetLoaderService
 		}
 
 		logger.info(">>> Chargement du jeu de donnees par defaut...");
-		String tweetMsg = "TapesTwitter, une application de demo 'Twitter like' ecrite avec Tapestry 5";
-		tweetManager.createTweet(tweetMsg);
-
 		logger.info(">>> Users : Chargement du jeu de donnees par defaut...");
 		User user = new User();
 		Authority authority = new Authority();
+		TapestwitterSecurityContext securityCtx = (TapestwitterSecurityContext) applicationContext.getBean("tapestwitterSecurityContext");
 		try
 		{
 			user.setFullName("Laurent Guerin");
@@ -51,6 +50,7 @@ public class DataSetLoaderServiceImpl implements DataSetLoaderService
 			user.setPassword("laurentpass");
 			user.setEmail("laurent@tapestwitter.org");
 			userManager.addUser(user);
+			securityCtx.logIn(user);
 
 			user = new User();
 			user.setFullName("Katia Aresti");
@@ -62,6 +62,7 @@ public class DataSetLoaderServiceImpl implements DataSetLoaderService
 			authority = new Authority();
 			authority.setAuthority("ROLE_ADMIN");
 			userManager.addAuthority(user, authority);
+
 		}
 		catch (CreateUserException e)
 		{
@@ -71,6 +72,10 @@ public class DataSetLoaderServiceImpl implements DataSetLoaderService
 		{
 			logger.error("Erreur sur le chargement des données de test " + authority, e);
 		}
+
+		String tweetMsg = "TapesTwitter, une application de demo 'Twitter like' ecrite avec Tapestry 5";
+		tweetManager.createTweet(tweetMsg);
+		securityCtx.logout();
 
 		logger.info("<<< Chargement termine.");
 	}

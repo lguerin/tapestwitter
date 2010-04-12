@@ -7,6 +7,8 @@ import java.util.List;
 import com.tapestwitter.domain.business.TweetManager;
 import com.tapestwitter.domain.dao.ITweetDAO;
 import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,9 @@ public class TweetManagerImpl implements TweetManager
 	@Autowired
 	private ITweetDAO tweetDAO;
 
+	@Autowired
+	private TapestwitterSecurityContext securityContext;
+
 	/* (non-Javadoc)
 	 * @see com.tapestwitter.domain.business.TweetManager#findTweetByKeyword(java.lang.String)
 	 */
@@ -47,8 +52,8 @@ public class TweetManagerImpl implements TweetManager
 		tweet.setTweet(msg);
 		Date creationDate = Calendar.getInstance().getTime();
 		tweet.setCreationDate(creationDate);
-		// TODO : remplacer par le user connecte
-		String author = "laurent";
+		User user = securityContext.getUser();
+		String author = user.getLogin();
 		tweet.setAuthor(author);
 
 		// Sauvegarde du tweet

@@ -25,8 +25,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * Permet de retourner l'intervale écoulé depuis une date de publication. 
  * @author lguerin
  * 
- * TODO : a refactorer + mettre a jour les tests JUNITs
- *
  */
 public class PublicationIntervalRenderer
 {

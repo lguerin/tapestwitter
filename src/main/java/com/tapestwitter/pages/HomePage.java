@@ -71,7 +71,7 @@ public class HomePage
 	 */
 	@Persist
 	private Long lastTweetId;
-	
+
 	@Persist(PersistenceConstants.FLASH)
 	private boolean isFirstTime;
 
@@ -170,9 +170,8 @@ public class HomePage
 	}
 
 	/**
-	 * Syncronyse items contains into the tweets list.
+	 * Synchronise items who are contains into the tweets list.
 	 */
-	@Log
 	private void syncTweets()
 	{
 		if (ajaxResult != null && tweets != null)
@@ -217,13 +216,14 @@ public class HomePage
 		this.tweets = tweets;
 	}
 
-	public boolean isFirstTime() {
+	public boolean isFirstTime()
+	{
 		return isFirstTime;
 	}
 
-	public void setFirstTime(boolean isFirstTime) {
+	public void setFirstTime(boolean isFirstTime)
+	{
 		this.isFirstTime = isFirstTime;
 	}
-	
-	
+
 }

@@ -1,8 +1,11 @@
 package com.tapestwitter.components;
 
 import com.tapestwitter.services.TapestwiterURLResolver;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 import org.apache.tapestry5.BindingConstants;
+import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -21,8 +24,18 @@ public class Layout
 	@Inject
 	private TapestwiterURLResolver urlResolver;
 
+	@Inject
+	private TapestwitterSecurityContext securityContext;
+
 	public String getLogoutUrl()
 	{
 		return urlResolver.getLogoutUrl();
+	}
+
+	@Log
+	@OnEvent(component = "logout")
+	public void onLogout()
+	{
+		securityContext.logout();
 	}
 }
