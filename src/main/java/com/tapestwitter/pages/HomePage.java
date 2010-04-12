@@ -98,7 +98,10 @@ public class HomePage
 		tweets = tweetManager.findRecentTweets(DEFAULT_NUMBER_TWEETS);
 		if (ajaxResult == null)
 		{
-			lastTweetId = tweets.get(tweets.size() - 1).getId();
+			if (tweets.size() > 0)
+			{
+				lastTweetId = tweets.get(tweets.size() - 1).getId();
+			}
 		}
 
 		if (tweets.size() == DEFAULT_NUMBER_TWEETS)
