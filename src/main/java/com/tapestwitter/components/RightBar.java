@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.tapestwitter.components;
 
 import com.tapestwitter.domain.business.TweetManager;
@@ -22,7 +19,7 @@ public class RightBar
 	private TapestwitterSecurityContext securityContext;
 
 	@Property(write = false)
-	private User user = securityContext.getUser();
+	private User user;
 
 	@Inject
 	private TweetManager tweetManager;
@@ -34,6 +31,7 @@ public class RightBar
 	@SetupRender
 	public void setup()
 	{
+		user = securityContext.getUser();
 		userNbTweets = tweetManager.getNbTweetsByUser(user.getLogin());
 	}
 }
