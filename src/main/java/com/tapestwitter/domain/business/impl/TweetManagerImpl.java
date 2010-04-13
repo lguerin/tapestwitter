@@ -107,4 +107,9 @@ public class TweetManagerImpl implements TweetManager
 	{
 		return tweetDAO.getNbTweetsByUser(login);
 	}
+
+	public void setSecurityContext(TapestwitterSecurityContext securityContext)
+	{
+		this.securityContext = securityContext;
+	}
 }

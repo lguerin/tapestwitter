@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 /**
  * @author lguerin
@@ -75,4 +76,10 @@ public interface TweetManager
 	 * @return			The number of tweets created by a {@link User}
 	 */
 	Integer getNbTweetsByUser(String login);
+
+	/**
+	 * Set the security context
+	 * @param securityContext	the security context to set
+	 */
+	void setSecurityContext(TapestwitterSecurityContext securityContext);
 }

@@ -335,6 +335,31 @@ ul.tweetInfosBox li:hover {
 	color: #787878;	
 }
 
+div.section {
+	padding:13px;
+}
+
+.section-header{
+	font-weight:bold;
+	padding-bottom: 10px;
+}
+
+#rightbar div.join {
+	text-align:center;
+}
+
+#rightbar div.join a{
+	background-color:#417596;
+	border:1px solid black;
+	color:white;
+	font-size:11pt;
+	font-weight:bold;
+	padding:0.3em 2.5em;
+}
+
+#rightbar div.join a:hover {
+	text-decoration: none;
+}
 
 /************** Footer **************/
 

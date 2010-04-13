@@ -32,7 +32,7 @@ public interface TapestwitterSecurityContext
 	User getUser();
 
 	/**
-	 * Logout the current user
+	 * Explicit logout the current user
 	 */
 	void logout();
 }

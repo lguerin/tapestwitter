@@ -5,15 +5,17 @@ package com.tapestwitter.domain.business;
 
 import java.util.List;
 
+import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
+
+import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.unitils.UnitilsTestNG;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
-
-import com.tapestwitter.domain.business.TweetManager;
-import com.tapestwitter.domain.model.Tweet;
 
 /**
  * Classe de test du service {@link TweetManager}. 
@@ -53,8 +55,21 @@ public class TweetManagerTest extends UnitilsTestNG
 	@Test
 	public void testCreateTweet()
 	{
+		// User returned by the mock
+		User testUser = new User();
+		testUser.setLogin(DEFAULT_AUTHOR);
+
+		// Mock the security context
+		TapestwitterSecurityContext mockSecurityContext = Mockito.mock(TapestwitterSecurityContext.class);
+
+		// Set the expectation
+		Mockito.when(mockSecurityContext.getUser()).thenReturn(testUser);
+		tweetManager.setSecurityContext(mockSecurityContext);
+
+		// Create the message
 		String msg = "Mon tweet a creer";
 		Tweet result = tweetManager.createTweet(msg);
+
 		// Test du message
 		Assert.assertEquals(result.getTweet(), msg);
 		// Test de l'auteur

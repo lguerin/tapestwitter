@@ -1,5 +1,7 @@
 package com.tapestwitter.components;
 
+import java.util.Locale;
+
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.annotations.Log;
@@ -25,9 +27,7 @@ import com.tapestwitter.common.EnumLocale;
  */
 public class ChangeLocale {
 
-	@Inject
-	private ThreadLocale threadLocale;
-	
+
 	@Inject
 	private Messages messages;
 	
@@ -36,26 +36,18 @@ public class ChangeLocale {
 	@Inject
 	private PersistentLocale persistentLocale;
 	
-
 	@Property
-	@Persist
 	private EnumLocale selectedLocale;
 	
-	@Inject
-	private ComponentResources resources;
-	
 	@Log
-	public Object onSuccess(){
+	public void onSuccess(){
 		if(selectedLocale != null){
-			
-			//persistentLocale.set(LocaleUtils.toLocale(selectedLocale.name()));
-			threadLocale.setLocale(LocaleUtils.toLocale(selectedLocale.name()));
+			persistentLocale.set(LocaleUtils.toLocale(selectedLocale.name()));
 		}
-		return resources.getPageName();
-		
 	}
-	
+		
 	public SelectModel getModel() {
 		return model;
 	}
+	
 }

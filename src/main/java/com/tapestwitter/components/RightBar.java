@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.tapestwitter.components;
 
 import com.tapestwitter.domain.business.TweetManager;

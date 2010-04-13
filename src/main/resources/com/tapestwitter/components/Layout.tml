@@ -27,10 +27,10 @@
 				  <div id="headerD-top-navigation" class="round">
 				  	<ul class="top-navigation">
 					  	<t:security.isAnonymous>
-					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >Connexion</a></li>
-          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >A propos</a></li>		                		
+					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >${message:layout-connexion-label}</a></li>
+          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >${message:layout-about-label}</a></li>		                		
 	                		<p:else>
-	                		<li><a t:type="ActionLink" t:id="logout" href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
+	                			<li><a href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
 	                		</p:else>
 	                	</t:security.isAnonymous>
 				  	</ul>
@@ -57,13 +57,11 @@
             		
 					  <div class="section">
 						  <div class="section-header">
-						    	Créer Votre Compte
+						    	${message:rightbar-creationcompte}
 						  </div>
 						  <div class="join">
-							    <form name="account_signup_form" id="account_signup_form" action="/tapestwitter/signup">
-							      <input id="join" name="commit" value="Rejoindre !" type="submit"/>
-							    </form>
-						   </div>
+						  		<t:pageLink t:page="signup">${message:rightbar-joinus}</t:pageLink>
+						  </div>
 						</div>
 					
             		<p:else>

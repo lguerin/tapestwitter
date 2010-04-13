@@ -75,7 +75,6 @@ public class DataSetLoaderServiceImpl implements DataSetLoaderService
 
 		String tweetMsg = "TapesTwitter, une application de demo 'Twitter like' ecrite avec Tapestry 5";
 		tweetManager.createTweet(tweetMsg);
-		securityCtx.logout();
 
 		logger.info("<<< Chargement termine.");
 	}
