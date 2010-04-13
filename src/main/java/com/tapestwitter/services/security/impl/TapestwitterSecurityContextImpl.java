@@ -25,9 +25,6 @@ public class TapestwitterSecurityContextImpl implements TapestwitterSecurityCont
 	@Inject
 	private Logger logger;
 
-	@Inject
-	private Request request;
-
 	/**
 	 * La méthode log in l'utilisateur
 	 * Le TOKEN est mis sur le security context
@@ -68,13 +65,16 @@ public class TapestwitterSecurityContextImpl implements TapestwitterSecurityCont
 		return user;
 	}
 
-	@Log
+	
 	public void logout()
 	{
 		// Invalidate the current Tapestry user session
-		//logger.info("Invalidate the Tapestry session of the current user: " + getUser().getLogin());
+		
 		//Session currentSession = request.getSession(true);
 		SecurityContextHolder.getContext().setAuthentication(null);
+		
 		SecurityContextHolder.clearContext();
+		
+		
 	}
 }

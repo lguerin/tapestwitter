@@ -1,5 +1,8 @@
 package com.tapestwitter.components;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.tapestwitter.services.TapestwiterURLResolver;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
@@ -9,6 +12,7 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 
 /**
  * Main Layout component for pages of application tapestwitter.
@@ -27,6 +31,9 @@ public class Layout
 	@Inject
 	private TapestwitterSecurityContext securityContext;
 
+	@Inject
+	private Request request;
+	
 	public String getLogoutUrl()
 	{
 		return urlResolver.getLogoutUrl();
@@ -36,6 +43,9 @@ public class Layout
 	@OnEvent(component = "logout")
 	public void onLogout()
 	{
+		
 		securityContext.logout();
+		request.getSession(false).invalidate(); 
+
 	}
 }

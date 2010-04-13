@@ -20,6 +20,21 @@ var Validation = Class.create({
     }
   },
   
+  /**
+   * 
+   */
+  init : function(){
+	  var blockName = String.interpret(this.element.id) + "_error";
+	  if(this.etat == 'OK'){
+		  blockName = String.interpret(this.element.id) + "_good";;
+	  }
+	  $(blockName).addClassName('show');
+  },
+  
+  /**
+   * 
+   * 
+   */
   validate: function() {
 	 
 	  if($F(this.element)== "" || (this.currentValue != $F(this.element))){
@@ -45,10 +60,16 @@ var Validation = Class.create({
 	  
   },
   
+  /**
+   * 
+   */
   onBlur : function(){
 	  $(this.element.id + "_info").removeClassName('show');
   },
   
+  /**
+   * 
+   */
   onFocus : function(){
 	  if(! ($(this.element.id + "_good").hasClassName('show') || $(this.element.id + "_error").hasClassName('show'))){
 		 
@@ -56,14 +77,6 @@ var Validation = Class.create({
 		  $(this.element.id + "_avail_check_indicator").addClassName("hide");
 		  $(this.element.id + "_info").addClassName('show');
 	  }
-  },
-
-  init : function(){
-	  var blockName = String.interpret(this.element.id) + "_error";
-	  if(this.etat == 'OK'){
-		  blockName = String.interpret(this.element.id) + "_good";;
-	  }
-	  $(blockName).addClassName('show');
   },
   
   sendRequest : function() {
