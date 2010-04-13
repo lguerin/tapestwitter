@@ -3,6 +3,7 @@ TapesTwitter
 
 #### A Tapestry 5 demo application ####
 
+
 TapesTwitter is a "Twitter-like" demonstration application build with Tapestry 
 5.
 
@@ -18,6 +19,6 @@ Build around :
 
 This demo application has been written by the following authors :
 
-Aresti Katia
-Doin Loïc
-Guerin Laurent
+* Aresti Katia
+* Doin Loïc
+* Guerin Laurent
