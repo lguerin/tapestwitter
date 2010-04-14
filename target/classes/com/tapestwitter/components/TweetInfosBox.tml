@@ -1,0 +1,18 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+	<div id="comp-tweet-infos">
+		<div class="comp-tweet-infos-thumb">
+			<img width="50" height="50" src="${asset:context:components/tweetinfosbox/images/tapestry_logo.gif}" alt="TapesTwitter" />
+		</div>
+		<div class="comp-tweet-infos-text">
+			<strong>
+				<a href="#" title="${tweet?.author}">${tweet?.author}</a>
+			</strong>
+			 - ${tweet?.tweet}
+			 <div class="comp-tweet-infos-status">
+			 	<t:publicationIntervalRenderer p:publicationDate="${tweet?.creationDate}"/>
+			 </div>
+		</div>
+		
+	</div>
+	<div class="clear"></div>
+</t:container>
