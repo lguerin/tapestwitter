@@ -19,7 +19,7 @@ public class WelcomeIndexPageTest extends AbstractTapesTwitterIntegrationTest
 	private static final String DEFAULT_INDEX_TITLE = "TapesTwitter / Bienvenue";
 
 	/**
-	 * Text who is present into presentation
+	 * Text include into presentation
 	 */
 	private static final String DEFAULT_TEXT = "Tapestry 5.1";
 

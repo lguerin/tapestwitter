@@ -20,6 +20,31 @@ abstract class AbstractTapesTwitterIntegrationTest extends AbstractIntegrationTe
 	 */
 	private static String defaultBrowser;
 
+	/**
+	 * The text for the login link
+	 */
+	protected static final String DEFAULT_LOGIN_TEXT_LINK = "Entrer dans la DEMO";
+
+	/**
+	 * The default title on the home page
+	 */
+	protected static final String DEFAULT_HOME_PAGE_TITLE = "TapesTwitter / Accueil";
+
+	/**
+	 * The default Welcome index page title
+	 */
+	protected static final String DEFAULT_WELCOME_INDEX_TITLE = "TapesTwitter / Bienvenue";
+
+	/**
+	 * The default login for the first user
+	 */
+	protected static final String DEFAULT_FIRST_USER_LOGIN = "laurent";
+
+	/**
+	 * The default password for the first user
+	 */
+	protected static final String DEFAULT_FIRST_USER_PASSWD = "laurentpass";
+
 	// Set a default browser in function of the OS.
 	static
 	{
@@ -52,5 +77,23 @@ abstract class AbstractTapesTwitterIntegrationTest extends AbstractIntegrationTe
 	protected void checkTitle(String expected)
 	{
 		Assert.assertTrue(getTitle().equals(expected));
+	}
+
+	protected void loginUser(String login, String password)
+	{
+		open(BASE_URL);
+		waitForPageToLoad();
+		click("link=" + DEFAULT_LOGIN_TEXT_LINK);
+		waitForPageToLoad();
+		type("j_username", login);
+		type("j_password", password);
+		click("login_submit");
+		waitForPageToLoad();
+	}
+
+	protected void logoutUser()
+	{
+		click("link=Déconnexion");
+		waitForPageToLoad();
 	}
 }
