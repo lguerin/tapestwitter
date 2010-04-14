@@ -17,7 +17,7 @@ Build around :
  
 ### Authors ###
 
-This demo application has been written by the following authors :
+This demo application has been written by :
 
 * Aresti Katia
 * Doin Loïc
