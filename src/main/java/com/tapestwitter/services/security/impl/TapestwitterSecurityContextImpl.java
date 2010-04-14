@@ -17,6 +17,8 @@ import org.springframework.util.Assert;
 @Component("tapestwitterSecurityContext")
 public class TapestwitterSecurityContextImpl implements TapestwitterSecurityContext
 {
+
+
 	/**
 	 * La méthode log in l'utilisateur
 	 * Le TOKEN est mis sur le security context
@@ -60,6 +62,7 @@ public class TapestwitterSecurityContextImpl implements TapestwitterSecurityCont
 	public void logout()
 	{
 		SecurityContextHolder.getContext().setAuthentication(null);
+		
 		SecurityContextHolder.clearContext();
 	}
 }

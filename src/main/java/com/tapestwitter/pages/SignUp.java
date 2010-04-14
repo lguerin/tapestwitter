@@ -29,6 +29,7 @@ import com.tapestwitter.util.ValidationUtils;
 
 /**
  * This page creates a new user
+ * and connectes him to Tapestwitter
  * 
  * @author karesti
  *
@@ -99,7 +100,6 @@ public class SignUp
 	@Persist(PersistenceConstants.FLASH)
 	private EnumValidation validePassword;
 	
-
 	@Inject
 	private UserManager userManager;
 
@@ -108,9 +108,13 @@ public class SignUp
 
 	@InjectPage
 	private HomePage homePage;
-
 	
-	
+	/**
+	 * Ajax event that validates the login field
+	 * 
+	 * @param login
+	 * @return Corresponding {@link EnumValidation}
+	 */
 	@Log
 	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "login")
 	public EnumValidation ajaxLoginValidation(String userLogin)
@@ -120,7 +124,12 @@ public class SignUp
 		
 	}
 	
-	
+	/**
+	 * Ajax event that validates the fullName field
+	 * 
+	 * @param fullName
+	 * @return Corresponding {@link EnumValidation}
+	 */
 	@Log
 	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "fullName")
 	public EnumValidation ajaxFullNameValidation(String fullName)
@@ -130,7 +139,12 @@ public class SignUp
 		
 	}
 	
-	
+	/**
+	 * Ajax event that validates the password field
+	 * 
+	 * @param password
+	 * @return Corresponding {@link EnumValidation}
+	 */
 	@Log
 	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "password")
 	public EnumValidation ajaxPasswordValidation(String password)
@@ -140,7 +154,12 @@ public class SignUp
 		
 	}
 	
-	
+	/**
+	 * Ajax event that validates the email field
+	 * 
+	 * @param email
+	 * @return Corresponding {@link EnumValidation}
+	 */
 	@Log
 	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "email")
 	public EnumValidation ajaxEmailValidation(String email)
@@ -149,7 +168,13 @@ public class SignUp
 		return valideEmail;
 		
 	}
-		
+	
+	/**
+	 * This method is executed when the user
+	 * submits the form.
+	 * It validates the form. If validation passes
+	 * tapestry will execute "onSuccess" event  	
+	 */
 	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "signupForm")
 	public void onValidate()
 	{
@@ -169,6 +194,16 @@ public class SignUp
 		 
 	}
 
+	/**
+	 * This method is executed when the user
+	 * submits the form and the validation is ok
+	 * Creates a new user
+	 * Connects the user
+	 * Redirects to HomePage
+	 * 
+	 * @return HomePage if success
+	 * 		   SignUp if error (this)
+	 */
 	@OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
 	public Object onSuccess()
 	{
@@ -200,7 +235,11 @@ public class SignUp
 		return homePage;
 	}
 	
-	
+	/**
+	 * Validates the email
+	 * 
+	 * @param email
+	 */
 	private void validationEmail(String email){
 		
 		valideEmail = EnumValidation.INVALIDE;
@@ -221,6 +260,11 @@ public class SignUp
 		}
 	}
 	
+	/**
+	 * Validates the password
+	 * 
+	 * @param password
+	 */
 	private void validatePassword(String password){
 		validePassword =  EnumValidation.EMPTY;
 		
@@ -235,6 +279,11 @@ public class SignUp
 		}
 	}
 	
+	/**
+	 * Validates the fullName
+	 * 
+	 * @param fullName
+	 */
 	private void validateFullName(String fullName){
 		
 		valideFullName =  EnumValidation.EMPTY;
@@ -250,6 +299,11 @@ public class SignUp
 		}
 	}
 	
+	/**
+	 * Validates login
+	 * 
+	 * @param userLogin
+	 */
 	private void validateLogin(String userLogin){
 		valideLogin = EnumValidation.INVALIDE;
 		

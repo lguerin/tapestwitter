@@ -173,32 +173,6 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	padding:5px 15px 6px;
 }
 
-/**
- 
- SIDE
- 
-*/
-
-div.section {
-	padding:13px;
-}
-.section-header{
-	font-weight:bold;
-	padding-bottom: 10px;
-}
-div.join {
-	text-align:center;
-}
-
-div.join input {
-	background-color:#417596;
-	border:1px solid black;
-	color:white;
-	font-size:11pt;
-	font-weight:bold;
-	padding:0.3em 2.5em;
-}
-
 /* SIGN UP */
 
 #signup-form div.formContent {
@@ -209,6 +183,20 @@ div.join input {
 #signup-form input.text_field {
 	font-size:18px;
 	width: 185px;
+}
+
+.content-heading {
+	margin:20px 25px 25px;
+}
+
+.content-heading .heading .sign-in {
+	float:right;
+	font-size:10px;
+}
+
+.content-heading p {
+	color:#666666;
+	font-size:14px;
 }
 
 /* ============
@@ -308,43 +296,6 @@ div.join input {
 	height: 10px;
 }
 
-.content-heading {
-	margin:20px 25px 25px;
-}
-
-subpage #content p {
-	line-height:1.2;
-	margin:5px 0;
-}
-
-
-.content-heading p {
-	color:#666666;
-	font-size:14px;
-}
-
-
-
-
-
-subpage #content p {
-	line-height:1.2;
-	margin:5px 0;
-}
-
-.content-heading .heading h2 {
-	font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
-	font-size:26px;
-	font-weight:bold;
-	letter-spacing:-1px;
-	margin:0 !important;
-}
-
-.content-heading .heading .sign-in {
-	float:right;
-	font-size:10px;
-}
-.content-heading .heading {
-	line-height:1;
-	padding-bottom:24px;
+.t-changeLocale{
+	text-align: center;
 }

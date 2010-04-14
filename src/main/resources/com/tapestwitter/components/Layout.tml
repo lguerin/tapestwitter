@@ -27,8 +27,8 @@
 				  <div id="headerD-top-navigation" class="round">
 				  	<ul class="top-navigation">
 					  	<t:security.isAnonymous>
-					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >Connexion</a></li>
-          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >A propos</a></li>		                		
+					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >${message:layout-connexion-label}</a></li>
+          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >${message:layout-about-label}</a></li>		                		
 	                		<p:else>
 	                			<li><a href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
 	                		</p:else>
@@ -53,19 +53,15 @@
 
 			<!-- Debut Zone #rightbar -->
             <div id="rightbar" class="round-right">
-            	<t:changelocale/>
-            	
             	<t:security.isAnonymous>
             		
 					  <div class="section">
 						  <div class="section-header">
-						    	Créer Votre Compte
+						    	${message:rightbar-creationcompte}
 						  </div>
 						  <div class="join">
-							    <form name="account_signup_form" id="account_signup_form" action="/tapestwitter/signup">
-							      <input id="join" name="commit" value="Rejoindre !" type="submit"/>
-							    </form>
-						   </div>
+						  		<t:pageLink t:page="signup">${message:rightbar-joinus}</t:pageLink>
+						  </div>
 						</div>
 					
             		<p:else>
@@ -74,7 +70,11 @@
 		                </div>
             		</p:else>
             	</t:security.isAnonymous>
-            	
+            	<div class="section">
+	            	<div class="section-header">
+	            		<t:changelocale/>
+	            	</div>
+            	</div>
             </div>
             <!-- Fin Zone #rightbar -->
 			<div class="clear"></div>

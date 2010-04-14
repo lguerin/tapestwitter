@@ -3,9 +3,11 @@ package com.tapestwitter.mixins;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.MixinAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.services.FormSupport;
 
 /**
@@ -26,14 +28,14 @@ public class SubmitFormOnChange {
 	@InjectContainer
 	private ClientElement container;
 
-	/**
-	 * Simply bind the input element to submit the enclosing form on change
-	 * event.
-	 */
 	@AfterRender
 	public void addSubmitOnChange() {
-		renderSupport.addInit("submitFormOnChange", container.getClientId(),
-				formSupport.getClientId());
+		JSONArray spec = new JSONArray();
+        spec.put(container.getClientId());
+        spec.put(formSupport.getClientId());
+        
+		renderSupport.addInit("submitOnChange", spec);
+							 
 	}
 
 }

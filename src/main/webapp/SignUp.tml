@@ -18,7 +18,7 @@
           <div id="header">
 			<div id="headerG">
 				<div id="logo">
-					<a accesskey="1" title="TapesTwitter / Créer un compte " href="Index">
+					<a accesskey="1" title="${message:signup.title}" href="Index">
 	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
 	  				</a>
 				</div>
@@ -39,12 +39,10 @@
               		<div class="content-heading">
 						  <div class="heading">
 						    <p class="sign-in">
-						      Déjà sur Tapestwitter ? <t:pageLink page="login">Connectez-vous</t:pageLink>.
+						      ${message:signup.question} <t:pageLink page="login">${message:signup.suggestion}</t:pageLink>.
 						    </p>
-						    <h2>Rejoindre la conversation</h2>
-						    <p class="finish-signup">
-						      Vous utilisez déjà Tapewtwitter sur votre téléphone ? <t:pageLink page="login">Terminez votre inscription maintenant</t:pageLink>.
-						    </p>
+						    <h2>${message:signup.formtitle}</h2>
+						    
 						  </div>
 					</div>
               		<div id="signup-form">

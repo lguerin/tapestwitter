@@ -1,18 +1,22 @@
 package com.tapestwitter.components;
 
-import java.util.List;
 import java.util.Locale;
 
-import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.SelectModel;
+import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.internal.util.LocaleUtils;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.annotations.Symbol;
-import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
 import org.apache.tapestry5.services.PersistentLocale;
-import org.springframework.util.CollectionUtils;
+import org.apache.tapestry5.util.EnumSelectModel;
+
+import com.tapestwitter.common.EnumLocale;
+
+
 
 /**
  * This component changes current user's 
@@ -23,43 +27,26 @@ import org.springframework.util.CollectionUtils;
  */
 public class ChangeLocale {
 
+
+	@Inject
+	private Messages messages;
+	
+	private SelectModel model = new EnumSelectModel(EnumLocale.class, messages);
+	
 	@Inject
 	private PersistentLocale persistentLocale;
-
-	@Inject
-	private ThreadLocale threadLocale;
-	 
-	@Inject
-	@Symbol(SymbolConstants.SUPPORTED_LOCALES)
-	private String locales;
 	
-	private List<String> model = CollectionFactory.newList();
-
 	@Property
-	private String selectedLocale;
+	private EnumLocale selectedLocale;
 	
-	@SetupRender
-	public void init(){
-		String[] supportedLocales = locales.split(",");
-		
-		model = CollectionFactory.newList(supportedLocales);
-		
-		if( persistentLocale.get() == null){
-		   persistentLocale.set(threadLocale.getLocale());
-			
+	@Log
+	public void onSuccess(){
+		if(selectedLocale != null){
+			persistentLocale.set(LocaleUtils.toLocale(selectedLocale.name()));
 		}
-		selectedLocale = persistentLocale.get().getLanguage();
 	}
-	
-	public void onActionFromSubmit(){
 		
-		Locale locale = LocaleUtils.toLocale(selectedLocale);
-		persistentLocale.set(locale);
-		
-	}
-	
-	public List<String> getModel() {
-		
+	public SelectModel getModel() {
 		return model;
 	}
 	
