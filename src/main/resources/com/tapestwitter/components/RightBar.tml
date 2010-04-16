@@ -1,11 +1,41 @@
-<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
-	<div id="rightbar-content">
-		<div id="rightbar-user-infos">
-			<a href="HomePage" title="${user.fullname}">
-			<img class="rightbar-user-img-thumb" src="${asset:context:components/rightbar/images/tapestry_logo_mini.gif}" alt="${user.fullname}" />
-			<span id="rightbar-user-infos-login">${user.login}</span>
-			<span id="rightbar-user-infos-tweet-count">${userNbTweets} tweets</span>
-			</a>
-		</div>        	
-	</div>
-</t:container>
+<div id="rightbar" class="round-right" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+
+	<t:security.isAnonymous>
+		
+		<div class="section">
+  			<div class="section-header">
+  				${message:rightbar-creationcompte}
+			</div>
+			<div class="join">
+				<t:pageLink t:page="signup">${message:rightbar-joinus}</t:pageLink>
+			</div>
+		</div>
+
+      	<p:else>
+			  	
+           	<div id="rightbar-content">
+				<div id="rightbar-user-infos">
+					<a href="HomePage" title="${user.fullname}">
+					<img class="rightbar-user-img-thumb" src="${asset:context:components/rightbar/images/tapestry_logo_mini.gif}" alt="${user.fullname}" />
+					<span id="rightbar-user-infos-login">
+						${user.login}
+					</span>
+					<span id="rightbar-user-infos-tweet-count">${userNbTweets} tweets</span>
+					</a>
+					<t:security.isAdmin>
+						<br/>
+						<span id="rightbar-user-infos-login">Admnistrator</span>
+					</t:security.isAdmin>
+				</div>        	
+			</div>
+      	</p:else>
+      	
+	</t:security.isAnonymous>
+      	
+   	<div class="section">
+    	<div class="section-header">
+    		<t:changelocale/>
+    	</div>
+   	</div>
+
+</div>

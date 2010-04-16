@@ -3,7 +3,6 @@ package com.tapestwitter.mixins;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.MixinAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;

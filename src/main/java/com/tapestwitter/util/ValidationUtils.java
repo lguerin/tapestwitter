@@ -2,11 +2,11 @@ package com.tapestwitter.util;
 
 import java.util.regex.Pattern;
 
+import com.tapestwitter.common.EnumValidation;
+
 import org.apache.tapestry5.internal.TapestryInternalUtils;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.internal.util.Defense;
-
-import com.tapestwitter.common.EnumValidation;
 
 /**
  * Utility class for the Validation

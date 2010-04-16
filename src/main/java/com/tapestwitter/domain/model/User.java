@@ -129,6 +129,19 @@ public class User implements UserDetails
 		return auths;
 	}
 
+	public boolean isAdmin()
+	{
+		boolean result = false;
+		for (Authority authority : authorities)
+		{
+			if ("ROLE_ADMIN".equals(authority.getAuthority()))
+			{
+				result = true;
+			}
+		}
+		return result;
+	}
+
 	public String getUsername()
 	{
 		return login;

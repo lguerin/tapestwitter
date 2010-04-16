@@ -51,33 +51,10 @@
               </div>
               <!--Fin Zone #content -->
 
-			<!-- Debut Zone #rightbar -->
-            <div id="rightbar" class="round-right">
-            	<t:security.isAnonymous>
-            		
-					  <div class="section">
-						  <div class="section-header">
-						    	${message:rightbar-creationcompte}
-						  </div>
-						  <div class="join">
-						  		<t:pageLink t:page="signup">${message:rightbar-joinus}</t:pageLink>
-						  </div>
-						</div>
-					
-            		<p:else>
-            			<div id="rightbar-content">        	
-			              <t:rightBar />
-		                </div>
-            		</p:else>
-            	</t:security.isAnonymous>
-            	<div class="section">
-	            	<div class="section-header">
-	            		<t:changelocale/>
-	            	</div>
-            	</div>
-            </div>
-            <!-- Fin Zone #rightbar -->
-			<div class="clear"></div>
+			  <t:rightBar />
+			  			
+			<div class="clear"/>
+			
         </div>
         <!-- Fin Zone #page -->
                                 

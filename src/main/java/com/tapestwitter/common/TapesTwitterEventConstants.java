@@ -4,6 +4,7 @@
 package com.tapestwitter.common;
 
 import com.tapestwitter.components.AjaxMoreResults;
+import com.tapestwitter.mixins.AjaxValidation;
 
 /**
  * 

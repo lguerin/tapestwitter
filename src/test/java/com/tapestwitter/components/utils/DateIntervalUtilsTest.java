@@ -4,16 +4,15 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.tapestwitter.common.DateIntervalBean;
+import com.tapestwitter.common.DateIntervalType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.unitils.UnitilsTestNG;
-
-import com.tapestwitter.common.DateIntervalBean;
-import com.tapestwitter.common.DateIntervalType;
-import com.tapestwitter.components.utils.DateIntervalUtils;
 
 /**
  * Test class for {@link DateIntervalUtils}

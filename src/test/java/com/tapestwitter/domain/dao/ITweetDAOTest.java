@@ -3,7 +3,8 @@ package com.tapestwitter.domain.dao;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import com.tapestwitter.domain.model.Tweet;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.unitils.UnitilsTestNG;
@@ -11,8 +12,7 @@ import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
-import com.tapestwitter.domain.dao.ITweetDAO;
-import com.tapestwitter.domain.model.Tweet;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Classe de test du DAO {@link ITweetDAO} 

@@ -1,7 +1,7 @@
 <html t:type="layout" p:title="Accueil"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd"
       xmlns:p="tapestry:parameter">
-
+	
 	<div id="publish-tweet-box"> 
 		<t:form t:id="publishTweetForm">
 			<div id="publish-tweet-box-top">

@@ -23,7 +23,6 @@ import org.apache.tapestry5.ioc.annotations.Match;
 import org.apache.tapestry5.ioc.internal.services.ClasspathResourceSymbolProvider;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.AssetSource;
-import org.apache.tapestry5.services.LocalizationSetter;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
@@ -46,7 +45,7 @@ public class TapesTwitterModule
 		binder.bind(DataSetLoaderService.class, DataSetLoaderServiceImpl.class).eagerLoad();
 		binder.bind(TapestwiterURLResolver.class, TapestwitterURLResolverImpl.class);
 		binder.bind(KaptchaProducer.class, KaptchaProducerImpl.class);
-		
+
 	}
 
 	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration)
@@ -130,17 +129,21 @@ public class TapesTwitterModule
 
 		configuration.add("Timing", filter);
 	}
-	
-	public static void contributeSymbolSource(OrderedConfiguration<SymbolProvider> providers) {
+
+	public static void contributeSymbolSource(OrderedConfiguration<SymbolProvider> providers)
+	{
 		providers.add("springSecurity", new ClasspathResourceSymbolProvider("config/security.properties"));
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Match("ClientInfrastructure")
-	public static void adviseClientInfrastructure(MethodAdviceReceiver receiver, final AssetSource source) throws SecurityException, NoSuchMethodException {
+	public static void adviseClientInfrastructure(MethodAdviceReceiver receiver, final AssetSource source) throws SecurityException, NoSuchMethodException
+	{
 
-		MethodAdvice advice = new MethodAdvice() {
-			public void advise(Invocation invocation) {
+		MethodAdvice advice = new MethodAdvice()
+		{
+			public void advise(Invocation invocation)
+			{
 				invocation.proceed();
 				List<Asset> jsStack = (List<Asset>) invocation.getResult();
 				jsStack.add(source.getClasspathAsset("context:js/tapestwitter.js"));
@@ -149,6 +152,5 @@ public class TapesTwitterModule
 
 		receiver.adviseMethod(receiver.getInterface().getMethod("getJavascriptStack"), advice);
 	};
-	
-	
+
 }
