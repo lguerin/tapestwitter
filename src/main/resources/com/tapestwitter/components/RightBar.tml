@@ -18,14 +18,19 @@
 					<a href="HomePage" title="${user.fullname}">
 					<img class="rightbar-user-img-thumb" src="${asset:context:components/rightbar/images/tapestry_logo_mini.gif}" alt="${user.fullname}" />
 					<span id="rightbar-user-infos-login">
-						${user.login}
+						
+						
+						<t:security.isAdmin>
+							Administrator (${user.login})
+							<p:else>
+								${user.login} 
+							</p:else>
+						</t:security.isAdmin>
+						
 					</span>
 					<span id="rightbar-user-infos-tweet-count">${userNbTweets} tweets</span>
+					
 					</a>
-					<t:security.isAdmin>
-						<br/>
-						<span id="rightbar-user-infos-login">Admnistrator</span>
-					</t:security.isAdmin>
 				</div>        	
 			</div>
       	</p:else>
