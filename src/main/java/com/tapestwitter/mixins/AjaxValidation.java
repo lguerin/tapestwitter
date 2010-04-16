@@ -1,5 +1,9 @@
 package com.tapestwitter.mixins;
 
+import com.tapestwitter.common.EnumValidation;
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.util.ValidationUtils;
+
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentEventCallback;
@@ -20,10 +24,6 @@ import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
-
-import com.tapestwitter.common.EnumValidation;
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.util.ValidationUtils;
 
 @IncludeJavaScriptLibrary("validation.js")
 @Events(TapesTwitterEventConstants.AJAX_VALIDATE)

@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -72,9 +71,6 @@ public class HomePage
 	@Persist
 	private Long lastTweetId;
 
-	@Persist(PersistenceConstants.FLASH)
-	private boolean isFirstTime;
-
 	/**
 	 * A boolean that indicate if we could display the {@link AjaxMoreResults} 
 	 * link.
@@ -95,7 +91,6 @@ public class HomePage
 	@SetupRender
 	public void loadTweets()
 	{
-
 		if (logger.isDebugEnabled())
 		{
 			logger.debug(">>> Loading the list of tweets");
@@ -216,15 +211,4 @@ public class HomePage
 	{
 		this.tweets = tweets;
 	}
-
-	public boolean isFirstTime()
-	{
-		return isFirstTime;
-	}
-
-	public void setFirstTime(boolean isFirstTime)
-	{
-		this.isFirstTime = isFirstTime;
-	}
-
 }

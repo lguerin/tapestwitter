@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
- * 
+ * Implementation of UserManager {@link UserManager}
  * @author karesti
  *
  */
@@ -88,16 +88,27 @@ public class UserManagerImpl implements UserManager
 		return userDao.findByUsername(username);
 	}
 
-	public boolean isAvailableName(String username) {
-		 User user = userDao.findByUsername(username);
-		 return user == null;
+	public User findByEmail(String email)
+	{
+		if (logger.isDebugEnabled())
+		{
+			logger.debug("Email = " + email);
+		}
+		return userDao.findByEmail(email);
 	}
-	
-	public boolean isAvailableEmail(String email) {
-		 User user = userDao.findByEmail(email);
-		 return user == null;
+
+	public boolean isAvailableName(String username)
+	{
+		User user = userDao.findByUsername(username);
+		return user == null;
 	}
-	
+
+	public boolean isAvailableEmail(String email)
+	{
+		User user = userDao.findByEmail(email);
+		return user == null;
+	}
+
 	public TapestwitterSecurityContext getSecurityContext()
 	{
 		return securityContext;

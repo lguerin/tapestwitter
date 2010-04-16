@@ -1,13 +1,13 @@
 package com.tapestwitter.pages;
 
+import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
+
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
-import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 /**
  * Start page of application tapestwitter.

@@ -1,5 +1,17 @@
 package com.tapestwitter.pages;
 
+import com.tapestwitter.common.EnumValidation;
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.exception.CreateAuthorityException;
+import com.tapestwitter.domain.exception.CreateUserException;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.util.ValidationUtils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.PersistenceConstants;
@@ -14,18 +26,8 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.tapestwitter.common.EnumValidation;
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.exception.CreateAuthorityException;
-import com.tapestwitter.domain.exception.CreateUserException;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
-import com.tapestwitter.util.ValidationUtils;
 
 /**
  * This page creates a new user
@@ -59,31 +61,25 @@ public class SignUp
 	private Form signupForm;
 
 	@SuppressWarnings("unused")
-	@Component(id = "fullName", parameters="AjaxValidation.etat=valideFullName")
+	@Component(id = "fullName", parameters = "AjaxValidation.etat=valideFullName")
 	@Mixins("AjaxValidation")
 	private TextField fullNameText;
 
 	@SuppressWarnings("unused")
-	@Component(id = "login",  parameters={
-							"AjaxValidation.etat=valideLogin",
-							"AjaxValidation.whenValidate=keyup",
-							"AjaxValidation.timer=1000"
-	})
- 
-				   
+	@Component(id = "login", parameters = { "AjaxValidation.etat=valideLogin", "AjaxValidation.whenValidate=keyup", "AjaxValidation.timer=1000" })
 	@Mixins("AjaxValidation")
 	private TextField loginText;
 
 	@SuppressWarnings("unused")
-	@Component(id = "password", parameters="AjaxValidation.etat=validePassword")
+	@Component(id = "password", parameters = "AjaxValidation.etat=validePassword")
 	@Mixins("AjaxValidation")
 	private PasswordField passwordText;
 
 	@SuppressWarnings("unused")
-	@Component(id = "email", parameters="AjaxValidation.etat=valideEmail")
+	@Component(id = "email", parameters = "AjaxValidation.etat=valideEmail")
 	@Mixins("AjaxValidation")
 	private TextField emailText;
-	
+
 	@Property
 	@Persist(PersistenceConstants.FLASH)
 	private EnumValidation valideFullName;
@@ -91,15 +87,15 @@ public class SignUp
 	@Property
 	@Persist(PersistenceConstants.FLASH)
 	private EnumValidation valideLogin;
-	
+
 	@Property
 	@Persist(PersistenceConstants.FLASH)
 	private EnumValidation valideEmail;
-	
+
 	@Property
 	@Persist(PersistenceConstants.FLASH)
 	private EnumValidation validePassword;
-	
+
 	@Inject
 	private UserManager userManager;
 
@@ -108,7 +104,7 @@ public class SignUp
 
 	@InjectPage
 	private HomePage homePage;
-	
+
 	/**
 	 * Ajax event that validates the login field
 	 * 
@@ -121,9 +117,9 @@ public class SignUp
 	{
 		validateLogin(userLogin);
 		return valideLogin;
-		
+
 	}
-	
+
 	/**
 	 * Ajax event that validates the fullName field
 	 * 
@@ -136,9 +132,9 @@ public class SignUp
 	{
 		validateFullName(fullName);
 		return valideFullName;
-		
+
 	}
-	
+
 	/**
 	 * Ajax event that validates the password field
 	 * 
@@ -151,9 +147,9 @@ public class SignUp
 	{
 		validatePassword(password);
 		return validePassword;
-		
+
 	}
-	
+
 	/**
 	 * Ajax event that validates the email field
 	 * 
@@ -166,9 +162,9 @@ public class SignUp
 	{
 		validationEmail(email);
 		return valideEmail;
-		
+
 	}
-	
+
 	/**
 	 * This method is executed when the user
 	 * submits the form.
@@ -182,16 +178,17 @@ public class SignUp
 		validateFullName(fullName);
 		validateLogin(login);
 		validatePassword(password);
-		
+
 		boolean result = EnumValidation.OK.equals(valideEmail);
-		result = result &&  EnumValidation.OK.equals(valideFullName);
-		result = result &&  EnumValidation.OK.equals(valideLogin);
-		result = result &&  EnumValidation.OK.equals(validePassword);
-		
-		if(!result){
+		result = result && EnumValidation.OK.equals(valideFullName);
+		result = result && EnumValidation.OK.equals(valideLogin);
+		result = result && EnumValidation.OK.equals(validePassword);
+
+		if (!result)
+		{
 			signupForm.recordError("Validation not succeded");
 		}
-		 
+
 	}
 
 	/**
@@ -230,94 +227,113 @@ public class SignUp
 			return this;
 		}
 
-		homePage.setFirstTime(true);
-
 		return homePage;
 	}
-	
+
 	/**
 	 * Validates the email
 	 * 
 	 * @param email
 	 */
-	private void validationEmail(String email){
-		
+	private void validationEmail(String email)
+	{
+
 		valideEmail = EnumValidation.INVALIDE;
-		
-		if(StringUtils.isEmpty(email) ){
+
+		if (StringUtils.isEmpty(email))
+		{
 			valideEmail = EnumValidation.EMPTY;
-			
-		}else if(!ValidationUtils.isEmail(email)){
-			valideEmail =  EnumValidation.FORMAT;
-			
-		}else{
+
+		}
+		else if (!ValidationUtils.isEmail(email))
+		{
+			valideEmail = EnumValidation.FORMAT;
+
+		}
+		else
+		{
 			Boolean result = userManager.isAvailableEmail(email);
-			
-			if(result){
+
+			if (result)
+			{
 				valideEmail = EnumValidation.OK;
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Validates the password
 	 * 
 	 * @param password
 	 */
-	private void validatePassword(String password){
-		validePassword =  EnumValidation.EMPTY;
-		
-		if(StringUtils.isEmpty(password)){
-			validePassword =  EnumValidation.EMPTY;
-		} else 
-		if(StringUtils.isEmpty(password.trim()) || password.trim().length() < 6){
-			validePassword =  EnumValidation.FORMAT;
-			
-		} else {
+	private void validatePassword(String password)
+	{
+		validePassword = EnumValidation.EMPTY;
+
+		if (StringUtils.isEmpty(password))
+		{
+			validePassword = EnumValidation.EMPTY;
+		}
+		else if (StringUtils.isEmpty(password.trim()) || password.trim().length() < 6)
+		{
+			validePassword = EnumValidation.FORMAT;
+
+		}
+		else
+		{
 			validePassword = EnumValidation.OK;
 		}
 	}
-	
+
 	/**
 	 * Validates the fullName
 	 * 
 	 * @param fullName
 	 */
-	private void validateFullName(String fullName){
-		
-		valideFullName =  EnumValidation.EMPTY;
-		
-		if(StringUtils.isEmpty(fullName)){
-			valideFullName =  EnumValidation.EMPTY;
-		} else 
-		if(StringUtils.isEmpty(fullName.trim())){
-			valideFullName =  EnumValidation.INVALIDE;
-			
-		} else {
+	private void validateFullName(String fullName)
+	{
+
+		valideFullName = EnumValidation.EMPTY;
+
+		if (StringUtils.isEmpty(fullName))
+		{
+			valideFullName = EnumValidation.EMPTY;
+		}
+		else if (StringUtils.isEmpty(fullName.trim()))
+		{
+			valideFullName = EnumValidation.INVALIDE;
+
+		}
+		else
+		{
 			valideFullName = EnumValidation.OK;
 		}
 	}
-	
+
 	/**
 	 * Validates login
 	 * 
 	 * @param userLogin
 	 */
-	private void validateLogin(String userLogin){
+	private void validateLogin(String userLogin)
+	{
 		valideLogin = EnumValidation.INVALIDE;
-		
-		if(StringUtils.isEmpty(userLogin) ){
+
+		if (StringUtils.isEmpty(userLogin))
+		{
 			valideLogin = EnumValidation.EMPTY;
-		}else {
-		
+		}
+		else
+		{
+
 			Boolean result = userManager.isAvailableName(userLogin);
-		
-			if(result){
+
+			if (result)
+			{
 				valideLogin = EnumValidation.OK;
 			}
 		}
 	}
-	
-	
+
 }

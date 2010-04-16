@@ -31,7 +31,11 @@ public class RightBar
 	@SetupRender
 	public void setup()
 	{
-		user = securityContext.getUser();
-		userNbTweets = tweetManager.getNbTweetsByUser(user.getLogin());
+		if (securityContext.isLoggedIn())
+		{
+			user = securityContext.getUser();
+			userNbTweets = tweetManager.getNbTweetsByUser(user.getLogin());
+		}
 	}
+
 }
