@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>5.10</version>
+			<version>5.8</version>
 			<classifier>jdk15</classifier>
 			<scope>test</scope>
 		</dependency>
@@ -263,6 +263,17 @@
 					</requestLog>
 				</configuration>
 			</plugin>
+			
+			<!-- Use custom configuration for exclude integration group -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludedGroups>integration</excludedGroups>
+				</configuration>
+			</plugin>
+			
+			
 		</plugins>
 	</build>
 

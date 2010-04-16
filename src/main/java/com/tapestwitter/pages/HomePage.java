@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tapestwitter.components.AjaxMoreResults;
-import com.tapestwitter.components.ChangeLocale;
 import com.tapestwitter.domain.business.TweetManager;
 import com.tapestwitter.domain.model.Tweet;
 
 import org.slf4j.Logger;
 
 import org.apache.tapestry5.Block;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Log;
@@ -21,10 +19,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.beaneditor.Width;
-import org.apache.tapestry5.internal.util.LocaleUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.services.ThreadLocale;
-import org.apache.tapestry5.services.PersistentLocale;
 
 /**
  * Home Page for the authenticated user.
@@ -97,11 +92,10 @@ public class HomePage
 	@Property
 	private Tweet current;
 
-	
 	@SetupRender
 	public void loadTweets()
 	{
-		
+
 		if (logger.isDebugEnabled())
 		{
 			logger.debug(">>> Loading the list of tweets");

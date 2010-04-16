@@ -93,7 +93,8 @@ abstract class AbstractTapesTwitterIntegrationTest extends AbstractIntegrationTe
 
 	protected void logoutUser()
 	{
-		click("link=Déconnexion");
+		click("link-deconnexion");
+		waitForPageToLoad();
 		waitForPageToLoad();
 	}
 }

@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
  * @author lguerin
  *
  */
+@Test(groups = "integration")
 public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegrationTest
 {
 	/**
@@ -26,7 +27,7 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 	 */
 	private static final String LOGIN_PAGE_TITLE = "TapesTwitter / Login";
 
-	@Test(groups = { "integration" })
+	@Test(groups = "integration")
 	public void testConnexionWithOneUser()
 	{
 		loginUser(DEFAULT_FIRST_USER_LOGIN, DEFAULT_FIRST_USER_PASSWD);
@@ -37,7 +38,7 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
 	}
 
-	@Test(groups = { "integration" })
+	@Test(groups = "integration")
 	public void testConnexionWithTwoDifferentUsers()
 	{
 		// First User
@@ -57,7 +58,7 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
 	}
 
-	@Test(groups = { "integration" })
+	@Test(groups = "integration")
 	public void testAccesToProtectedHomePage()
 	{
 		// anonymous
