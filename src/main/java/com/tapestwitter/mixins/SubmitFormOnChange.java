@@ -16,7 +16,8 @@ import org.apache.tapestry5.services.FormSupport;
 * 
 */
 @MixinAfter
-public class SubmitFormOnChange {
+public class SubmitFormOnChange
+{
 
 	@Inject
 	private RenderSupport renderSupport;
@@ -28,13 +29,14 @@ public class SubmitFormOnChange {
 	private ClientElement container;
 
 	@AfterRender
-	public void addSubmitOnChange() {
+	public void addSubmitOnChange()
+	{
 		JSONArray spec = new JSONArray();
-        spec.put(container.getClientId());
-        spec.put(formSupport.getClientId());
-        
+		spec.put(container.getClientId());
+		spec.put(formSupport.getClientId());
+
 		renderSupport.addInit("submitOnChange", spec);
-							 
+
 	}
 
 }

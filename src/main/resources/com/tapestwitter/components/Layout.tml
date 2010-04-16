@@ -30,7 +30,7 @@
 					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >${message:layout-connexion-label}</a></li>
           					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >${message:layout-about-label}</a></li>		                		
 	                		<p:else>
-	                			<li><a href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
+	                			<li><a id="link-deconnexion" href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
 	                		</p:else>
 	                	</t:security.isAnonymous>
 				  	</ul>
