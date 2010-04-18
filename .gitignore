@@ -2,4 +2,4 @@ test-output
 target
 bin
 .classpath
-.settings
+.settings/
