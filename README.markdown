@@ -19,6 +19,6 @@ Build around :
 
 This demo application has been written by :
 
-* Aresti Katia
+* Aresti Gonzalez Katia
 * Doin Loïc
-* Guerin Laurent
+* Guérin Laurent
