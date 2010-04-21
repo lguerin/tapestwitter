@@ -37,21 +37,37 @@
           	  
               <div id="content" style="width: 765px" class="round">
   		
-       Cette application c'est une DEMO J2EE qui a pour propose tester essentiallement
-       Tapestry 5.1 (dernière version) en ensemble avec : <br/>
-       
-       <ul>
-       		<li> Spring </li>
-       		<li> JPA </li>
-       		<li> HSQL </li>
-       		<li> DbUnit </li>
-       </ul>
-
-		Le propose de cette application est purement didactique.
-		
-        <t:pageLink page="login">Entrer dans la DEMO</t:pageLink>
-   
-    </div>
+	      
+			<h4>
+			Application démo "Twitter - Like" <br/>
+			L'objectif de cette application est purement didactique.
+			</h4>
+					
+			<br/><br/>
+			<h3>
+	        	<center>
+	        		<t:pageLink page="login">Entrer dans la DEMO</t:pageLink>
+	        	</center>
+	        </h3>
+	   		<br/>
+	   		<br/>
+	   		<div id="footer" class="round">
+	   			<ul>
+		   			<li><img width="50" height="73" src="${asset:context:img/tapestry_logo.png}" alt="Tapestry" /></li>
+					<li><img width="130" height="52" src="${asset:context:img/spring-logo.jpg}" alt="Spring" /></li> 
+					<li><img width="154" height="44" src="${asset:context:img/hibernate_logo.gif}" alt="Hibernate" /></li>
+					<li><img width="91" height="30" src="${asset:context:img/unitils-logo.png}" alt="Unitils" /></li>
+					<li><img width="112" height="24" src="${asset:context:img/hypersql_logo.png}" alt="HSQLDB" /></li>
+				</ul>
+				<ul>
+					<li><img width="135" height="56" src="${asset:context:img/jetty-logo.gif}" alt="Jetty" /></li>
+					<li><img width="139" height="32" src="${asset:context:img/Maven_logo.gif}" alt="Maven" /></li>
+					<li><img width="121" height="54" src="${asset:context:img/github_logo.png}" alt="Github" /></li>
+					<li><img width="124" height="72" src="${asset:context:img/eclipse-logo.jpg}" alt="Eclipse" /></li>
+				</ul>
+			</div>
+	</div>
+	
     </div>
     </div>
     </body>
