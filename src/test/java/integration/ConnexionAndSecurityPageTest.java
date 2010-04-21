@@ -18,6 +18,11 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 	private static final String DEFAULT_SECOND_USER_LOGIN = "katia";
 
 	/**
+	 * The default login for the second user with administrator role
+	 */
+	private static final String DEFAULT_SECOND_USER_LOGIN_ADMIN = "Administrator (katia)";
+
+	/**
 	 * The default password for the second user
 	 */
 	private static final String DEFAULT_SECOND_USER_PASSWD = "katiapass";
@@ -53,7 +58,7 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 		loginUser(DEFAULT_SECOND_USER_LOGIN, DEFAULT_SECOND_USER_PASSWD);
 		checkTitle(DEFAULT_HOME_PAGE_TITLE);
 		loginExpected = getText("rightbar-user-infos-login");
-		Assert.assertEquals(loginExpected, DEFAULT_SECOND_USER_LOGIN);
+		Assert.assertEquals(loginExpected, DEFAULT_SECOND_USER_LOGIN_ADMIN);
 		logoutUser();
 		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
 	}

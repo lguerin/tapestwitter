@@ -21,7 +21,7 @@ public class WelcomeIndexPageTest extends AbstractTapesTwitterIntegrationTest
 	/**
 	 * Text include into presentation
 	 */
-	private static final String DEFAULT_TEXT = "Tapestry 5.1";
+	private static final String DEFAULT_TEXT = "Tapestry";
 
 	/**
 	 * Check welcome page.

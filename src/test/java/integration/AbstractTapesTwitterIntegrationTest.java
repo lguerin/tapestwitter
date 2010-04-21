@@ -23,7 +23,7 @@ abstract class AbstractTapesTwitterIntegrationTest extends AbstractIntegrationTe
 	/**
 	 * The text for the login link
 	 */
-	protected static final String DEFAULT_LOGIN_TEXT_LINK = "Entrer dans la DEMO";
+	protected static final String DEFAULT_LOGIN_TEXT_LINK = "Entrer dans la DEMO Tapestry";
 
 	/**
 	 * The default title on the home page
