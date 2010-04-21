@@ -1,18 +1,16 @@
 package com.tapestwitter.domain.dao;
 
-import java.util.List;
-
-import com.tapestwitter.domain.model.Authority;
-import com.tapestwitter.domain.model.User;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.unitils.UnitilsTestNG;
 import org.unitils.dbunit.annotation.DataSet;
+import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.reflectionassert.ReflectionAssert;
-import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
+
+import com.tapestwitter.domain.model.Authority;
+import com.tapestwitter.domain.model.User;
 
 @SpringApplicationContext("test-config.xml")
 public class IUserDAOTest extends UnitilsTestNG
@@ -24,23 +22,24 @@ public class IUserDAOTest extends UnitilsTestNG
 	@SpringBean("authorizationDAO")
 	private IAuthorizationDAO authorizationDAO;
 
-	private int DEFAULT_NB_USERS_DATASET = 2;
-
 	@DataSet
 	@Test
 	public void testFindUserByUsername()
 	{
-		User user = userDAO.findByUsername("katia");
+	    String userName = "katia";
+		User user = userDAO.findByUsername(userName);
 		Assert.assertNotNull(user);
+		Assert.assertEquals(user.getUsername(), userName);
 	}
 
 	@DataSet
 	@Test
 	public void testFindUserByEmail()
 	{
-		User user = userDAO.findByEmail("katiaaresti@gmail.com");
+	    String email = "katiaaresti@gmail.com";
+		User user = userDAO.findByEmail(email);
 		Assert.assertNotNull(user);
-
+		Assert.assertEquals(user.getEmail(),email);
 	}
 
 	@DataSet
@@ -57,6 +56,7 @@ public class IUserDAOTest extends UnitilsTestNG
 	}
 
 	@DataSet
+	@ExpectedDataSet
 	@Test
 	public void testCreateUser()
 	{
@@ -67,9 +67,8 @@ public class IUserDAOTest extends UnitilsTestNG
 		actualUser.setPassword("pepePassword");
 		actualUser.setFullName("Pepe pepe");
 		userDAO.create(actualUser);
-		final List<User> users = userDAO.listAll();
-		Assert.assertEquals(DEFAULT_NB_USERS_DATASET + 1, users.size());
+		
 		User expectedUser = userDAO.findByUsername(username);
-		ReflectionAssert.assertReflectionEquals(expectedUser, actualUser, ReflectionComparatorMode.IGNORE_DEFAULTS);
+		ReflectionAssert.assertReflectionEquals(expectedUser, actualUser);
 	}
 }
