@@ -26,12 +26,11 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
-import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  * This page creates a new user
- * and connectes him to Tapestwitter
+ * and connect him to Tapestwitter
  * 
  * @author karesti
  *
