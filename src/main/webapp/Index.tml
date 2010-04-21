@@ -46,7 +46,7 @@
 			<br/><br/>
 			<h3>
 	        	<center>
-	        		<t:pageLink page="login">Entrer dans la DEMO</t:pageLink>
+	        		<t:pageLink page="login">Entrer dans la DEMO Tapestry</t:pageLink>
 	        	</center>
 	        </h3>
 	   		<br/>
