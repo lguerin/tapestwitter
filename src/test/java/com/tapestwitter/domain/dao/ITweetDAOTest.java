@@ -20,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
  * Classe de test du DAO {@link ITweetDAO} 
  *  
  * @author lguerin
+ * @author ldoin
  * 
  */
 @SpringApplicationContext("test-config.xml")

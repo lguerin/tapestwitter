@@ -30,7 +30,7 @@ import com.tapestwitter.services.security.TapestwitterSecurityContext;
 /**
  * Classe de test du service {@link TweetManagerImpl}. 
  * @author lguerin
- *
+ * @author ldoin
  */
 public class TweetManagerImplTest extends UnitilsTestNG
 {
