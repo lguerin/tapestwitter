@@ -16,7 +16,7 @@ public class WelcomeIndexPageTest extends AbstractTapesTwitterIntegrationTest
 	/**
 	 * The default Index page title
 	 */
-	private static final String DEFAULT_INDEX_TITLE = "TapesTwitter / Bienvenue";
+	private static final String DEFAULT_INDEX_TITLE = "TapesTwitter / Index";
 
 	/**
 	 * Text include into presentation

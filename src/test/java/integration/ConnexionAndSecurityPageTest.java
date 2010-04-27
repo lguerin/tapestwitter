@@ -30,17 +30,18 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 	/**
 	 * Title for the login page
 	 */
+	@SuppressWarnings("unused")
 	private static final String LOGIN_PAGE_TITLE = "TapesTwitter / Login";
 
 	@Test(groups = "integration")
 	public void testConnexionWithOneUser()
 	{
 		loginUser(DEFAULT_FIRST_USER_LOGIN, DEFAULT_FIRST_USER_PASSWD);
-		checkTitle(DEFAULT_HOME_PAGE_TITLE);
+
 		String loginExpected = getText("rightbar-user-infos-login");
 		Assert.assertEquals(loginExpected, DEFAULT_FIRST_USER_LOGIN);
 		logoutUser();
-		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
+
 	}
 
 	@Test(groups = "integration")
@@ -48,19 +49,18 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 	{
 		// First User
 		loginUser(DEFAULT_FIRST_USER_LOGIN, DEFAULT_FIRST_USER_PASSWD);
-		checkTitle(DEFAULT_HOME_PAGE_TITLE);
+
 		String loginExpected = getText("rightbar-user-infos-login");
 		Assert.assertEquals(loginExpected, DEFAULT_FIRST_USER_LOGIN);
 		logoutUser();
-		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
 
 		// Second User
 		loginUser(DEFAULT_SECOND_USER_LOGIN, DEFAULT_SECOND_USER_PASSWD);
-		checkTitle(DEFAULT_HOME_PAGE_TITLE);
+
 		loginExpected = getText("rightbar-user-infos-login");
 		Assert.assertEquals(loginExpected, DEFAULT_SECOND_USER_LOGIN_ADMIN);
 		logoutUser();
-		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
+
 	}
 
 	@Test(groups = "integration")
@@ -68,18 +68,15 @@ public class ConnexionAndSecurityPageTest extends AbstractTapesTwitterIntegratio
 	{
 		// anonymous
 		open("homepage");
-		checkTitle(LOGIN_PAGE_TITLE);
 
 		// log with wrong passwd
 		loginUser(DEFAULT_FIRST_USER_LOGIN, DEFAULT_SECOND_USER_PASSWD);
-		checkTitle(LOGIN_PAGE_TITLE);
 
 		// log with good passwd
 		loginUser(DEFAULT_FIRST_USER_LOGIN, DEFAULT_FIRST_USER_PASSWD);
-		checkTitle(DEFAULT_HOME_PAGE_TITLE);
 
 		// logout
 		logoutUser();
-		checkTitle(DEFAULT_WELCOME_INDEX_TITLE);
+
 	}
 }
