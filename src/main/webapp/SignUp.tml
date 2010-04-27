@@ -1,131 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html t:type="simplelayout" p:title="Signup"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
-        <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
-        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>
-        <link href="${asset:context:forms/forms.css}" rel="stylesheet" type="text/css"/> 
-        <title>${message:signup.title}</title>
-    </head>
-    <body>
-    	   	
-    	<!-- Init Zone #wrapper -->
-        <div id="wrapper">
-          <!-- Init Zone #header -->       
-          <div id="header">
-			<div id="headerG">
-				<div id="logo">
-					<a accesskey="1" title="${message:signup.title}" href="Index">
-	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
-	  				</a>
+
+
+<div class="content-heading">
+	  <div class="heading">
+	    <p class="sign-in">
+	      ${message:signup.question} <t:pageLink page="login">${message:signup.suggestion}</t:pageLink>.
+	    </p>
+	    <h2>${message:signup.formtitle}</h2>
+	  </div>
+</div>
+
+<div id="signup-form">
+	<form t:type="form" t:id="signupForm">
+	<fieldset>
+    	<div class="formContent">         				
+         	<div>
+				<div class="formleftCol">
+					<label for="fullName">${message:signup.fullName}</label>
+				</div>
+				<div class="formRigthCol" >
+					<div class="clear"/>
+					<input type="text" t:id="fullName" class="text_field with-box" />
+				</div>
+				<div class="clear"/>
+			</div>
+       		<div>
+				<div class="formleftCol">
+					<label for="login">${message:signup.login}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="text" t:id="login" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+          	<div>
+				<div class="formleftCol">
+					<label for="password">${message:signup.password}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="password" t:id="password" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+          	<div>
+				<div class="formleftCol">
+					<label for="email">${message:signup.email}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="text" t:id="email" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+        	<div>
+	        	<div class="formleftCol">
+	        		<label for="kaptcha">${message:signup.kapcha}</label>
+	        	</div>
+   					<div class="formRigthCol">
+   						<div class="clear"/>
+   						<div>
+   							<t:kaptchaimage t:id="kaptcha"/>
+   						</div>
+   					<div>
+        				<t:kaptchafield image="kaptcha" class="text_field with-box"/>
+        			</div>
+				</div>
+				<div class="clear"/>
+			</div>
+			<div>
+	       		<div class="formleftCol"/>
+	       		<div class="formRigthCol">
+					<div class="col-field">
+						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Cr�er mon compte.">
+							${message:signup.submit}
+						</button>
+					</div>
 				</div>
 			</div>
-			
-		  <div class="clear"></div>
-		  </div>          
-          <!-- End Zone #header -->
+		</div>
+ 	</fieldset>
+    </form>
+</div> 
 
-          <!-- Init Zone #page -->
-          
-          <div class="page-top"></div>
-          <div class="round">       
-             	  
-          	  <!-- Debut Zone #content -->
-          	  
-              <div id="content" style="width: 765px" class="round">
-              		<div class="content-heading">
-						  <div class="heading">
-						    <p class="sign-in">
-						      ${message:signup.question} <t:pageLink page="login">${message:signup.suggestion}</t:pageLink>.
-						    </p>
-						    <h2>${message:signup.formtitle}</h2>
-						    
-						  </div>
-					</div>
-              		<div id="signup-form">
-              		<form t:type="form" t:id="signupForm">
-              		<fieldset>
-              			<div class="formContent">         				
-              				<div>
-              					<div class="formleftCol">
-              						<label for="fullName">${message:signup.fullName}</label>
-              					</div>
-              					<div class="formRigthCol" >
-              						<div class="clear"/>
-              						<input type="text" t:id="fullName" class="text_field with-box" />
-              					</div>
-              					<div class="clear"/>
-              				</div>
-					        <div>
-              					<div class="formleftCol">
-              						<label for="login">${message:signup.login}</label>
-              					</div>
-              					<div class="formRigthCol">
-              						<div class="clear"/>
-              						<input type="text" t:id="login" class="text_field with-box"/>
-              					</div>
-              					<div class="clear"/>
-					        </div>
-	              			<div>
-              					<div class="formleftCol">
-              						<label for="password">${message:signup.password}</label>
-              					</div>
-              					<div class="formRigthCol">
-              						<div class="clear"/>
-              						<input type="password" t:id="password" class="text_field with-box"/>
-              					</div>
-              					<div class="clear"/>
-					        </div>
-	              			<div>
-              					<div class="formleftCol">
-              						<label for="email">${message:signup.email}</label>
-              					</div>
-              					<div class="formRigthCol">
-              						<div class="clear"/>
-              						<input type="text" t:id="email" class="text_field with-box"/>
-              					</div>
-              					<div class="clear"/>
-					        </div>
-					        <div>
-					        	<div class="formleftCol">
-					        		<label for="kaptcha">${message:signup.kapcha}</label>
-					        	</div>
-              					<div class="formRigthCol">
-              						<div class="clear"/>
-              						<div>
-              							<t:kaptchaimage t:id="kaptcha"/>
-              						</div>
-              						<div>
-					        			<t:kaptchafield image="kaptcha" class="text_field with-box"/>
-					        		</div>
-    				        	</div>
-    				        	<div class="clear"/>
-					        </div>
-					        
-					       <div>
-					       		<div class="formleftCol"/>
-					       		<div class="formRigthCol">
-	              					<div class="col-field">
-	              						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Créer mon compte.">
-	              							${message:signup.submit}
-	              						</button>
-	              					</div>
-              					</div>
-              					
-					        </div>
-	              		       			
-              			</div>
-              		          		
-              		</fieldset>
-              		</form>
-              	</div> <!-- end div signup form -->
-              </div>
-      		<div class="clear"></div>
-        </div>
-        
-        </div>
-    </body>
 </html>
+
+
+         		
+        
