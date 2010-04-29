@@ -33,7 +33,7 @@ abstract class AbstractTapesTwitterIntegrationTest extends AbstractIntegrationTe
 	/**
 	 * The default Welcome index page title
 	 */
-	protected static final String DEFAULT_WELCOME_INDEX_TITLE = "TapesTwitter / Bienvenue";
+	protected static final String DEFAULT_PAGE_INDEX_TITLE = "TapesTwitter / Index";
 
 	/**
 	 * The default login for the first user

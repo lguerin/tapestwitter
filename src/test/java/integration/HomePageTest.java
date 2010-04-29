@@ -75,7 +75,7 @@ public class HomePageTest extends AbstractTapesTwitterIntegrationTest
 		String loginExpected = getText("rightbar-user-infos-login");
 		Assert.assertEquals(loginExpected, DEFAULT_FIRST_USER_LOGIN);
 		logoutUser();
-
+		checkTitle(DEFAULT_PAGE_INDEX_TITLE);
 	}
 
 }
