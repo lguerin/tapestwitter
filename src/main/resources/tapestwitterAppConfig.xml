@@ -67,4 +67,32 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<!-- Init Security beans -->
+	
+	<bean id="tapestwitterUserDetailService" class="com.tapestwitter.domain.security.impl.UserDetailsServiceImpl">
+		<constructor-arg ref="userManager" />
+	</bean>
+	
+	<bean id="tapestwitterPasswordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" />
+
+	<bean id="tapestwitterSaltSource"
+		class="org.springframework.security.authentication.dao.SystemWideSaltSource">
+		<property name="systemWideSalt" value="${tapestwitter.salt}" />
+	</bean>
+	
+	<bean id="userManager" class="com.tapestwitter.domain.business.impl.UserManagerImpl">
+		<property name="securityContext" ref="tapestwitterSecurityContext" />
+		<property name="saltSource" ref="tapestwitterSaltSource"/>
+    	<property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>
+	</bean>
+	
+	<bean id="tapestwitterAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="tapestwitterUserDetailService"/>
+		<property name="saltSource" ref="tapestwitterSaltSource"/>
+		<property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>
+	</bean>
+	
+	<!-- End Security beans -->
+	
 </beans>

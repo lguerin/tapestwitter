@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com</groupId>
-	<artifactId>tapestwitter</artifactId>
+	<groupId>com.tapestwitter</groupId>
+	<artifactId>tapestwitter-domain</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>TapesTwitter, a twitter like application designed with Tapestry</name>
-	<description>Une application &quot;Twitter like&quot; realisee avec Tapestry 5.</description>
+	<packaging>jar</packaging>
+	<name>Tapestwitter Spring</name>
+	<description>Une application &quot;Twitter like&quot; with Spring</description>
 	<developers>
 		<developer>
 			<id>lguerin</id>
@@ -26,11 +26,6 @@
 		</developer>
 	</developers>
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-core</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
 		<!--
 			A dependency on either JUnit or TestNG is required, or the surefire
 			plugin (which runs the tests) will fail, preventing Maven from
@@ -120,33 +115,11 @@
 			application code.
 		-->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-test</artifactId>
-			<version>${tapestry-release-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-spring</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		<dependency>
-  			<groupId>org.slf4j</groupId>
-  			<artifactId>slf4j-api</artifactId>
-  			<version>1.5.11</version>
-		</dependency>		
-
+		
 		<!-- Hibernate -->
 		<!-- 
 			Use the implementation of the JTA Library provided by Geronimo.
@@ -197,7 +170,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring-version}</version>
-		</dependency>		
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -230,20 +203,19 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+  			<groupId>org.slf4j</groupId>
+  			<artifactId>slf4j-api</artifactId>
+  			<version>1.5.11</version>
+		</dependency>	
+		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.kaptcha</groupId>
-		    <artifactId>katpcha</artifactId>
-		    <version>2.3.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/lib/kaptcha-2.3.jar</systemPath>
-		</dependency>
+	
 	</dependencies>
 	<build>
-		<finalName>tapestwitter</finalName>
+		<finalName>tapestwitter-domain</finalName>
 		<!--
 			Permet de prendre en compte les fichiers XML utilises par dbunit lors
 			des tests unitaires.
@@ -318,7 +290,6 @@
 	</reporting>
 
 	<properties>
-		<tapestry-release-version>5.1.0.5</tapestry-release-version>
 		<hibernate-version>3.2.6.GA</hibernate-version>
 		<hibernate-entitymanager-version>3.3.2.GA</hibernate-entitymanager-version>
 		<spring-version>3.0.0.RELEASE</spring-version>

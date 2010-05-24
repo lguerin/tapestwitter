@@ -7,7 +7,7 @@ import com.tapestwitter.domain.exception.CreateAuthorityException;
 import com.tapestwitter.domain.exception.CreateUserException;
 import com.tapestwitter.domain.model.Authority;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.domain.security.TapestwitterSecurityContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

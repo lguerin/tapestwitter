@@ -15,7 +15,6 @@ import org.unitils.mock.Mock;
 import org.unitils.mock.MockUnitils;
 import org.unitils.mock.annotation.Dummy;
 
-import com.tapestwitter.components.utils.DateIntervalUtilsTest;
 import com.tapestwitter.domain.dao.IUserDAO;
 import com.tapestwitter.domain.model.User;
 
@@ -29,7 +28,7 @@ public class UserManagerImplTest extends UnitilsTestNG
     /**
      * Logger
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(DateIntervalUtilsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserManagerImplTest.class);
     
     @TestedObject
     private UserManagerImpl userManager;

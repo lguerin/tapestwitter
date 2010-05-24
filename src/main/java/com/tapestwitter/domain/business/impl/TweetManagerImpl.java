@@ -8,7 +8,7 @@ import com.tapestwitter.domain.business.TweetManager;
 import com.tapestwitter.domain.dao.ITweetDAO;
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.domain.security.TapestwitterSecurityContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

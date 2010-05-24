@@ -25,7 +25,7 @@ import com.tapestwitter.domain.business.impl.TweetManagerImpl;
 import com.tapestwitter.domain.dao.ITweetDAO;
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.domain.security.TapestwitterSecurityContext;
 
 /**
  * Classe de test du service {@link TweetManagerImpl}. 
