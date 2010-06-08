@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TapesTwitter Application Test Suite" annotations="1.5">
+	<test name="TapesTwitter Unit Tests">
+		<groups>
+			<run>
+				<include name="*" />
+				<exclude name="integration" />
+			</run>
+		</groups>
+	</test>
+</suite>

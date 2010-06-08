@@ -1,0 +1,121 @@
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tapestwitter</groupId>
+	<artifactId>tapestwitter-web</artifactId>
+	<packaging>war</packaging>
+	<name>tapestwitter-web</name>
+	<description>TapesTwitter, a twitter like application designed with Tapestry</description>
+	<parent>
+	    <groupId>com.tapestwitter</groupId>
+	    <artifactId>tapestwitter-project</artifactId>
+	    <version>1.0-SNAPSHOT</version>
+	</parent>
+	<dependencies>
+		<dependency>
+		    <groupId>com.tapestwitter</groupId>
+		    <artifactId>tapestwitter-domain</artifactId>
+		    <version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-core</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-dbunit</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-testng</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-orm</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-easymock</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-mock</artifactId>
+			<version>3.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-spring</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-inject</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-core</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>		
+
+		<!--
+			tapestry-test will conflict with RunJettyRun inside Eclipse.
+			tapestry-test brings in Selenium, which is based on Jetty 5.1;
+			RunJettyRun uses Jetty 6. <dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-test</artifactId>
+			<version>${tapestry-release-version}</version> <scope>test</scope>
+			</dependency>
+		-->
+
+		<!--
+			Provided by the servlet container, but sometimes referenced in the
+			application code.
+		-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-test</artifactId>
+			<version>${tapestry-release-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-spring</artifactId>
+			<version>${tapestry-release-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.kaptcha</groupId>
+		    <artifactId>katpcha</artifactId>
+		    <version>2.3.0</version>
+		    <scope>system</scope>
+		    <systemPath>${basedir}/lib/kaptcha-2.3.jar</systemPath>
+		</dependency>
+						
+	</dependencies>	
+	<properties>
+		 <tapestry-release-version>5.1.0.5</tapestry-release-version>
+	</properties>
+</project>

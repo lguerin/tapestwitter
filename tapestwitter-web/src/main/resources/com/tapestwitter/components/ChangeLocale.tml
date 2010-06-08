@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<div class="t-changeLocale" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" xmlns:p="tapestry:parameter">
+	
+	<t:form t:id="changeLocale">
+		 <select t:type="select" t:blankLabel="message:label" t:id="selectedLocale" t:model="model"  t:mixins="submitFormOnChange" />
+	</t:form>
+	
+</div>

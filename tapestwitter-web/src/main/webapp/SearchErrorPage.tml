@@ -1,0 +1,15 @@
+<html t:type="layout" p:title="Session Error Page"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+	
+
+	<span>error</span>
+	
+	<div id="content">
+	<div class="desc"></div>
+		<div class="wrapper">
+		   <h2>Sorry, that page doesn't exist!</h2>
+      	</div>
+	</div>
+</html>
+

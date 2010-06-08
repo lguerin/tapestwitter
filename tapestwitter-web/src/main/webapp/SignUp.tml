@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html t:type="simplelayout" p:title="Signup"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+
+<div class="content-heading">
+	  <div class="heading">
+	    <p class="sign-in">
+	      ${message:signup.question} <t:pageLink page="login">${message:signup.suggestion}</t:pageLink>.
+	    </p>
+	    <h2>${message:signup.formtitle}</h2>
+	  </div>
+</div>
+
+<div id="signup-form">
+	<form t:type="form" t:id="signupForm">
+	<fieldset>
+    	<div class="formContent">         				
+         	<div>
+				<div class="formleftCol">
+					<label for="fullName">${message:signup.fullName}</label>
+				</div>
+				<div class="formRigthCol" >
+					<div class="clear"/>
+					<input type="text" t:id="fullName" class="text_field with-box" />
+				</div>
+				<div class="clear"/>
+			</div>
+       		<div>
+				<div class="formleftCol">
+					<label for="login">${message:signup.login}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="text" t:id="login" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+          	<div>
+				<div class="formleftCol">
+					<label for="password">${message:signup.password}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="password" t:id="password" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+          	<div>
+				<div class="formleftCol">
+					<label for="email">${message:signup.email}</label>
+				</div>
+				<div class="formRigthCol">
+					<div class="clear"/>
+					<input type="text" t:id="email" class="text_field with-box"/>
+				</div>
+				<div class="clear"/>
+        	</div>
+        	<div>
+	        	<div class="formleftCol">
+	        		<label for="kaptcha">${message:signup.kapcha}</label>
+	        	</div>
+   					<div class="formRigthCol">
+   						<div class="clear"/>
+   						<div>
+   							<t:kaptchaimage t:id="kaptcha"/>
+   						</div>
+   					<div>
+        				<t:kaptchafield image="kaptcha" class="text_field with-box"/>
+        			</div>
+				</div>
+				<div class="clear"/>
+			</div>
+			<div>
+	       		<div class="formleftCol"/>
+	       		<div class="formRigthCol">
+					<div class="col-field">
+						<button type="submit" id="user_create_submit" class="btn btn-m" alt="J'accepte. Cr�er mon compte.">
+							${message:signup.submit}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+ 	</fieldset>
+    </form>
+</div> 
+
+</html>
+
+
+         		
+        
