@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Generated site for tapestwitter">
 
-    <publishDate format="dd MMM yyyy"/>
+	<publishDate format="dd MMM yyyy"/>
 
     <version/>
 
     <body>
 
-        <menu name="tapestwitter Project">
+		<menu name="Project">
             <item name="About" href="index.html"/>
+        </menu>
+
+        <menu name="Modules">
+            <item name="tapestwitter-domain" href="tapestwitter-domain/"/>
+            <item name="tapestwitter-web" href="tapestwitter-web/"/>
         </menu>
 
         <menu ref="reports"/>

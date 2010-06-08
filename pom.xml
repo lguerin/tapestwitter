@@ -1,14 +1,12 @@
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com</groupId>
-	<artifactId>tapestwitter</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>TapesTwitter, a twitter like application designed with Tapestry</name>
-	<description>Une application &quot;Twitter like&quot; realisee avec Tapestry 5.</description>
-	<developers>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tapestwitter</groupId>
+  <artifactId>tapestwitter-project</artifactId>
+  <packaging>pom</packaging>
+  <name>Tapestwitter : Master POM</name>
+  <version>1.0-SNAPSHOT</version>
+  <description>Twitter-Like Tapestry Demo</description>
+  <developers>
 		<developer>
 			<id>lguerin</id>
 			<name>Laurent Guerin</name>
@@ -24,243 +22,25 @@
 			<name>Loic Doin</name>
 			<email>loic.doin@gmail.com</email>
 		</developer>
-	</developers>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-core</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		<!--
-			A dependency on either JUnit or TestNG is required, or the surefire
-			plugin (which runs the tests) will fail, preventing Maven from
-			packaging the WAR. Tapestry includes a large number of testing
-			facilities designed for use with TestNG (http://testng.org/), so it's
-			recommended.
-		-->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>5.8</version>
-			<classifier>jdk15</classifier>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>2.4</version>
-			<scope>test</scope>
-		</dependency>
+  </developers>
+  <modules>
+  	<module>tapestwitter-domain</module>
+  	<module>tapestwitter-web</module>
+  </modules>
+  <build>
+  	 <testResources>
+		<testResource>
+			<directory>src/test/resources</directory>
+		</testResource>
 
-		<!--
-			Dependences pour unitils et dbunit 
-		 -->
-
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-dbunit</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-testng</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-orm</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-easymock</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-mock</artifactId>
-			<version>3.1</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-spring</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-inject</artifactId>
-			<version>3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.unitils</groupId>
-			<artifactId>unitils-core</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>		
-
-		<!--
-			tapestry-test will conflict with RunJettyRun inside Eclipse.
-			tapestry-test brings in Selenium, which is based on Jetty 5.1;
-			RunJettyRun uses Jetty 6. <dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-test</artifactId>
-			<version>${tapestry-release-version}</version> <scope>test</scope>
-			</dependency>
-		-->
-
-		<!--
-			Provided by the servlet container, but sometimes referenced in the
-			application code.
-		-->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-test</artifactId>
-			<version>${tapestry-release-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-spring</artifactId>
-			<version>${tapestry-release-version}</version>
-		</dependency>
-		<dependency>
-  			<groupId>org.slf4j</groupId>
-  			<artifactId>slf4j-api</artifactId>
-  			<version>1.5.11</version>
-		</dependency>		
-
-		<!-- Hibernate -->
-		<!-- 
-			Use the implementation of the JTA Library provided by Geronimo.
-			This implementation does not have a licensing issue.
-			This allow developpers to get all the dependencies without have 
-			to hack their settings.xml file or install the dependency manually.
-		 -->
-		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-entitymanager-version}</version>
-            <exclusions>
-              <exclusion>
-                <groupId>javax.transaction</groupId>
-                <artifactId>jta</artifactId>
-              </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-    		<groupId>org.apache.geronimo.specs</groupId>
-    		<artifactId>geronimo-jta_1.0.1B_spec</artifactId>
-    		<version>1.1.1</version>
-		</dependency>
-        
-		<!-- Spring -->
-		<!-- Spring Framework -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring-version}</version>
-		</dependency>		
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${spring-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.8.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-core</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.kaptcha</groupId>
-		    <artifactId>katpcha</artifactId>
-		    <version>2.3.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/lib/kaptcha-2.3.jar</systemPath>
-		</dependency>
-	</dependencies>
-	<build>
-		<finalName>tapestwitter</finalName>
-		<!--
-			Permet de prendre en compte les fichiers XML utilises par dbunit lors
-			des tests unitaires.
-		-->
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-
-			<testResource>
-				<directory>${basedir}/src/test/java/</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
-		<plugins>
+		<testResource>
+			<directory>${basedir}/src/test/java/</directory>
+			<excludes>
+				<exclude>**/*.java</exclude>
+			</excludes>
+		</testResource>
+	 </testResources>
+	 <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -296,12 +76,9 @@
 					<excludedGroups>integration</excludedGroups>
 				</configuration>
 			</plugin>
-			
-			
-		</plugins>
-	</build>
-
-	<reporting>
+      </plugins>
+  </build>
+  <reporting>
 		<plugins>
 			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
@@ -315,12 +92,5 @@
 		        </configuration>
 		    </plugin>
 		</plugins>
-	</reporting>
-
-	<properties>
-		<tapestry-release-version>5.1.0.5</tapestry-release-version>
-		<hibernate-version>3.2.6.GA</hibernate-version>
-		<hibernate-entitymanager-version>3.3.2.GA</hibernate-entitymanager-version>
-		<spring-version>3.0.0.RELEASE</spring-version>
-	</properties>
+  </reporting>
 </project>
