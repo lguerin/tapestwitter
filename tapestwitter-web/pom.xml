@@ -73,17 +73,6 @@
 			<version>3.1</version>
 			<scope>test</scope>
 		</dependency>		
-
-		<!--
-			tapestry-test will conflict with RunJettyRun inside Eclipse.
-			tapestry-test brings in Selenium, which is based on Jetty 5.1;
-			RunJettyRun uses Jetty 6. <dependency>
-			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-test</artifactId>
-			<version>${tapestry-release-version}</version> <scope>test</scope>
-			</dependency>
-		-->
-
 		<!--
 			Provided by the servlet container, but sometimes referenced in the
 			application code.
@@ -96,16 +85,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tapestry</groupId>
-			<artifactId>tapestry-test</artifactId>
-			<version>${tapestry-release-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-spring</artifactId>
 			<version>${tapestry-release-version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-test</artifactId>
+			<version>${tapestry-release-version}</version> 
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 		    <groupId>org.kaptcha</groupId>
 		    <artifactId>katpcha</artifactId>
@@ -117,5 +105,6 @@
 	</dependencies>	
 	<properties>
 		 <tapestry-release-version>5.1.0.5</tapestry-release-version>
+		 <spring-version>3.0.0.RELEASE</spring-version>
 	</properties>
 </project>

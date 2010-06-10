@@ -44,7 +44,7 @@ public class UserManagerImpl implements UserManager
 
 	private PasswordEncoder passwordEncoder;
 
-	@Transactional(readOnly = false, rollbackFor = CreateUserException.class)
+	@Transactional(readOnly = false, rollbackFor = {CreateUserException.class, CreateAuthorityException.class})
 	public void addUser(User user) throws CreateUserException, CreateAuthorityException
 	{
 		Assert.notNull(user, "user");
@@ -61,7 +61,7 @@ public class UserManagerImpl implements UserManager
 		addAuthority(user, authority);
 	}
 
-	@Transactional(readOnly = false, rollbackFor = CreateUserException.class)
+	@Transactional(readOnly = false, rollbackFor = CreateAuthorityException.class)
 	public void addAuthority(User user, Authority authority) throws CreateAuthorityException
 	{
 		Assert.notNull(user, "user");
