@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,11 +50,12 @@ public class User implements UserDetails
 	private String password;
 
 	/**
+	 * Relationship owner
 	 * Fetch.EAGER because User needs all the authorities
 	 * all the time  
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_user", nullable = false)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "jnd_usr_auth", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "auth_fk"))
 	private List<Authority> authorities;
 
 	public Long getId()

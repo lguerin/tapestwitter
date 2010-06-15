@@ -25,12 +25,9 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements IUserDAO
 		Query query = entityManager.createQuery("SELECT u FROM " + getEntityType() + " u WHERE u.login LIKE :un");
 		query.setParameter("un", username.toLowerCase());
 
-		try
-		{
+		try {
 			return (User) query.getSingleResult();
-		}
-		catch (RuntimeException re)
-		{
+		} catch (RuntimeException re) {
 			return null;
 		}
 	}
@@ -40,15 +37,12 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements IUserDAO
 
 		Query query = entityManager.createQuery("SELECT u FROM " + getEntityType() + " u WHERE u.email LIKE :em");
 		query.setParameter("em", email.toLowerCase());
-
-		try
-		{
+		try {
 			return (User) query.getSingleResult();
-		}
-		catch (RuntimeException re)
-		{
+		} catch (RuntimeException re) {
 			return null;
 		}
+		
 	}
 
 }

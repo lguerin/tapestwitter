@@ -2,5 +2,7 @@
 <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dataset.xsd">
     <User id_user="1001" login="laurent" password="laurentpass" email="lguerin@dreamcat.fr" fullName="Laurent guerin"/>
     <User id_user="1002" login="katia" password="katiapass" email="katiaaresti@gmail.com" fullName="Katia aresti"/>
-    <Authority id_authority="2001" id_user="1001" authority="ROLE_USER" />
+    <Authority id_authority="2001" authority="ROLE_USER" />
+    <jnd_usr_auth user_fk="1001" auth_fk="2001"/>
+    <jnd_usr_auth user_fk="1002" auth_fk="2001"/>
 </dataset>

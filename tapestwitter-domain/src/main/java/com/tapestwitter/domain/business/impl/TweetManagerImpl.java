@@ -76,6 +76,25 @@ public class TweetManagerImpl implements TweetManager
 		}
 	}
 
+	@Transactional(readOnly = false)
+	public Tweet createTweetFromUser(User user, String msg)
+	{
+		Assert.notNull(user, "user");
+		Assert.notNull(msg, "message");
+		Tweet tweet = new Tweet();
+
+		// Remplissage des proprietes
+		tweet.setTweet(msg);
+		Date creationDate = Calendar.getInstance().getTime();
+		tweet.setCreationDate(creationDate);
+		String author = user.getLogin();
+		tweet.setAuthor(author);
+
+		// Sauvegarde du tweet
+		tweetDAO.create(tweet);
+
+		return tweet;
+	}
 	public Tweet findTweetById(Long tweetId)
 	{
 		return tweetDAO.findById(tweetId);

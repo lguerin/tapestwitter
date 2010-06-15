@@ -1,7 +1,7 @@
 package com.tapestwitter.domain.business;
 
-import com.tapestwitter.domain.exception.CreateAuthorityException;
-import com.tapestwitter.domain.exception.CreateUserException;
+import com.tapestwitter.domain.exception.BusinessException;
+import com.tapestwitter.domain.exception.UserAlreadyExistsException;
 import com.tapestwitter.domain.model.Authority;
 import com.tapestwitter.domain.model.User;
 
@@ -18,19 +18,27 @@ public interface UserManager
 	 * This method adds a new user to tapestwitter
 	 * 
 	 * @param user
-	 * @throws CreateUserException
-	 * @throws CreateAuthorityException
+	 * @throws UserAlreadyExistsException 
+	 * @throws BusinessException 
 	 */
-	void addUser(User user) throws CreateUserException, CreateAuthorityException;
+	void addUser(User user) throws UserAlreadyExistsException, BusinessException;
 
+	/**
+	 * Creates an authority 
+	 * 
+	 * @param authority
+	 * @throws BusinessException
+	 */
+	void addAuthority(Authority authority) throws BusinessException;
+	
 	/**
 	 * This method andd an authory to teh given user
 	 * 
 	 * @param user
 	 * @param authority
-	 * @throws CreateAuthorityException
+	 * @throws BusinessException 
 	 */
-	void addAuthority(User user, Authority authority) throws CreateAuthorityException;
+	void addAuthorityToUser(User user, Authority authority) throws BusinessException;
 
 	/**
 	 * Finds one user by his username (login)

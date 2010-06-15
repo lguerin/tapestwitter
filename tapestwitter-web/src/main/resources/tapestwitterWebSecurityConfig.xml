@@ -7,7 +7,21 @@
 			http://www.springframework.org/schema/security
 			http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
- 	<global-method-security secured-annotations="enabled" />
+	<beans:bean id="secu-project-properties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" parent="project-properties">
+		<beans:property name="ignoreUnresolvablePlaceholders">
+			<beans:value>false</beans:value>
+		</beans:property>
+		<beans:property name="locations">
+			<beans:list>
+				<beans:value>
+					classpath*:config/security.properties
+				</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<global-method-security secured-annotations="enabled" />
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/index*" access="permitAll" />
@@ -26,9 +40,10 @@
 		<remember-me key="tapestwitter"/>
 		<logout />
    </http>
-		
-	<authentication-manager alias="authenticationManager">
+   
+   <authentication-manager alias="authenticationManager">
 		<authentication-provider ref="tapestwitterAuthenticationProvider"/>
-	</authentication-manager>
+   </authentication-manager>
+	
 	
 </beans:beans>

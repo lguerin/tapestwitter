@@ -1,17 +1,5 @@
 package com.tapestwitter.pages;
 
-import com.tapestwitter.common.EnumValidation;
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.exception.CreateAuthorityException;
-import com.tapestwitter.domain.exception.CreateUserException;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.domain.security.TapestwitterSecurityContext;
-import com.tapestwitter.util.ValidationUtils;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.PersistenceConstants;
@@ -27,6 +15,17 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.tapestwitter.common.EnumValidation;
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.exception.BusinessException;
+import com.tapestwitter.domain.exception.UserAlreadyExistsException;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.domain.security.TapestwitterSecurityContext;
+import com.tapestwitter.util.ValidationUtils;
 
 /**
  * This page creates a new user
@@ -213,18 +212,18 @@ public class SignUp
 			userManager.addUser(user);
 			securityCtx.logIn(user);
 		}
-		catch (CreateUserException e)
+		catch (BusinessException e)
 		{
 			logger.error("User not created", e);
 			signupForm.recordError("Validation not succeded");
 			return this;
-		}
-		catch (CreateAuthorityException e)
-		{
+			
+		} catch (UserAlreadyExistsException e) {
 			logger.error("User not created", e);
 			signupForm.recordError("Validation not succeded");
 			return this;
 		}
+		
 
 		return homePage;
 	}

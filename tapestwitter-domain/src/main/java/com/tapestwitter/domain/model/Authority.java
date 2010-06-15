@@ -1,12 +1,13 @@
 package com.tapestwitter.domain.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -33,9 +34,9 @@ public class Authority implements GrantedAuthority
 	@Column(nullable = false)
 	private String authority;
 
-	@ManyToOne
-	@JoinColumn(name = "id_user", nullable = false, updatable = false, insertable = false)
-	private User user;
+	/** Reverse owner */
+	@ManyToMany(mappedBy = "authorities")
+	private List<User> users;
 
 	public Authority()
 	{
@@ -63,14 +64,14 @@ public class Authority implements GrantedAuthority
 		this.authority = authority;
 	}
 
-	public User getUser()
+	public List<User> getUsers()
 	{
-		return user;
+		return users;
 	}
 
-	public void setUser(User user)
+	public void setUser(List<User> users)
 	{
-		this.user = user;
+		this.users = users;
 	}
 
 }

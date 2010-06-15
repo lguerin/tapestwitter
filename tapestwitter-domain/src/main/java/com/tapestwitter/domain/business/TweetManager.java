@@ -31,6 +31,16 @@ public interface TweetManager
 	Tweet createTweet(String msg);
 
 	/**
+	 * Creates one tweeter for the given user
+	 * 
+	 * @param user
+	 * @param msg
+	 * 
+	 * @return Objet {@link Tweet}
+	 */
+	Tweet createTweetFromUser(User user, String msg);
+	
+	/**
 	 * Met a jour le {@link Tweet}
 	 * @param tweet		Tweet a mettre a jour
 	 */
