@@ -11,11 +11,10 @@ import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Field;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.BeginRender;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Events;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.Parameter;
@@ -24,8 +23,9 @@ import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-@IncludeJavaScriptLibrary("validation.js")
+@Import(library="validation.js")
 @Events(TapesTwitterEventConstants.AJAX_VALIDATE)
 public class AjaxValidation
 {
@@ -50,7 +50,7 @@ public class AjaxValidation
     private ComponentResources resources;
     
     @Environmental
-    private RenderSupport renderSupport;
+    private JavaScriptSupport javaScriptSupport;    
     
     @Inject
     private Request request;
@@ -161,7 +161,7 @@ public class AjaxValidation
 	    
 		Link link = resources.createEventLink("validation");
 		
-		renderSupport.addScript(String.format("new Validation('%s', '%s', '%s');", field.getClientId(), link.toAbsoluteURI(), config));
+		javaScriptSupport.addScript(String.format("new Validation('%s', '%s', '%s');", field.getClientId(), link.toAbsoluteURI(), config.toString(true)));
 		
 	}
 	
@@ -172,7 +172,6 @@ public class AjaxValidation
 		return validation();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Log
 	protected Object validation(){
 		
@@ -180,12 +179,11 @@ public class AjaxValidation
 		String clientId = request.getParameter(CLIENT_ID);
 		final Holder<EnumValidation> itemsHolder = Holder.create();
 		
-		ComponentEventCallback callback = new ComponentEventCallback()
+		ComponentEventCallback<EnumValidation> callback = new ComponentEventCallback<EnumValidation>()
 		{
-			public boolean handleResult(Object result)
+			public boolean handleResult(EnumValidation result)
 			{
-				EnumValidation valide = (EnumValidation)result;
-				itemsHolder.put(valide);
+				itemsHolder.put(result);
 				return true;
 			}
 		};

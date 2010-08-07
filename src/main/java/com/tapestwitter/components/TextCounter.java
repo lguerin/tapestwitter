@@ -3,12 +3,12 @@ package com.tapestwitter.components;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.MarkupWriter;
-import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.AfterRender;
 import org.apache.tapestry5.annotations.BeginRender;
-import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
  * A "Twitter-like" Text Counter component.
@@ -16,7 +16,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * @author lguerin
  *
  */
-@IncludeJavaScriptLibrary("textcounter.js")
+@Import(library="textcounter.js")
 public class TextCounter
 {
 	/**
@@ -63,7 +63,7 @@ public class TextCounter
 	private String warningLimitStyle;
 
 	@Inject
-	private RenderSupport renderSupport;
+	private JavaScriptSupport javaScriptSupport;
 
 	@BeginRender
 	public void beginRender(MarkupWriter writer)
@@ -75,6 +75,6 @@ public class TextCounter
 	public void afterRender(MarkupWriter writer)
 	{
 		writer.end(); // div
-		renderSupport.addScript(String.format("new TextCounter('%s', '%s', '%s', '%s', '%s');", textareaId, targetElementId, maxlength, warningLimit, warningLimitStyle));
+		javaScriptSupport.addScript(String.format("new TextCounter('%s', '%s', '%s', '%s', '%s');", textareaId, targetElementId, maxlength, warningLimit, warningLimitStyle));
 	}
 }

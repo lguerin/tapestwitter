@@ -4,11 +4,11 @@ import com.tapestwitter.services.TapestwiterURLResolver;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
-@IncludeStylesheet(value = { "context:/forms/forms.css" })
+@Import(stylesheet="context:/forms/forms.css")
 public class Login
 {
 	@Inject

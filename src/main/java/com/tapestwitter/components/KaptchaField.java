@@ -52,7 +52,6 @@ public class KaptchaField extends AbstractField
 		return true;
 	}
 
-	@SuppressWarnings("unchecked")
 	@BeginRender
 	boolean renderTextField(MarkupWriter writer)
 	{
@@ -69,6 +68,7 @@ public class KaptchaField extends AbstractField
 
 		resources.renderInformalParameters(writer);
 
+		@SuppressWarnings("rawtypes")
 		FieldValidator fieldValidator = fieldValidatorSource.createValidator(this, "required", null);
 
 		fieldValidator.render(writer);

@@ -170,7 +170,7 @@ public class SignUp
 	 * It validates the form. If validation passes
 	 * tapestry will execute "onSuccess" event  	
 	 */
-	@OnEvent(value = EventConstants.VALIDATE_FORM, component = "signupForm")
+	@OnEvent(value = EventConstants.VALIDATE, component = "signupForm")
 	public void onValidate()
 	{
 		validationEmail(email);

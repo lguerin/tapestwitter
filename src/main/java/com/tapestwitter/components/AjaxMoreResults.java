@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.model.Tweet;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentEventCallback;
@@ -16,7 +17,6 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 
 /**
  * Provide an Ajax component that implements the Twitter-like "More" event link.
@@ -44,9 +44,6 @@ public class AjaxMoreResults
 	private Integer batchSize;
 
 	@Inject
-	private TypeCoercer coercer;
-
-	@Inject
 	private ComponentResources resources;
 
 	/**
@@ -55,19 +52,17 @@ public class AjaxMoreResults
 	@Parameter(required = true)
 	private Block renderable;
 
-	@SuppressWarnings("unchecked")
 	@OnEvent(value = EventConstants.ACTION)
 	@Log
 	public Object provideMoreResults()
 	{
 		itemsHolder.put(Collections.emptyList());
 
-		ComponentEventCallback callback = new ComponentEventCallback()
+		ComponentEventCallback<List<? super Tweet>> callback = new ComponentEventCallback<List<? super Tweet>>()
 		{
-			public boolean handleResult(Object result)
+			public boolean handleResult(List<? super Tweet> result)
 			{
-				List matches = coercer.coerce(result, List.class);
-				itemsHolder.put(matches);
+				itemsHolder.put(result);
 				return true;
 			}
 		};
