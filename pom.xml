@@ -234,19 +234,27 @@
 			<artifactId>ehcache-core</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.kaptcha</groupId>
-		    <artifactId>katpcha</artifactId>
-		    <version>2.3.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/lib/kaptcha-2.3.jar</systemPath>
-		</dependency>
+		<!-- 
+			Tapx Core : include kaptcha component
+		-->
+	    <dependency>
+	      <groupId>com.howardlewisship</groupId>
+	      <artifactId>tapx-core</artifactId>
+	      <version>${tapx-release-version}</version>
+	    </dependency>
+		<!-- 
+			YUI Integration
+		-->
+	    <dependency>
+	      <groupId>com.howardlewisship</groupId>
+	      <artifactId>tapx-yui</artifactId>
+	      <version>${tapx-release-version}</version>
+	    </dependency>		
 	</dependencies>
 	<build>
 		<finalName>tapestwitter</finalName>
 		<!--
-			Permet de prendre en compte les fichiers XML utilises par dbunit lors
-			des tests unitaires.
+			Filter for XML dbunit tests files.
 		-->
 		<testResources>
 			<testResource>
@@ -325,14 +333,29 @@
 	</reporting>
 	
 	<repositories>
+		<!-- TODO : Remove when final stable 5.2 version release  -->
 		<repository>
 			<id>apache-snapshots2</id>
-			<url>https://repository.apache.org/content/repositories/orgapachetapestry-063/</url>
-		</repository>	
+			<url>https://repository.apache.org/content/groups/public</url>
+		</repository>
+	    <repository>
+            <id>tapestry360-stable</id>
+            <url>http://tapestry.formos.com/maven-repository</url>
+        </repository>		
+ 		<repository>
+            <id>tapestry360-snapshot</id>
+            <url>http://tapestry.formos.com/maven-snapshot-repository</url>
+        </repository>		
+        <!-- TODO: remove when 5.2 will be pushed to main repo -->
+		<repository>
+			<id>apache-snapshots2</id>
+			<url>https://repository.apache.org/content/groups/public</url>
+		</repository>
 	</repositories>
 
 	<properties>
 		<tapestry-release-version>5.2.0</tapestry-release-version>
+		<tapx-release-version>1.1-SNAPSHOT</tapx-release-version>
 		<hibernate-version>3.2.6.GA</hibernate-version>
 		<hibernate-entitymanager-version>3.3.2.GA</hibernate-entitymanager-version>
 		<spring-version>3.0.0.RELEASE</spring-version>
