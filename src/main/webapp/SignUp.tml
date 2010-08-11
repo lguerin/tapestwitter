@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html t:type="simplelayout" p:title="Signup"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      xmlns:p="tapestry:parameter">
+      xmlns:p="tapestry:parameter"
+      xmlns:tapx="tapestry-library:tapx">
 
 
 <div class="content-heading">
@@ -65,10 +66,10 @@
    					<div class="formRigthCol">
    						<div class="clear"/>
    						<div>
-   							<t:kaptchaimage t:id="kaptcha"/>
+   							<t:tapx.kaptchaimage t:id="kaptcha"/>
    						</div>
    					<div>
-        				<t:kaptchafield image="kaptcha" class="text_field with-box"/>
+        				<t:tapx.kaptchafield image="kaptcha" class="text_field with-box"/>
         			</div>
 				</div>
 				<div class="clear"/>
