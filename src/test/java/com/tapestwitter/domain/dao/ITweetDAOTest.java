@@ -17,11 +17,10 @@ import org.unitils.spring.annotation.SpringBean;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Classe de test du DAO {@link ITweetDAO} 
- *  
+ * Classe de test du DAO {@link ITweetDAO}
+ * 
  * @author lguerin
  * @author ldoin
- * 
  */
 @SpringApplicationContext("test-config.xml")
 public class ITweetDAOTest extends UnitilsTestNG
@@ -66,7 +65,7 @@ public class ITweetDAOTest extends UnitilsTestNG
         tweet.setAuthor("ldoin");
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
-        calendar.set(2010, 3-1, 18);
+        calendar.set(2010, 3 - 1, 18);
         tweet.setCreationDate(calendar.getTime());
         tweetDAO.create(tweet);
     }
@@ -118,8 +117,8 @@ public class ITweetDAOTest extends UnitilsTestNG
 
         tweets = tweetDAO.findRecentTweets(DEFAULT_FIRST_TWEET_DATASET + 1, rangeSize);
         Assert.assertEquals(tweets.size(), DEFAULT_NB_TWEETS_DATASET - 2);
-        
-        tweets = tweetDAO.findRecentTweets(null,rangeSize);
+
+        tweets = tweetDAO.findRecentTweets(null, rangeSize);
         Assert.assertEquals(tweets.size(), rangeSize.intValue());
     }
 

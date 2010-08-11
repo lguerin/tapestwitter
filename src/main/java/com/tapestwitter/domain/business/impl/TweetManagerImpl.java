@@ -21,95 +21,95 @@ import org.springframework.util.Assert;
  * les {@link Tweet}.
  * 
  * @author lguerin
- *
  */
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 @Component("tweetManager")
 public class TweetManagerImpl implements TweetManager
 {
 
-	@Autowired
-	private ITweetDAO tweetDAO;
+    @Autowired
+    private ITweetDAO tweetDAO;
 
-	@Autowired
-	private TapestwitterSecurityContext securityContext;
+    @Autowired
+    private TapestwitterSecurityContext securityContext;
 
-	/* (non-Javadoc)
-	 * @see com.tapestwitter.domain.business.TweetManager#findTweetByKeyword(java.lang.String)
-	 */
-	public List<Tweet> findTweetByKeyword(String keyword)
-	{
-		return tweetDAO.findTweetByKeyword(keyword);
-	}
+    /*
+     * (non-Javadoc)
+     * @see com.tapestwitter.domain.business.TweetManager#findTweetByKeyword(java.lang.String)
+     */
+    public List<Tweet> findTweetByKeyword(String keyword)
+    {
+        return tweetDAO.findTweetByKeyword(keyword);
+    }
 
-	@Transactional(readOnly = false)
-	public Tweet createTweet(String msg)
-	{
-		Assert.notNull(msg, "message");
-		Tweet tweet = new Tweet();
+    @Transactional(readOnly = false)
+    public Tweet createTweet(String msg)
+    {
+        Assert.notNull(msg, "message");
+        Tweet tweet = new Tweet();
 
-		// Remplissage des proprietes
-		tweet.setTweet(msg);
-		Date creationDate = Calendar.getInstance().getTime();
-		tweet.setCreationDate(creationDate);
-		User user = securityContext.getUser();
-		String author = user.getLogin();
-		tweet.setAuthor(author);
+        // Remplissage des proprietes
+        tweet.setTweet(msg);
+        Date creationDate = Calendar.getInstance().getTime();
+        tweet.setCreationDate(creationDate);
+        User user = securityContext.getUser();
+        String author = user.getLogin();
+        tweet.setAuthor(author);
 
-		// Sauvegarde du tweet
-		tweetDAO.create(tweet);
+        // Sauvegarde du tweet
+        tweetDAO.create(tweet);
 
-		return tweet;
-	}
+        return tweet;
+    }
 
-	@Transactional(readOnly = false)
-	public void deleteTweet(Long tweetId)
-	{
-		Assert.notNull(tweetId, "tweetId");
+    @Transactional(readOnly = false)
+    public void deleteTweet(Long tweetId)
+    {
+        Assert.notNull(tweetId, "tweetId");
 
-		// Recuperation du tweet a supprimer
-		Tweet t = tweetDAO.findById(tweetId);
+        // Recuperation du tweet a supprimer
+        Tweet t = tweetDAO.findById(tweetId);
 
-		if (t != null)
-		{
-			tweetDAO.delete(t);
-		}
-	}
+        if (t != null)
+        {
+            tweetDAO.delete(t);
+        }
+    }
 
-	public Tweet findTweetById(Long tweetId)
-	{
-		return tweetDAO.findById(tweetId);
-	}
+    public Tweet findTweetById(Long tweetId)
+    {
+        return tweetDAO.findById(tweetId);
+    }
 
-	public List<Tweet> listAllTweet()
-	{
-		return tweetDAO.listAllByCreationDateDesc();
-	}
+    public List<Tweet> listAllTweet()
+    {
+        return tweetDAO.listAllByCreationDateDesc();
+    }
 
-	public void updateTweet(Tweet tweet)
-	{
-		Assert.notNull(tweet, "tweet");
-		tweetDAO.update(tweet);
-	}
+    public void updateTweet(Tweet tweet)
+    {
+        Assert.notNull(tweet, "tweet");
+        tweetDAO.update(tweet);
+    }
 
-	public List<Tweet> findRecentTweets(Long id, Integer range)
-	{
-		Assert.notNull(range, "range");
-		return tweetDAO.findRecentTweets(id, range);
-	}
+    public List<Tweet> findRecentTweets(Long id, Integer range)
+    {
+        Assert.notNull(range, "range");
+        return tweetDAO.findRecentTweets(id, range);
+    }
 
-	public List<Tweet> findRecentTweets(Integer range)
-	{
-		return findRecentTweets(null, range);
-	}
+    public List<Tweet> findRecentTweets(Integer range)
+    {
+        return findRecentTweets(null, range);
+    }
 
-	public Integer getNbTweetsByUser(String login)
-	{
-		return tweetDAO.getNbTweetsByUser(login);
-	}
+    public Integer getNbTweetsByUser(String login)
+    {
+        return tweetDAO.getNbTweetsByUser(login);
+    }
 
-	public void setSecurityContext(TapestwitterSecurityContext securityContext)
-	{
-		this.securityContext = securityContext;
-	}
+    public void setSecurityContext(TapestwitterSecurityContext securityContext)
+    {
+        this.securityContext = securityContext;
+    }
 }

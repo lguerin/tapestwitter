@@ -21,61 +21,63 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 @EagerLoad
 public class DataSetLoaderServiceImpl implements DataSetLoaderService
 {
-	/**
-	 * Logger de la classe
-	 */
-	private static final Logger logger = LoggerFactory.getLogger(DataSetLoaderServiceImpl.class);
+    /**
+     * Logger de la classe
+     */
+    private static final Logger logger = LoggerFactory.getLogger(DataSetLoaderServiceImpl.class);
 
-	public DataSetLoaderServiceImpl(ApplicationContext applicationContext, @Inject @Symbol(SymbolConstants.PRODUCTION_MODE) boolean productionMode)
-	{
+    public DataSetLoaderServiceImpl(ApplicationContext applicationContext, @Inject
+    @Symbol(SymbolConstants.PRODUCTION_MODE)
+    boolean productionMode)
+    {
 
-		TweetManager tweetManager = (TweetManager) applicationContext.getBean("tweetManager");
-		UserManager userManager = (UserManager) applicationContext.getBean("userManager");
-		// Bypass creation if already done or if productionMode
-		if (productionMode || tweetManager.findTweetByKeyword("TapesTwitter").size() >= 1)
-		{
-			logger.info("Le jeu de donnees est deja charge, on sort sans rien faire.");
-			return;
-		}
+        TweetManager tweetManager = (TweetManager) applicationContext.getBean("tweetManager");
+        UserManager userManager = (UserManager) applicationContext.getBean("userManager");
+        // Bypass creation if already done or if productionMode
+        if (productionMode || tweetManager.findTweetByKeyword("TapesTwitter").size() >= 1)
+        {
+            logger.info("Le jeu de donnees est deja charge, on sort sans rien faire.");
+            return;
+        }
 
-		logger.info(">>> Chargement du jeu de donnees par defaut...");
-		logger.info(">>> Users : Chargement du jeu de donnees par defaut...");
-		User user = new User();
-		Authority authority = new Authority();
-		TapestwitterSecurityContext securityCtx = (TapestwitterSecurityContext) applicationContext.getBean("tapestwitterSecurityContext");
-		try
-		{
-			user.setFullName("Laurent Guerin");
-			user.setLogin("laurent");
-			user.setPassword("laurentpass");
-			user.setEmail("laurent@tapestwitter.org");
-			userManager.addUser(user);
-			securityCtx.logIn(user);
+        logger.info(">>> Chargement du jeu de donnees par defaut...");
+        logger.info(">>> Users : Chargement du jeu de donnees par defaut...");
+        User user = new User();
+        Authority authority = new Authority();
+        TapestwitterSecurityContext securityCtx = (TapestwitterSecurityContext) applicationContext.getBean("tapestwitterSecurityContext");
+        try
+        {
+            user.setFullName("Laurent Guerin");
+            user.setLogin("laurent");
+            user.setPassword("laurentpass");
+            user.setEmail("laurent@tapestwitter.org");
+            userManager.addUser(user);
+            securityCtx.logIn(user);
 
-			user = new User();
-			user.setFullName("Katia Aresti");
-			user.setLogin("katia");
-			user.setPassword("katiapass");
-			user.setEmail("katia@tapestwitter.org");
-			userManager.addUser(user);
+            user = new User();
+            user.setFullName("Katia Aresti");
+            user.setLogin("katia");
+            user.setPassword("katiapass");
+            user.setEmail("katia@tapestwitter.org");
+            userManager.addUser(user);
 
-			authority = new Authority();
-			authority.setAuthority("ROLE_ADMIN");
-			userManager.addAuthority(user, authority);
+            authority = new Authority();
+            authority.setAuthority("ROLE_ADMIN");
+            userManager.addAuthority(user, authority);
 
-		}
-		catch (CreateUserException e)
-		{
-			logger.error("Erreur sur le chargement des données de test " + user, e);
-		}
-		catch (CreateAuthorityException e)
-		{
-			logger.error("Erreur sur le chargement des données de test " + authority, e);
-		}
+        }
+        catch (CreateUserException e)
+        {
+            logger.error("Erreur sur le chargement des données de test " + user, e);
+        }
+        catch (CreateAuthorityException e)
+        {
+            logger.error("Erreur sur le chargement des données de test " + authority, e);
+        }
 
-		String tweetMsg = "TapesTwitter, une application de demo 'Twitter like' ecrite avec Tapestry 5";
-		tweetManager.createTweet(tweetMsg);
+        String tweetMsg = "TapesTwitter, une application de demo 'Twitter like' ecrite avec Tapestry 5";
+        tweetManager.createTweet(tweetMsg);
 
-		logger.info("<<< Chargement termine.");
-	}
+        logger.info("<<< Chargement termine.");
+    }
 }

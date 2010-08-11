@@ -33,306 +33,306 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  * and connect him to Tapestwitter
  * 
  * @author karesti
- *
  */
 public class SignUp
 {
 
-	private static final Logger logger = LoggerFactory.getLogger(SignUp.class);
+    private static final Logger logger = LoggerFactory.getLogger(SignUp.class);
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private String fullName;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String fullName;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private String login;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String login;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private String password;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String password;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private String email;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String email;
 
-	@InjectComponent
-	private Form signupForm;
+    @InjectComponent
+    private Form signupForm;
 
-	@SuppressWarnings("unused")
-	@Component(id = "fullName", parameters = "AjaxValidation.etat=valideFullName")
-	@Mixins("AjaxValidation")
-	private TextField fullNameText;
+    @SuppressWarnings("unused")
+    @Component(id = "fullName", parameters = "AjaxValidation.etat=valideFullName")
+    @Mixins("AjaxValidation")
+    private TextField fullNameText;
 
-	@SuppressWarnings("unused")
-	@Component(id = "login", parameters = { "AjaxValidation.etat=valideLogin", "AjaxValidation.whenValidate=keyup", "AjaxValidation.timer=1000" })
-	@Mixins("AjaxValidation")
-	private TextField loginText;
+    @SuppressWarnings("unused")
+    @Component(id = "login", parameters =
+    { "AjaxValidation.etat=valideLogin", "AjaxValidation.whenValidate=keyup", "AjaxValidation.timer=1000" })
+    @Mixins("AjaxValidation")
+    private TextField loginText;
 
-	@SuppressWarnings("unused")
-	@Component(id = "password", parameters = "AjaxValidation.etat=validePassword")
-	@Mixins("AjaxValidation")
-	private PasswordField passwordText;
+    @SuppressWarnings("unused")
+    @Component(id = "password", parameters = "AjaxValidation.etat=validePassword")
+    @Mixins("AjaxValidation")
+    private PasswordField passwordText;
 
-	@SuppressWarnings("unused")
-	@Component(id = "email", parameters = "AjaxValidation.etat=valideEmail")
-	@Mixins("AjaxValidation")
-	private TextField emailText;
+    @SuppressWarnings("unused")
+    @Component(id = "email", parameters = "AjaxValidation.etat=valideEmail")
+    @Mixins("AjaxValidation")
+    private TextField emailText;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private EnumValidation valideFullName;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private EnumValidation valideFullName;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private EnumValidation valideLogin;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private EnumValidation valideLogin;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private EnumValidation valideEmail;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private EnumValidation valideEmail;
 
-	@Property
-	@Persist(PersistenceConstants.FLASH)
-	private EnumValidation validePassword;
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private EnumValidation validePassword;
 
-	@Inject
-	private UserManager userManager;
+    @Inject
+    private UserManager userManager;
 
-	@Inject
-	private TapestwitterSecurityContext securityCtx;
+    @Inject
+    private TapestwitterSecurityContext securityCtx;
 
-	@InjectPage
-	private HomePage homePage;
+    @InjectPage
+    private HomePage homePage;
 
-	/**
-	 * Ajax event that validates the login field
-	 * 
-	 * @param login
-	 * @return Corresponding {@link EnumValidation}
-	 */
-	@Log
-	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "login")
-	public EnumValidation ajaxLoginValidation(String userLogin)
-	{
-		validateLogin(userLogin);
-		return valideLogin;
+    /**
+     * Ajax event that validates the login field
+     * 
+     * @param login
+     * @return Corresponding {@link EnumValidation}
+     */
+    @Log
+    @OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "login")
+    public EnumValidation ajaxLoginValidation(String userLogin)
+    {
+        validateLogin(userLogin);
+        return valideLogin;
 
-	}
+    }
 
-	/**
-	 * Ajax event that validates the fullName field
-	 * 
-	 * @param fullName
-	 * @return Corresponding {@link EnumValidation}
-	 */
-	@Log
-	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "fullName")
-	public EnumValidation ajaxFullNameValidation(String fullName)
-	{
-		validateFullName(fullName);
-		return valideFullName;
+    /**
+     * Ajax event that validates the fullName field
+     * 
+     * @param fullName
+     * @return Corresponding {@link EnumValidation}
+     */
+    @Log
+    @OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "fullName")
+    public EnumValidation ajaxFullNameValidation(String fullName)
+    {
+        validateFullName(fullName);
+        return valideFullName;
 
-	}
+    }
 
-	/**
-	 * Ajax event that validates the password field
-	 * 
-	 * @param password
-	 * @return Corresponding {@link EnumValidation}
-	 */
-	@Log
-	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "password")
-	public EnumValidation ajaxPasswordValidation(String password)
-	{
-		validatePassword(password);
-		return validePassword;
+    /**
+     * Ajax event that validates the password field
+     * 
+     * @param password
+     * @return Corresponding {@link EnumValidation}
+     */
+    @Log
+    @OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "password")
+    public EnumValidation ajaxPasswordValidation(String password)
+    {
+        validatePassword(password);
+        return validePassword;
 
-	}
+    }
 
-	/**
-	 * Ajax event that validates the email field
-	 * 
-	 * @param email
-	 * @return Corresponding {@link EnumValidation}
-	 */
-	@Log
-	@OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "email")
-	public EnumValidation ajaxEmailValidation(String email)
-	{
-		validationEmail(email);
-		return valideEmail;
+    /**
+     * Ajax event that validates the email field
+     * 
+     * @param email
+     * @return Corresponding {@link EnumValidation}
+     */
+    @Log
+    @OnEvent(value = TapesTwitterEventConstants.AJAX_VALIDATE, component = "email")
+    public EnumValidation ajaxEmailValidation(String email)
+    {
+        validationEmail(email);
+        return valideEmail;
 
-	}
+    }
 
-	/**
-	 * This method is executed when the user
-	 * submits the form.
-	 * It validates the form. If validation passes
-	 * tapestry will execute "onSuccess" event  	
-	 */
-	@OnEvent(value = EventConstants.VALIDATE, component = "signupForm")
-	public void onValidate()
-	{
-		validationEmail(email);
-		validateFullName(fullName);
-		validateLogin(login);
-		validatePassword(password);
+    /**
+     * This method is executed when the user
+     * submits the form.
+     * It validates the form. If validation passes
+     * tapestry will execute "onSuccess" event
+     */
+    @OnEvent(value = EventConstants.VALIDATE, component = "signupForm")
+    public void onValidate()
+    {
+        validationEmail(email);
+        validateFullName(fullName);
+        validateLogin(login);
+        validatePassword(password);
 
-		boolean result = EnumValidation.OK.equals(valideEmail);
-		result = result && EnumValidation.OK.equals(valideFullName);
-		result = result && EnumValidation.OK.equals(valideLogin);
-		result = result && EnumValidation.OK.equals(validePassword);
+        boolean result = EnumValidation.OK.equals(valideEmail);
+        result = result && EnumValidation.OK.equals(valideFullName);
+        result = result && EnumValidation.OK.equals(valideLogin);
+        result = result && EnumValidation.OK.equals(validePassword);
 
-		if (!result)
-		{
-			signupForm.recordError("Validation not succeded");
-		}
+        if (!result)
+        {
+            signupForm.recordError("Validation not succeded");
+        }
 
-	}
+    }
 
-	/**
-	 * This method is executed when the user
-	 * submits the form and the validation is ok
-	 * Creates a new user
-	 * Connects the user
-	 * Redirects to HomePage
-	 * 
-	 * @return HomePage if success
-	 * 		   SignUp if error (this)
-	 */
-	@OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
-	public Object onSuccess()
-	{
-		User user = new User();
-		user.setFullName(fullName);
-		user.setLogin(login);
-		user.setPassword(password);
-		user.setEmail(email);
-		try
-		{
-			userManager.addUser(user);
-			securityCtx.logIn(user);
-		}
-		catch (CreateUserException e)
-		{
-			logger.error("User not created", e);
-			signupForm.recordError("Validation not succeded");
-			return this;
-		}
-		catch (CreateAuthorityException e)
-		{
-			logger.error("User not created", e);
-			signupForm.recordError("Validation not succeded");
-			return this;
-		}
+    /**
+     * This method is executed when the user
+     * submits the form and the validation is ok
+     * Creates a new user
+     * Connects the user
+     * Redirects to HomePage
+     * 
+     * @return HomePage if success
+     *         SignUp if error (this)
+     */
+    @OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
+    public Object onSuccess()
+    {
+        User user = new User();
+        user.setFullName(fullName);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setEmail(email);
+        try
+        {
+            userManager.addUser(user);
+            securityCtx.logIn(user);
+        }
+        catch (CreateUserException e)
+        {
+            logger.error("User not created", e);
+            signupForm.recordError("Validation not succeded");
+            return this;
+        }
+        catch (CreateAuthorityException e)
+        {
+            logger.error("User not created", e);
+            signupForm.recordError("Validation not succeded");
+            return this;
+        }
 
-		return homePage;
-	}
+        return homePage;
+    }
 
-	/**
-	 * Validates the email
-	 * 
-	 * @param email
-	 */
-	private void validationEmail(String email)
-	{
+    /**
+     * Validates the email
+     * 
+     * @param email
+     */
+    private void validationEmail(String email)
+    {
 
-		valideEmail = EnumValidation.INVALIDE;
+        valideEmail = EnumValidation.INVALIDE;
 
-		if (StringUtils.isEmpty(email))
-		{
-			valideEmail = EnumValidation.EMPTY;
+        if (StringUtils.isEmpty(email))
+        {
+            valideEmail = EnumValidation.EMPTY;
 
-		}
-		else if (!ValidationUtils.isEmail(email))
-		{
-			valideEmail = EnumValidation.FORMAT;
+        }
+        else if (!ValidationUtils.isEmail(email))
+        {
+            valideEmail = EnumValidation.FORMAT;
 
-		}
-		else
-		{
-			Boolean result = userManager.isAvailableEmail(email);
+        }
+        else
+        {
+            Boolean result = userManager.isAvailableEmail(email);
 
-			if (result)
-			{
-				valideEmail = EnumValidation.OK;
-			}
+            if (result)
+            {
+                valideEmail = EnumValidation.OK;
+            }
 
-		}
-	}
+        }
+    }
 
-	/**
-	 * Validates the password
-	 * 
-	 * @param password
-	 */
-	private void validatePassword(String password)
-	{
-		validePassword = EnumValidation.EMPTY;
+    /**
+     * Validates the password
+     * 
+     * @param password
+     */
+    private void validatePassword(String password)
+    {
+        validePassword = EnumValidation.EMPTY;
 
-		if (StringUtils.isEmpty(password))
-		{
-			validePassword = EnumValidation.EMPTY;
-		}
-		else if (StringUtils.isEmpty(password.trim()) || password.trim().length() < 6)
-		{
-			validePassword = EnumValidation.FORMAT;
+        if (StringUtils.isEmpty(password))
+        {
+            validePassword = EnumValidation.EMPTY;
+        }
+        else if (StringUtils.isEmpty(password.trim()) || password.trim().length() < 6)
+        {
+            validePassword = EnumValidation.FORMAT;
 
-		}
-		else
-		{
-			validePassword = EnumValidation.OK;
-		}
-	}
+        }
+        else
+        {
+            validePassword = EnumValidation.OK;
+        }
+    }
 
-	/**
-	 * Validates the fullName
-	 * 
-	 * @param fullName
-	 */
-	private void validateFullName(String fullName)
-	{
+    /**
+     * Validates the fullName
+     * 
+     * @param fullName
+     */
+    private void validateFullName(String fullName)
+    {
 
-		valideFullName = EnumValidation.EMPTY;
+        valideFullName = EnumValidation.EMPTY;
 
-		if (StringUtils.isEmpty(fullName))
-		{
-			valideFullName = EnumValidation.EMPTY;
-		}
-		else if (StringUtils.isEmpty(fullName.trim()))
-		{
-			valideFullName = EnumValidation.INVALIDE;
+        if (StringUtils.isEmpty(fullName))
+        {
+            valideFullName = EnumValidation.EMPTY;
+        }
+        else if (StringUtils.isEmpty(fullName.trim()))
+        {
+            valideFullName = EnumValidation.INVALIDE;
 
-		}
-		else
-		{
-			valideFullName = EnumValidation.OK;
-		}
-	}
+        }
+        else
+        {
+            valideFullName = EnumValidation.OK;
+        }
+    }
 
-	/**
-	 * Validates login
-	 * 
-	 * @param userLogin
-	 */
-	private void validateLogin(String userLogin)
-	{
-		valideLogin = EnumValidation.INVALIDE;
+    /**
+     * Validates login
+     * 
+     * @param userLogin
+     */
+    private void validateLogin(String userLogin)
+    {
+        valideLogin = EnumValidation.INVALIDE;
 
-		if (StringUtils.isEmpty(userLogin))
-		{
-			valideLogin = EnumValidation.EMPTY;
-		}
-		else
-		{
+        if (StringUtils.isEmpty(userLogin))
+        {
+            valideLogin = EnumValidation.EMPTY;
+        }
+        else
+        {
 
-			Boolean result = userManager.isAvailableName(userLogin);
+            Boolean result = userManager.isAvailableName(userLogin);
 
-			if (result)
-			{
-				valideLogin = EnumValidation.OK;
-			}
-		}
-	}
+            if (result)
+            {
+                valideLogin = EnumValidation.OK;
+            }
+        }
+    }
 
 }

@@ -5,7 +5,6 @@ package com.tapestwitter.services;
  * developpement.
  * 
  * @author lguerin
- *
  */
 public interface DataSetLoaderService
 {

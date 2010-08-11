@@ -7,17 +7,16 @@ import org.apache.tapestry5.annotations.Property;
 
 /**
  * Display the main informations about a {@link Tweet}.
- *  
+ * 
  * @author lguerin
- *
  */
 public class TweetInfosBox
 {
-	/**
-	 * Tweet to display
-	 */
-	@SuppressWarnings("unused")
-	@Property
-	@Parameter(allowNull = false, required = true)
-	private Tweet tweet;
+    /**
+     * Tweet to display
+     */
+    @SuppressWarnings("unused")
+    @Property
+    @Parameter(allowNull = false, required = true)
+    private Tweet tweet;
 }

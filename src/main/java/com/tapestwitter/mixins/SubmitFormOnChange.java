@@ -11,36 +11,35 @@ import org.apache.tapestry5.services.FormSupport;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 /**
-* Submit the form on change event
-* 
-* @author karesti
-* 
-*/
+ * Submit the form on change event
+ * 
+ * @author karesti
+ */
 @MixinAfter
 public class SubmitFormOnChange
 {
 
-	@Inject
-	private JavaScriptSupport javaScriptSupport;
+    @Inject
+    private JavaScriptSupport javaScriptSupport;
 
-	@Inject
-	private FormSupport formSupport;
+    @Inject
+    private FormSupport formSupport;
 
-	@InjectContainer
-	private ClientElement container;
+    @InjectContainer
+    private ClientElement container;
 
-	@AfterRender
-	public void addSubmitOnChange()
-	{
-		JSONArray spec = new JSONArray();
-		spec.put(container.getClientId());
-		spec.put(formSupport.getClientId());
-		
-		JSONObject args = new JSONObject();
-		args.put("args", spec);
+    @AfterRender
+    public void addSubmitOnChange()
+    {
+        JSONArray spec = new JSONArray();
+        spec.put(container.getClientId());
+        spec.put(formSupport.getClientId());
 
-		javaScriptSupport.addInitializerCall("submitOnChange", args);
+        JSONObject args = new JSONObject();
+        args.put("args", spec);
 
-	}
+        javaScriptSupport.addInitializerCall("submitOnChange", args);
+
+    }
 
 }

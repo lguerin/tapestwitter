@@ -8,13 +8,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class IsAdmin extends AbstractConditional
 {
 
-	@Inject
-	private TapestwitterSecurityContext securityCtx;
+    @Inject
+    private TapestwitterSecurityContext securityCtx;
 
-	@Override
-	protected boolean test()
-	{
-		return securityCtx.getUser() != null && securityCtx.getUser().isAdmin();
-	}
+    @Override
+    protected boolean test()
+    {
+        return securityCtx.getUser() != null && securityCtx.getUser().isAdmin();
+    }
 
 }

@@ -9,45 +9,51 @@ import javax.persistence.TemporalType;
 
 /**
  * Base entity for common properties.
- *
+ * 
  * @author karesti
- *
  */
 @MappedSuperclass
-public abstract class TapestwitterEntity {
+public abstract class TapestwitterEntity
+{
 
-	@Column(nullable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date creationDate;
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date lastModified;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date deletionDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModified;
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletionDate;
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public Date getCreationDate()
+    {
+        return creationDate;
+    }
 
-	public Date getLastModified() {
-		return lastModified;
-	}
+    public void setCreationDate(Date creationDate)
+    {
+        this.creationDate = creationDate;
+    }
 
-	public void setLastModified(Date lastModified) {
-		this.lastModified = lastModified;
-	}
+    public Date getLastModified()
+    {
+        return lastModified;
+    }
 
-	public Date getDeletionDate() {
-		return deletionDate;
-	}
+    public void setLastModified(Date lastModified)
+    {
+        this.lastModified = lastModified;
+    }
 
-	public void setDeletionDate(Date deletionDate) {
-		this.deletionDate = deletionDate;
-	}
-	
+    public Date getDeletionDate()
+    {
+        return deletionDate;
+    }
+
+    public void setDeletionDate(Date deletionDate)
+    {
+        this.deletionDate = deletionDate;
+    }
+
 }

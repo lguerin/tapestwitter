@@ -10,30 +10,29 @@ import org.apache.tapestry5.services.Request;
  * Implementation {@link TapestwiterURLResolver}
  * 
  * @author karesti
- *
  */
 public class TapestwitterURLResolverImpl implements TapestwiterURLResolver
 {
 
-	@Inject
-	@Symbol("loginSecurityFilterUrl")
-	private String loginUrl;
-	
-	@Inject
-	@Symbol("logoutSecurityFilterUrl")
-	private String logoutUrl;
-	
-	@Inject
-	private Request request;
+    @Inject
+    @Symbol("loginSecurityFilterUrl")
+    private String loginUrl;
 
-	public String getLoginUrl()
-	{
-		return request.getContextPath() + loginUrl;
-	}
+    @Inject
+    @Symbol("logoutSecurityFilterUrl")
+    private String logoutUrl;
 
-	public String getLogoutUrl()
-	{
-		return request.getContextPath() + logoutUrl;
-	}
+    @Inject
+    private Request request;
+
+    public String getLoginUrl()
+    {
+        return request.getContextPath() + loginUrl;
+    }
+
+    public String getLogoutUrl()
+    {
+        return request.getContextPath() + logoutUrl;
+    }
 
 }

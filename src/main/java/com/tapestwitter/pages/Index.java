@@ -14,53 +14,47 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class Index
 {
-	@InjectPage
-	private HomePage homePage;
-	
-	@InjectPage
-	private SearchErrorPage searchErrorPage;
-	
-	@Inject
-	private TapestwitterSecurityContext securityCtx;
-	
-	@Inject
-	private UserManager userManager;
-	
-	private User user;
-	
-	public Object onActivate(String userName){
-		user = userManager.findByUsername(userName);
-		
-		if(user == null){
-			return searchErrorPage;
-		}
-		if( securityCtx.isLoggedIn() ){
-			User userLogged = securityCtx.getUser();
-			if(user.getLogin().equals(userLogged.getLogin())){
-				return homePage;
-			}
-		}
-		
-				
-		return null;
-	}
-	
-	/**
-	 * Redirige l'utilisateur sur la page d'accueil si celui-ci est 
-	 * deja authentifie.
-	 * 
-	 * @return	Page d'accueil si authentifie
-	 */
-	@SuppressWarnings("unused")
-	@OnEvent(value = EventConstants.ACTIVATE)
-	private Object redirectToHomePage()
-	{
-		// Tester par rapport a l'authentification
-		boolean isLoggedIn = securityCtx.isLoggedIn();
-		if (isLoggedIn)
-		{
-			return homePage;
-		}
-		return null;
-	}
+    @InjectPage
+    private HomePage homePage;
+
+    @InjectPage
+    private SearchErrorPage searchErrorPage;
+
+    @Inject
+    private TapestwitterSecurityContext securityCtx;
+
+    @Inject
+    private UserManager userManager;
+
+    private User user;
+
+    public Object onActivate(String userName)
+    {
+        user = userManager.findByUsername(userName);
+
+        if (user == null) { return searchErrorPage; }
+        if (securityCtx.isLoggedIn())
+        {
+            User userLogged = securityCtx.getUser();
+            if (user.getLogin().equals(userLogged.getLogin())) { return homePage; }
+        }
+
+        return null;
+    }
+
+    /**
+     * Redirige l'utilisateur sur la page d'accueil si celui-ci est
+     * deja authentifie.
+     * 
+     * @return Page d'accueil si authentifie
+     */
+    @SuppressWarnings("unused")
+    @OnEvent(value = EventConstants.ACTIVATE)
+    private Object redirectToHomePage()
+    {
+        // Tester par rapport a l'authentification
+        boolean isLoggedIn = securityCtx.isLoggedIn();
+        if (isLoggedIn) { return homePage; }
+        return null;
+    }
 }

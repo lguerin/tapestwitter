@@ -16,51 +16,50 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * Spring Security Login with the security filter chain
  * 
  * @author karesti
- *
  */
 public class UserDetailsServiceImpl implements UserDetailsService
 {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
-	/**
-	 * Tapestwitter UserManager
-	 */
-	private final UserManager userManager;
+    /**
+     * Tapestwitter UserManager
+     */
+    private final UserManager userManager;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param userManager
-	 */
-	public UserDetailsServiceImpl(UserManager userManager)
-	{
-		this.userManager = userManager;
-	}
+    /**
+     * Constructor
+     * 
+     * @param userManager
+     */
+    public UserDetailsServiceImpl(UserManager userManager)
+    {
+        this.userManager = userManager;
+    }
 
-	/**
-	 * @see UserDetailsService
-	 */
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException
-	{
-		if (logger.isDebugEnabled())
-		{
-			logger.debug("loadUserByUsername userName=" + username);
-		}
-		User user = null;
-		if (ValidationUtils.isEmail(username))
-		{
-			user = userManager.findByEmail(username);
-		}
-		else
-		{
-			user = userManager.findByUsername(username);
-		}
+    /**
+     * @see UserDetailsService
+     */
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException
+    {
+        if (logger.isDebugEnabled())
+        {
+            logger.debug("loadUserByUsername userName=" + username);
+        }
+        User user = null;
+        if (ValidationUtils.isEmail(username))
+        {
+            user = userManager.findByEmail(username);
+        }
+        else
+        {
+            user = userManager.findByUsername(username);
+        }
 
-		if (logger.isDebugEnabled())
-		{
-			logger.debug("User = " + user);
-		}
-		return user;
-	}
+        if (logger.isDebugEnabled())
+        {
+            logger.debug("User = " + user);
+        }
+        return user;
+    }
 }

@@ -21,8 +21,8 @@ import com.tapestwitter.domain.model.User;
 
 /**
  * classe de test pour le service {@link UserManagerImpl}
+ * 
  * @author ldoin
- *
  */
 public class UserManagerImplTest extends UnitilsTestNG
 {
@@ -30,10 +30,10 @@ public class UserManagerImplTest extends UnitilsTestNG
      * Logger
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(DateIntervalUtilsTest.class);
-    
+
     @TestedObject
     private UserManagerImpl userManager;
-    
+
     @InjectIntoByType
     private Mock<IUserDAO> mockUserDao;
 
@@ -42,50 +42,50 @@ public class UserManagerImplTest extends UnitilsTestNG
      */
     @Dummy
     private User dummyUser;
-    
+
     @AfterTest
     public void tearDown()
     {
         MockUnitils.assertNoMoreInvocations();
-        
+
         if (LOGGER.isDebugEnabled())
         {
             MockUnitils.logFullScenarioReport();
         }
     }
-    
+
     @Test
     public void testFindByUsername()
     {
-        String userName="ldoin";
+        String userName = "ldoin";
         mockUserDao.returns(dummyUser).findByUsername(userName);
-        
+
         User actualUser = userManager.findByUsername(userName);
-        Assert.assertEquals(actualUser,dummyUser);
+        Assert.assertEquals(actualUser, dummyUser);
         mockUserDao.assertInvoked().findByUsername(userName);
     }
-    
+
     @Test
     public void testIsAvailableName()
     {
-        String userName="ldoin";
-        
+        String userName = "ldoin";
+
         mockUserDao.onceReturns(null).findByUsername(userName);
         Assert.assertTrue(userManager.isAvailableName(userName));
         mockUserDao.assertInvoked().findByUsername(userName);
-        
+
         mockUserDao.onceReturns(dummyUser).findByUsername(userName);
         Assert.assertFalse(userManager.isAvailableName(userName));
         mockUserDao.assertInvoked().findByUsername(userName);
 
     }
-    
-    @Test(expectedExceptions=IllegalArgumentException.class)
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void testIsAvailableName2()
     {
         mockUserDao.raises(IllegalArgumentException.class).findByUsername(null);
         Assert.assertTrue(userManager.isAvailableName(null));
         mockUserDao.assertInvoked().findByUsername(null);
     }
-   
+
 }

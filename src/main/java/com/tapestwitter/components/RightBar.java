@@ -10,32 +10,32 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  * The rightbar menu component
+ * 
  * @author lguerin
- *
  */
 public class RightBar
 {
-	@Inject
-	private TapestwitterSecurityContext securityContext;
+    @Inject
+    private TapestwitterSecurityContext securityContext;
 
-	@Property(write = false)
-	private User user;
+    @Property(write = false)
+    private User user;
 
-	@Inject
-	private TweetManager tweetManager;
+    @Inject
+    private TweetManager tweetManager;
 
-	@SuppressWarnings("unused")
-	@Property(write = false)
-	private Integer userNbTweets;
+    @SuppressWarnings("unused")
+    @Property(write = false)
+    private Integer userNbTweets;
 
-	@SetupRender
-	public void setup()
-	{
-		if (securityContext.isLoggedIn())
-		{
-			user = securityContext.getUser();
-			userNbTweets = tweetManager.getNbTweetsByUser(user.getLogin());
-		}
-	}
+    @SetupRender
+    public void setup()
+    {
+        if (securityContext.isLoggedIn())
+        {
+            user = securityContext.getUser();
+            userNbTweets = tweetManager.getNbTweetsByUser(user.getLogin());
+        }
+    }
 
 }

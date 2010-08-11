@@ -22,59 +22,60 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
- * Permet de retourner l'intervale écoulé depuis une date de publication. 
- * @author lguerin
+ * Permet de retourner l'intervale écoulé depuis une date de publication.
  * 
+ * @author lguerin
  */
 public class PublicationIntervalRenderer
 {
-	@Parameter(allowNull = false, required = true)
-	private String publicationDate;
+    @Parameter(allowNull = false, required = true)
+    private String publicationDate;
 
-	@Inject
-	private Messages messages;
+    @Inject
+    private Messages messages;
 
-	@Inject
-	private Locale locale;
+    @Inject
+    private Locale locale;
 
-	/**
-	 * Date Formater
-	 */
-	private static final SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    /**
+     * Date Formater
+     */
+    private static final SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-	@BeginRender
-	public void beginPublicationInterval(MarkupWriter writer) throws ParseException
-	{
-		writer.element("span");
-		writer.write(getInterval());
-	}
+    @BeginRender
+    public void beginPublicationInterval(MarkupWriter writer) throws ParseException
+    {
+        writer.element("span");
+        writer.write(getInterval());
+    }
 
-	@AfterRender
-	public void endPublicationInterval(MarkupWriter writer)
-	{
-		writer.end();
-	}
+    @AfterRender
+    public void endPublicationInterval(MarkupWriter writer)
+    {
+        writer.end();
+    }
 
-	/**
-	 * Return the elapsed time interval between now and an input date.
-	 * 
-	 * @return	spending time interval
-	 * @throws ParseException 
-	 */
-	private String getInterval() throws ParseException
-	{
-		Date inputDate = dateFormater.parse(publicationDate);
-		DateIntervalBean interval = DateIntervalUtils.getDateIntervalBean(inputDate);
-		String result = StringUtils.EMPTY;
-		if (interval.getIntervalType().equals(DateIntervalType.WEEKS))
-		{
-			DateFormat dateFormatLocale = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
-			result = messages.format("date-time-msg-date-formatter", dateFormatLocale.format(inputDate));
-		}
-		else
-		{
-			result = messages.format("standard-msg-date-formatter", String.valueOf(interval.getIntervalNumber()), messages.get(interval.getIntervalType().toString().toLowerCase()));
-		}
-		return result;
-	}
+    /**
+     * Return the elapsed time interval between now and an input date.
+     * 
+     * @return spending time interval
+     * @throws ParseException
+     */
+    private String getInterval() throws ParseException
+    {
+        Date inputDate = dateFormater.parse(publicationDate);
+        DateIntervalBean interval = DateIntervalUtils.getDateIntervalBean(inputDate);
+        String result = StringUtils.EMPTY;
+        if (interval.getIntervalType().equals(DateIntervalType.WEEKS))
+        {
+            DateFormat dateFormatLocale = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+            result = messages.format("date-time-msg-date-formatter", dateFormatLocale.format(inputDate));
+        }
+        else
+        {
+            result = messages.format("standard-msg-date-formatter", String.valueOf(interval.getIntervalNumber()), messages.get(interval.getIntervalType()
+                    .toString().toLowerCase()));
+        }
+        return result;
+    }
 }

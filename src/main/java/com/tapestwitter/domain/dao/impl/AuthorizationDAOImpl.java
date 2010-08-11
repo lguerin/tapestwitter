@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
  * Implementation du DAO {@link IAuthorizationDAO}.
  * 
  * @author karesti
- *
  */
 @Repository("authorizationDAO")
 public class AuthorizationDAOImpl extends GenericDAOImpl<Authority, Long> implements IAuthorizationDAO

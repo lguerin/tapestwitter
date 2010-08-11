@@ -1,5 +1,6 @@
 package com.tapestwitter.common;
 
-public enum EnumLocale {
-	fr, es, en;
+public enum EnumLocale
+{
+    fr, es, en;
 }

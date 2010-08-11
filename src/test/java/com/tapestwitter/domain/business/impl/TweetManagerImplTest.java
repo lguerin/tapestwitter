@@ -28,59 +28,59 @@ import com.tapestwitter.domain.model.User;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 /**
- * Classe de test du service {@link TweetManagerImpl}. 
+ * Classe de test du service {@link TweetManagerImpl}.
+ * 
  * @author lguerin
  * @author ldoin
  */
 public class TweetManagerImplTest extends UnitilsTestNG
 {
-    @Mock(defaults=Defaults.STRICT)
+    @Mock(defaults = Defaults.STRICT)
     @InjectIntoByType
     private ITweetDAO mockTweetDao;
-    
+
     @Mock
     @InjectIntoByType
     private TapestwitterSecurityContext mockSecurityContext;
 
     @TestedObject
     private TweetManagerImpl tweetManager;
-    
-	/**
-	 * Auteur du tweet par defaut
-	 */
-	private final static String DEFAULT_AUTHOR = "lguerin";
-	
-	/**
+
+    /**
+     * Auteur du tweet par defaut
+     */
+    private final static String DEFAULT_AUTHOR = "lguerin";
+
+    /**
      * Message du tweet par defaut
      */
     private final static String DEFAULT_MESSAGE = "Mon tweet a creer";
-    
+
     /**
      * Mot cle utilise pour les tests
      */
     private final static String DEFAULT_KEYWORD = "keyword";
-    
+
     /**
      * identifiant du tweet par defaut
      */
     private final static long DEFAULT_ID = 123456789L;
-	
-	/**
-	 * tweet utilise pour les tests
-	 */
-	private Tweet tweet;
-	
-	/**
+
+    /**
+     * tweet utilise pour les tests
+     */
+    private Tweet tweet;
+
+    /**
      * autre tweet utilise pour les tests
      */
     private Tweet tweet2;
-	
-	/**
-	 * liste de tweets utilisee pour les tests
-	 */
+
+    /**
+     * liste de tweets utilisee pour les tests
+     */
     private List<Tweet> tweets;
-    
-    
+
     @BeforeMethod
     public void setUp()
     {
@@ -88,22 +88,22 @@ public class TweetManagerImplTest extends UnitilsTestNG
         tweet.setCreationDate(Calendar.getInstance().getTime());
         tweet2 = new Tweet(DEFAULT_MESSAGE, DEFAULT_AUTHOR);
         tweet2.setCreationDate(Calendar.getInstance().getTime());
-        tweets = Arrays.asList(tweet,tweet2);
+        tweets = Arrays.asList(tweet, tweet2);
     }
 
-	@Test
-	public void testListAllTweet()
-	{
-	    EasyMock.expect(mockTweetDao.listAllByCreationDateDesc()).andReturn(tweets).once();
+    @Test
+    public void testListAllTweet()
+    {
+        EasyMock.expect(mockTweetDao.listAllByCreationDateDesc()).andReturn(tweets).once();
         EasyMockUnitils.replay();
-	    
-		List<Tweet> actualTweets = tweetManager.listAllTweet();
-		Assert.assertEquals(actualTweets, tweets);
-	}
 
-	@Test
-	public void testCreateTweet()
-	{
+        List<Tweet> actualTweets = tweetManager.listAllTweet();
+        Assert.assertEquals(actualTweets, tweets);
+    }
+
+    @Test
+    public void testCreateTweet()
+    {
         // User returned by the mock
         User testUser = new User();
         testUser.setLogin(DEFAULT_AUTHOR);
@@ -111,81 +111,81 @@ public class TweetManagerImplTest extends UnitilsTestNG
         EasyMock.expect(mockSecurityContext.getUser()).andReturn(testUser).once();
         mockTweetDao.create(tweet);
         EasyMockUnitils.replay();
-       
+
         Tweet actualTweet = tweetManager.createTweet(DEFAULT_MESSAGE);
-        ReflectionAssert.assertReflectionEquals(tweet,actualTweet,ReflectionComparatorMode.LENIENT_DATES);
-	}
+        ReflectionAssert.assertReflectionEquals(tweet, actualTweet, ReflectionComparatorMode.LENIENT_DATES);
+    }
 
-	@Test
-	public void testFindTweetById()
-	{
-	    EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(tweet).once();
-        EasyMockUnitils.replay();
-	    
-		Tweet result = tweetManager.findTweetById(DEFAULT_ID);
-		Assert.assertEquals(result, tweet);
-	}
-
-	@SuppressWarnings("unchecked")
     @Test
-	public void testFindTweetByKeywordWithNoResult()
-	{
-        EasyMock.expect(mockTweetDao.findTweetByKeyword(DEFAULT_KEYWORD)).andReturn(ListUtils.EMPTY_LIST).once();
-	    EasyMockUnitils.replay();
-	    
-		List<Tweet> tweets = tweetManager.findTweetByKeyword(DEFAULT_KEYWORD);
-		Assert.assertEquals(0, tweets.size());
-	}
-
-	@Test
-	public void testDeleteTweet()
-	{
-	    EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(tweet).once();
-	    mockTweetDao.delete(tweet);
-        EasyMockUnitils.replay();
-	    
-		tweetManager.deleteTweet(DEFAULT_ID);
-	}
-	
-	@Test
-    public void testDeleteNonExistentTweet()
+    public void testFindTweetById()
     {
-	    // si aucun tweet ne correspond a l'identifiant
-	    // la methode delete de ITweetDAO ne doit pas etre appelee
-        EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(null).once();
+        EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(tweet).once();
         EasyMockUnitils.replay();
-        
+
+        Tweet result = tweetManager.findTweetById(DEFAULT_ID);
+        Assert.assertEquals(result, tweet);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testFindTweetByKeywordWithNoResult()
+    {
+        EasyMock.expect(mockTweetDao.findTweetByKeyword(DEFAULT_KEYWORD)).andReturn(ListUtils.EMPTY_LIST).once();
+        EasyMockUnitils.replay();
+
+        List<Tweet> tweets = tweetManager.findTweetByKeyword(DEFAULT_KEYWORD);
+        Assert.assertEquals(0, tweets.size());
+    }
+
+    @Test
+    public void testDeleteTweet()
+    {
+        EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(tweet).once();
+        mockTweetDao.delete(tweet);
+        EasyMockUnitils.replay();
+
         tweetManager.deleteTweet(DEFAULT_ID);
     }
 
-	@Test
-	public void testUpdateTweet()
-	{
-	    mockTweetDao.update(tweet);
+    @Test
+    public void testDeleteNonExistentTweet()
+    {
+        // si aucun tweet ne correspond a l'identifiant
+        // la methode delete de ITweetDAO ne doit pas etre appelee
+        EasyMock.expect(mockTweetDao.findById(DEFAULT_ID)).andReturn(null).once();
         EasyMockUnitils.replay();
-	    
-		tweetManager.updateTweet(tweet);
-	}
 
-	@Test
-	public void testFindRecentTweets()
-	{
-	    Integer rangeSize = 2;
-	    EasyMock.expect(mockTweetDao.findRecentTweets(DEFAULT_ID, rangeSize)).andReturn(tweets).once();
-        EasyMockUnitils.replay();
-	    
-		List<Tweet> actualTweets = tweetManager.findRecentTweets(DEFAULT_ID, rangeSize);
-		Assert.assertEquals(actualTweets, tweets);
-	}
+        tweetManager.deleteTweet(DEFAULT_ID);
+    }
 
-	@Test
-	public void testFindRecentTweetsWithNullId()
-	{
-	    Integer rangeSize = 3;
-	    EasyMock.expect(mockTweetDao.findRecentTweets(null,rangeSize)).andReturn(tweets).once();
+    @Test
+    public void testUpdateTweet()
+    {
+        mockTweetDao.update(tweet);
         EasyMockUnitils.replay();
-		
-		List<Tweet> actualTweets = tweetManager.findRecentTweets(rangeSize);
-		Assert.assertEquals(actualTweets, tweets);
-	}
+
+        tweetManager.updateTweet(tweet);
+    }
+
+    @Test
+    public void testFindRecentTweets()
+    {
+        Integer rangeSize = 2;
+        EasyMock.expect(mockTweetDao.findRecentTweets(DEFAULT_ID, rangeSize)).andReturn(tweets).once();
+        EasyMockUnitils.replay();
+
+        List<Tweet> actualTweets = tweetManager.findRecentTweets(DEFAULT_ID, rangeSize);
+        Assert.assertEquals(actualTweets, tweets);
+    }
+
+    @Test
+    public void testFindRecentTweetsWithNullId()
+    {
+        Integer rangeSize = 3;
+        EasyMock.expect(mockTweetDao.findRecentTweets(null, rangeSize)).andReturn(tweets).once();
+        EasyMockUnitils.replay();
+
+        List<Tweet> actualTweets = tweetManager.findRecentTweets(rangeSize);
+        Assert.assertEquals(actualTweets, tweets);
+    }
 }

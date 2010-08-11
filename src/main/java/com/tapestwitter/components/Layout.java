@@ -9,11 +9,11 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class Layout extends SimpleLayout
 {
-	@Inject
-	private TapestwiterURLResolver urlResolver;
+    @Inject
+    private TapestwiterURLResolver urlResolver;
 
-	public String getLogoutUrl()
-	{
-		return urlResolver.getLogoutUrl();
-	}
+    public String getLogoutUrl()
+    {
+        return urlResolver.getLogoutUrl();
+    }
 }

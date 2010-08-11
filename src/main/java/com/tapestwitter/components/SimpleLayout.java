@@ -12,14 +12,13 @@ import org.apache.tapestry5.annotations.Property;
  * </ul>
  * 
  * @author karesti
- *
  */
 public class SimpleLayout
 {
-	/** The page title, for the <title> element and the <h1> element. */
-	@SuppressWarnings("unused")
-	@Property
-	@Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
-	private String title;
+    /** The page title, for the <title> element and the <h1>element. */
+    @SuppressWarnings("unused")
+    @Property
+    @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
+    private String title;
 
 }

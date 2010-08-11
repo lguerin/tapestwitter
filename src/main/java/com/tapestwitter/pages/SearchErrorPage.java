@@ -1,5 +1,6 @@
 package com.tapestwitter.pages;
 
-public class SearchErrorPage {
+public class SearchErrorPage
+{
 
 }
