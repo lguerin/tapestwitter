@@ -333,24 +333,14 @@
 	</reporting>
 	
 	<repositories>
-		<!-- TODO : Remove when final stable 5.2 version release  -->
 		<repository>
-			<id>apache-snapshots2</id>
-			<url>https://repository.apache.org/content/groups/public</url>
-		</repository>
-	    <repository>
-            <id>tapestry360-stable</id>
-            <url>http://tapestry.formos.com/maven-repository</url>
-        </repository>		
- 		<repository>
-            <id>tapestry360-snapshot</id>
-            <url>http://tapestry.formos.com/maven-snapshot-repository</url>
-        </repository>		
-        <!-- TODO: remove when 5.2 will be pushed to main repo -->
+		    <id>tapestry360-stable</id>
+		    <url>http://tapestry.formos.com/maven-repository</url>
+		</repository>		
 		<repository>
-			<id>apache-snapshots2</id>
-			<url>https://repository.apache.org/content/groups/public</url>
-		</repository>
+		    <id>tapestry360-snapshot</id>
+		    <url>http://tapestry.formos.com/maven-snapshot-repository</url>
+		</repository>		
 	</repositories>
 
 	<properties>

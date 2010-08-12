@@ -1,9 +1,8 @@
  
-Tapestry.Initializer.submitOnChange = function()
+Tapestry.Initializer.submitOnChange = function(args)
 {
-	var args = arguments[0].args;
-	var elementId = args[0];
-	var formId = args[1];
+	var elementId = args.elementId;
+	var formId = args.formId;
 	$(elementId).observe('change', function(event) {
 		
 		
