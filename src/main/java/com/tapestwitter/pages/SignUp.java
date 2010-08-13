@@ -3,8 +3,8 @@ package com.tapestwitter.pages;
 import com.tapestwitter.common.EnumValidation;
 import com.tapestwitter.common.TapesTwitterEventConstants;
 import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.exception.CreateAuthorityException;
-import com.tapestwitter.domain.exception.CreateUserException;
+import com.tapestwitter.domain.exception.BusinessException;
+import com.tapestwitter.domain.exception.UserAlreadyExistsException;
 import com.tapestwitter.domain.model.User;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 import com.tapestwitter.util.ValidationUtils;
@@ -29,8 +29,7 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
- * This page creates a new user
- * and connect him to Tapestwitter
+ * This page creates a new user and connect him to Tapestwitter
  * 
  * @author karesti
  */
@@ -165,10 +164,8 @@ public class SignUp
     }
 
     /**
-     * This method is executed when the user
-     * submits the form.
-     * It validates the form. If validation passes
-     * tapestry will execute "onSuccess" event
+     * This method is executed when the user submits the form. It validates the form. If validation
+     * passes tapestry will execute "onSuccess" event
      */
     @OnEvent(value = EventConstants.VALIDATE, component = "signupForm")
     public void onValidate()
@@ -191,14 +188,10 @@ public class SignUp
     }
 
     /**
-     * This method is executed when the user
-     * submits the form and the validation is ok
-     * Creates a new user
-     * Connects the user
-     * Redirects to HomePage
+     * This method is executed when the user submits the form and the validation is ok Creates a new
+     * user Connects the user Redirects to HomePage
      * 
-     * @return HomePage if success
-     *         SignUp if error (this)
+     * @return HomePage if success SignUp if error (this)
      */
     @OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
     public Object onSuccess()
@@ -211,21 +204,20 @@ public class SignUp
         try
         {
             userManager.addUser(user);
-            securityCtx.logIn(user);
         }
-        catch (CreateUserException e)
+        catch (UserAlreadyExistsException e)
         {
             logger.error("User not created", e);
             signupForm.recordError("Validation not succeded");
             return this;
         }
-        catch (CreateAuthorityException e)
+        catch (BusinessException e)
         {
             logger.error("User not created", e);
             signupForm.recordError("Validation not succeded");
             return this;
         }
-
+        securityCtx.logIn(user);
         return homePage;
     }
 

@@ -90,4 +90,6 @@ public interface TweetManager
      * @param securityContext the security context to set
      */
     void setSecurityContext(TapestwitterSecurityContext securityContext);
+    
+    Tweet createTweetFromUser(User user, String msg);
 }

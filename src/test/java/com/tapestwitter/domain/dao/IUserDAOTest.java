@@ -19,9 +19,9 @@ public class IUserDAOTest extends UnitilsTestNG
     @SpringBean("userDAO")
     private IUserDAO userDAO;
 
-    @SpringBean("authorizationDAO")
-    private IAuthorizationDAO authorizationDAO;
-
+    @SpringBean("authorityDAO")
+    private IAuthorityDAO authorityDAO;
+    
     @DataSet
     @Test
     public void testFindUserByUsername()
@@ -39,20 +39,7 @@ public class IUserDAOTest extends UnitilsTestNG
         String email = "katiaaresti@gmail.com";
         User user = userDAO.findByEmail(email);
         Assert.assertNotNull(user);
-        Assert.assertEquals(user.getEmail(), email);
-    }
-
-    @DataSet
-    @Test
-    public void testCreateAuthority()
-    {
-        User user = userDAO.findByUsername("katia");
-        Authority authority = new Authority();
-        authority.setAuthority("ROLE_USER");
-        authority.setUser(user);
-        user.addAuthority(authority);
-        authorizationDAO.create(authority);
-        Assert.assertEquals(user.getAuthorities().size(), 1);
+        Assert.assertEquals(user.getEmail(),email);
     }
 
     @DataSet
@@ -60,15 +47,20 @@ public class IUserDAOTest extends UnitilsTestNG
     @Test
     public void testCreateUser()
     {
+        Authority authority = authorityDAO.findByRoleName("ROLE_USER");
+        
         User actualUser = new User();
         String username = "pepe";
         actualUser.setEmail("pepe@tapestwitter.com");
         actualUser.setLogin(username);
         actualUser.setPassword("pepePassword");
         actualUser.setFullName("Pepe pepe");
-        userDAO.create(actualUser);
+        actualUser.addAuthority(authority);
 
+        userDAO.create(actualUser);
+                
         User expectedUser = userDAO.findByUsername(username);
         ReflectionAssert.assertReflectionEquals(expectedUser, actualUser);
     }
+    
 }
