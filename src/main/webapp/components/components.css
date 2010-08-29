@@ -39,7 +39,7 @@ div.clear {
 }
 
 .comp-ajax-more-results-link {
-	background-image: url('components/ajaxmoreresults/images/more.gif);
+	background-image: url('components/ajaxmoreresults/images/more.gif');
 	background-position: left top;
 	background-repeat: repeat-x;
 	background-color: #fff;	
