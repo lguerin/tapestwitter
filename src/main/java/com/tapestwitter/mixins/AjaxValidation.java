@@ -1,9 +1,5 @@
 package com.tapestwitter.mixins;
 
-import com.tapestwitter.common.EnumValidation;
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.util.ValidationUtils;
-
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentEventCallback;
@@ -25,12 +21,24 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+import com.tapestwitter.common.EnumValidation;
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.util.ValidationUtils;
+
+/**
+ * provides a mechanism to perform Ajax validations
+ * 
+ * @author kAresti
+ */
 @Import(library = "validation.js")
 @Events(TapesTwitterEventConstants.AJAX_VALIDATE)
 public class AjaxValidation
 {
     private static final String BLUR = "blur";
 
+    /**
+     * This timer is for the demo in order to show the Ajax Effect Visually
+     */
     private static final String DEFAULT_TIMER = "0";
 
     private static final String CLIENT_ID = "clientId";
@@ -69,6 +77,7 @@ public class AjaxValidation
         writer.element("div",
 
         "class", "col-field");
+
     }
 
     void afterRender(MarkupWriter writer)
