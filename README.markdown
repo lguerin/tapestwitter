@@ -10,7 +10,7 @@ TapesTwitter is a "Twitter-like" demonstration application build with Tapestry
 Build around :
 
 * Tapestry
-* Spring
+* Spring (IoC and Spring Security)
 * JPA (with Hibernate implementation)
 * HSQL
 * Unitils
