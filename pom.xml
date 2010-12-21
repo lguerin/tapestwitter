@@ -310,9 +310,7 @@
 				<configuration>
 					<excludedGroups>integration</excludedGroups>
 				</configuration>
-			</plugin>
-			
-			
+			</plugin>			
 		</plugins>
 	</build>
 

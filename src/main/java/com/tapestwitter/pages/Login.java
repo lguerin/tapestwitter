@@ -1,12 +1,12 @@
 package com.tapestwitter.pages;
 
-import com.tapestwitter.services.TapestwiterURLResolver;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
-
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
+
+import com.tapestwitter.services.TapestwiterURLResolver;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 @Import(stylesheet = "context:/forms/forms.css")
 public class Login

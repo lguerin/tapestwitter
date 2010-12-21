@@ -1,0 +1,26 @@
+<t:container xmlns="http://www.w3.org/1999/xhtml"
+	      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	      xmlns:p="tapestry:parameter">
+
+	<div id="damier" class="round">
+		<h2>
+			<span>${message:damier-who-use-t5}</span>
+		</h2>
+		<ul>	
+			<t:loop t:id="damierLoop">
+				<li>
+					<t:delegate to="block:damierItemBlock" />
+				</li>
+			</t:loop>
+		</ul>
+		<div class="clear"/>
+		<span><t:outputRaw value="${message:damier-more-refs}" /> </span>
+	</div>
+	
+	<t:block t:id="damierItemBlock">
+		<a target="_blank" href="${current?.url}">
+			<img class="damier-item-image" src="${damierItemIcon}" />
+		</a>		
+	</t:block>	
+	
+</t:container>

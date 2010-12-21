@@ -1,0 +1,18 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+
+	<div id="${clientId}" class="rolling">
+		<ul id="rolling-list_${clientId}" class="rolling-list">
+			<t:loop source="items" value="current">		
+				<li>
+					<t:delegate to="block:renderableItem" />
+				</li>	
+			</t:loop>				 
+		</ul>
+		<div class="rolling-fade"></div>
+	</div>
+	
+	<t:block t:id="renderableItem">
+		<t:body />
+	</t:block>
+	
+</t:container>

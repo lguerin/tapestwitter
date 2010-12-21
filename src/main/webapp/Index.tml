@@ -1,42 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html t:type="simplelayout" p:title="Index"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
-  		
-	      
-<h4>
-Application démo "Twitter - Like" <br/>
-L'objectif de cette application est purement didactique.
-</h4>
-		
-<br/><br/>
-<h3>
-<center>
-	<t:pageLink page="login">Entrer dans la DEMO Tapestry</t:pageLink>
-</center>
-</h3>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
+        <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>   
+        <title>TapesTwitter</title>
+    </head>
+    <body>
+    	   	
+    	<!-- Debut Zone #wrapper -->
+        <div id="wrapper">
 
-<br/>
-<br/>
+          <!-- Debut Zone #header -->       
+          <div id="header">
+          	<div id="headerMiddle">
+          		<div class="inner">
+          			<div id="headerRight">
+          				<div class="headerRightLogin">
+          					<span class="account">
+          						${message:index-already-account}
+          						<a class="signin round" t:type="pageLink" t:page="Login" >
+          							<span>${message:index-connexion-label}</span>
+          						</a>
+          					</span>
+          				</div>
+          				<div class="headerRightRegister">
+          					<div class="newUser round">
+          						<h2>${message:index-create-account-label}</h2>
+          						<p>${message:index-create-account-desc}</p>
+          						<div class="btnShadow register round">
+									<a class="signup" t:type="pageLink" t:page="signup">${message:index-register}</a>
+								</div>
+								<h2>${message:index-source-code-label}</h2>
+								<p><t:outputraw value="${message:index-source-code-desc}" /></p>								
+          					</div>          					
+          				</div>
+          			</div>
+          			<div id="logoSearch">
+		          		<div id="logo">
+							<a accesskey="1" title="TapesTwitter" href="Index">
+			          			<img src="${asset:context:layout/images/logo_tapestwitter.png}" alt="TapesTwitter" />    
+			  				</a>
+						</div>
+						<div id="search">
+						<p>
+            				<input type="text" tabindex="8" size="30" name="q" id="searchform_q" class="round-left" accesskey="/" />
+            				<input type="submit" value="Rechercher" tabindex="9" name="commit" id="searchform_submit" class="btnShadow round-right" />
+          				</p>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div id="logoNote">
+						<p>${message:index-logo-note}</p>
+					</div>
+				</div>
+          	</div>
+          	<div id="headerBottom">
+          	</div>
+	   	    <div class="clear"></div>
+		  </div>          
+          <!-- Fin Zone #header -->
 
-<div id="footer" class="round">
-
-	<ul>
-	 	<li><a target="#" href="http://tapestry.apache.org/"><img width="50" height="73" src="${asset:context:img/tapestry_logo.png}" title="Tapestry"  alt="Tapestry" /></a></li>
-		<li><a target="#" href="http://www.springsource.org/"><img width="130" height="52" src="${asset:context:img/spring-logo.jpg}" title="Spring" alt="Spring" /></a></li> 
-		<li><a target="#" href="http://www.hibernate.org/"><img width="154" height="44" src="${asset:context:img/hibernate_logo.gif}" title="Hibernate" alt="Hibernate" /></a></li>
-		<li><a target="#" href="http://www.unitils.org/"><img width="91" height="30" src="${asset:context:img/unitils-logo.png}" title="Unitils" alt="Unitils" /></a></li>
-		<li><a target="#" href="http://hsqldb.org/"><img width="112" height="24" src="${asset:context:img/hypersql_logo.png}" title="HSQLDB" alt="HSQLDB" /></a></li>
-	</ul>
-	
-	<ul>
-		<li><a target="#" href="http://jetty.codehaus.org/jetty/"><img width="135" height="56" src="${asset:context:img/jetty-logo.gif}" title="Jetty" alt="Jetty" /></a></li>
-		<li><a target="#" href="http://maven.apache.org/"><img width="139" height="32" src="${asset:context:img/Maven_logo.gif}" title="Maven" alt="Maven" /></a></li>
-		<li><a target="#" href="https://github.com/"><img width="121" height="54" src="${asset:context:img/github_logo.png}" title="Github" alt="Github" /></a></li>
-		<li><a target="#" href="http://www.eclipse.org/"><img width="124" height="72" src="${asset:context:img/eclipse-logo.jpg}" title="Eclipse" alt="Eclipse" /></a></li>
-	</ul>
-
-</div>
-
+          <!-- Debut Zone #page -->          
+          <div id="page">       
+             	  
+          	  <!-- Debut Zone #content -->
+              <div id="content">
+              	<div class="homepage">
+              		<div class="wrapperDamier">
+						<t:damier items="damierItems" />
+					</div>
+					<div class="wrapperTopTweets">
+						<h2>Top Tweets</h2>
+						<t:rollingItems t:id="toptweets" height="210" items="tweets" current="current">
+								<t:tweetInfosBox tweet="current" />
+						</t:rollingItems>
+					</div>
+				</div>
+				<div class="clear"/>
+              </div>
+              <!--Fin Zone #content -->
+			
+        </div>
+        <!-- Fin Zone #page -->
+                                
+        <!-- Debut Zone #footer -->
+        <div id="footer" class="round">
+         	<ul>
+         		<li>&copy; 2010 TapesTwitter</li> - 
+         		<li><a href="http://tapestry.apache.org/" target="_blank">Tapestry</a></li>
+         	</ul>
+        </div>
+        <!-- Fin Zone #footer -->
+        
+        </div>
+        <!-- Fin Zone #wrapper -->
+        
+    </body>
 </html>
