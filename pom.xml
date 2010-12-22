@@ -330,6 +330,7 @@
 		</plugins>
 	</reporting>
 	
+	<!-- Tapestry Snapshots -->
 	<repositories>
 		<repository>
 		    <id>tapestry360-stable</id>
@@ -342,7 +343,7 @@
 	</repositories>
 
 	<properties>
-		<tapestry-release-version>5.2.0</tapestry-release-version>
+		<tapestry-release-version>5.2.4</tapestry-release-version>
 		<tapx-release-version>1.1-SNAPSHOT</tapx-release-version>
 		<hibernate-version>3.2.6.GA</hibernate-version>
 		<hibernate-entitymanager-version>3.3.2.GA</hibernate-entitymanager-version>
