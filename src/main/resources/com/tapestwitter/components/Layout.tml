@@ -16,7 +16,7 @@
 
           <!-- Debut Zone #header -->       
           <div id="header">
-			<div id="headerG">
+			<div id="headerTop">
 				<div id="logo">
 					<a accesskey="1" title="TapesTwitter / ${title}" href="Index">
 	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    

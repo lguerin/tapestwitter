@@ -14,33 +14,34 @@
     	   	
     	<!-- Init Zone #wrapper -->
         <div id="wrapper">
-          <!-- Init Zone #header -->       
-          <div id="header">
-			<div id="headerG">
-				<div id="logo">
-					<a accesskey="1" title="${message:signup.title}" href="Index">
-	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
-	  				</a>
+        
+        	<!-- Init Zone #header -->       
+          	<div id="header">
+				<div id="simpleHeaderTop">
+					<div id="logo">
+						<a accesskey="1" title="${message:signup.title}" href="Index">
+	          				<img src="${asset:context:layout/images/logo_tapestwitter_mini.png}" alt="TapesTwitter" />    
+	  					</a>
+					</div>
 				</div>
-			</div>
-			
-		  <div class="clear"></div>
-		  </div>          
-          <!-- End Zone #header -->
+		  		<div class="clear"></div>
+		  	</div>          
+          	<!-- End Zone #header -->
 
-          <!-- Init Zone #page -->
-          
-          <div class="page-top"></div>
-          <div class="round">       
-             	  
-          	  <!-- Debut Zone #content -->
-          	  
-              <div id="content" style="width: 765px" class="round">
-              		<t:body/>
-              </div>
-      		<div class="clear"></div>
-        </div>
+          	<!-- Init Zone #page -->
+          	<div id="page">         
+          	<div class="page-top"></div> 
+          		<div class="round">       
+	              	<div id="content" style="width: 765px" class="round">
+	              		<t:body/>
+	              	</div>
+	      	  		<div class="clear"></div>
+      	  		</div>
+        	</div>
+        	<!-- End Zone #page -->
         
         </div>
+        <!-- End Zone #wrapper -->
+        
     </body>
 </html>

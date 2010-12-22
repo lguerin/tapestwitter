@@ -124,8 +124,21 @@ a.normal {
 #header {}
 
 div#headerTop {
-	background: #111 url('images/bg_tapestwitter_header_top.png') repeat-x;
-	height: 35px;	
+	background: #000 url('images/bg_tapestwitter_header_top.png') repeat-x;
+	height: 40px;
+	width: 100%;
+	margin: 0;
+	padding: 0;	
+	top: 0;
+}
+
+div#simpleHeaderTop {
+	background: #569D2F;
+	height: 40px;
+	width: 100%;
+	padding-left: 273px;
+	margin: 0;	
+	top: 0;
 }
 
 div#headerRight {
@@ -346,14 +359,11 @@ div#headerD-top-navigation li {
 	/* IE6 Fix */
 	height: 100%;
 	width: 100%;
+	background: #c2e3bb url('images/bg_tapestwitter_clouds.gif') no-repeat top left;
 }
 
 .page-top {
-	background-image: url('images/arrow.gif');
-	background-position: 45px 0;
-	background-repeat: no-repeat;
 	padding-top: 11px;
-	margin-top: 4px;
 }
 
 /* Content */
