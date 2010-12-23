@@ -30,16 +30,19 @@
 
           	<!-- Init Zone #page -->
           	<div id="page">         
-          	<div class="page-top"></div> 
+          	<div class="pageTop"></div> 
           		<div class="round">       
 	              	<div id="content" style="width: 765px" class="round">
 	              		<t:body/>
 	              	</div>
 	      	  		<div class="clear"></div>
       	  		</div>
+      	  		<div class="pageBottom"></div>
         	</div>
         	<!-- End Zone #page -->
-        
+
+        	<t:footer />
+        	
         </div>
         <!-- End Zone #wrapper -->
         

@@ -49,7 +49,7 @@ h3 {
 
 h1,h2,h3 {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color:#333333;	
+	color:#569D2F;	
 }
 
 a {
@@ -362,8 +362,8 @@ div#headerD-top-navigation li {
 	background: #c2e3bb url('images/bg_tapestwitter_clouds.gif') no-repeat top left;
 }
 
-.page-top {
-	padding-top: 11px;
+.pageTop, .pageBottom  {
+	padding-top: 10px;
 }
 
 /* Content */

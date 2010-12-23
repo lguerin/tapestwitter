@@ -84,18 +84,11 @@
               </div>
               <!--Fin Zone #content -->
 			
-        </div>
-        <!-- Fin Zone #page -->
-                                
-        <!-- Debut Zone #footer -->
-        <div id="footer" class="round">
-         	<ul>
-         		<li>&copy; 2010 TapesTwitter</li> - 
-         		<li><a href="http://tapestry.apache.org/" target="_blank">Tapestry</a></li>
-         	</ul>
-        </div>
-        <!-- Fin Zone #footer -->
-        
+        	</div>
+        	<!-- Fin Zone #page -->
+                         
+        	<t:footer />       
+
         </div>
         <!-- Fin Zone #wrapper -->
         
