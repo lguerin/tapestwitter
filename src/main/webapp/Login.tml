@@ -4,12 +4,13 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 	
-
-	<h2>
-		${message:page-title}
-	</h2>
+	<div class="content-heading">
+		<h2>
+			${message:page-title}
+		</h2>
+	</div>
 	
-	<form class="signin" action="${loginUrl}" method="post">
+	<form class="innerForm" action="${loginUrl}" method="post">
 		<t:if test="error">
 			<p>
 				${message:login.error}

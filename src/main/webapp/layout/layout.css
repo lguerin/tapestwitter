@@ -54,7 +54,7 @@ h1,h2,h3 {
 
 a {
 	text-decoration: none;
-	color: #2276bb;
+	color: #569d2f;
 }
 
 .post {
@@ -135,7 +135,6 @@ div#headerTop {
 div#simpleHeaderTop {
 	background: #569D2F;
 	height: 40px;
-	width: 100%;
 	padding-left: 273px;
 	margin: 0;	
 	top: 0;
@@ -323,6 +322,9 @@ background-image:none;
 	width: 960px;	
 }
 
+.innerForm {
+	margin: 0 20px 25px 25px;	
+}
 
 
 div#headerG {
@@ -355,11 +357,11 @@ div#headerD-top-navigation li {
 
 /* Page */
 #page {			
-	/* background:#fff url('images/filet_bg_right_page.gif') repeat-y top right; */	
 	/* IE6 Fix */
 	height: 100%;
 	width: 100%;
 	background: #c2e3bb url('images/bg_tapestwitter_clouds.gif') no-repeat top left;
+	min-height: 453px;
 }
 
 .pageTop, .pageBottom  {

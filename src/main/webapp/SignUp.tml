@@ -16,7 +16,7 @@
 </div>
 
 <div id="signup-form">
-	<form t:type="form" t:id="signupForm">
+	<form class="innerForm" t:type="form" t:id="signupForm">
 	<fieldset>
     	<div class="formContent">         				
          	<div>
