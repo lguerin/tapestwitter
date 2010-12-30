@@ -1,6 +1,6 @@
 <div id="rightbar" class="round-right" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
 
-	<t:security.isAnonymous>
+	<t:security.isAuthenticated>
 		
 		<div class="section">
   			<div class="section-header">
@@ -35,7 +35,7 @@
 			</div>
       	</p:else>
       	
-	</t:security.isAnonymous>
+	</t:security.isAuthenticated>
       	
    	<div class="section">
     	<div class="section-header">
