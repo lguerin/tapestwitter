@@ -503,7 +503,7 @@ fieldset.tapestwitter-form textarea {
 
 fieldset.tapestwitter-form textarea:focus {
 	-moz-box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
-	border: 1px solid rgba(82, 168, 236, 0.75) !important;
+	border : 1px solid #99CE8D !important;
     outline-color: -moz-use-text-color;
 	outline-style: none;
 	outline-width: medium;		
