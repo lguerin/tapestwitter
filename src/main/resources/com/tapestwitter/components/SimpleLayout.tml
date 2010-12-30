@@ -18,10 +18,12 @@
         	<!-- Init Zone #header -->       
           	<div id="header">
 				<div id="simpleHeaderTop">
-					<div id="logo">
-						<a accesskey="1" title="${message:signup.title}" href="Index">
-	          				<img src="${asset:context:layout/images/logo_tapestwitter_mini.png}" alt="TapesTwitter" />    
-	  					</a>
+					<div class="inner">
+						<div id="logo">
+							<a accesskey="1" title="${message:signup.title}" href="Index">
+		          				<img src="${asset:context:layout/images/logo_tapestwitter_mini.png}" alt="TapesTwitter" />    
+		  					</a>
+						</div>
 					</div>
 				</div>
 		  		<div class="clear"></div>

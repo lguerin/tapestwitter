@@ -133,13 +133,24 @@ div#headerTop, div#simpleHeaderTop {
 
 div#simpleHeaderTop {
 	background: #569D2F;
-	padding-left: 275px;
 }
 div#headerTop {
 	background: #000 url('images/bg_tapestwitter_header_top.png') repeat-x;
-	padding-left: 130px;
 	position: fixed;
 	z-index: 5;
+}
+
+div#headerTop .inner {
+	width: 1040px;
+	height: 100%;
+}
+
+div#simpleHeaderTop .inner {
+	width: 765px;
+}
+
+div#headerTop #logo, div#simpleHeaderTop #logo {
+	padding-left: 20px;
 }
 
 div#headerRight {
@@ -161,6 +172,13 @@ div#headerRight {
 	font-size: 11px;
 	line-height: 23px;
 	color: #dbe9c1;	
+}
+
+div#activeLinks {
+	float: right;
+	width: 400px;
+	color: white;
+	height: 100%;
 }
 
 a.signin {
