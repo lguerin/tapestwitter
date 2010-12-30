@@ -5,25 +5,22 @@
 	<div id="leftSide" class="round">
 		<div id="publish-tweet-box"> 
 			<t:form t:id="publishTweetForm">
-				<div id="publish-tweet-box-top">
-					<h2>
-						<label>${message:content-main-titre-label}</label>
-					</h2>
-					<t:textCounter textareaId="tweetContentInput" targetElementId="publish-tweet-counter" warningLimit="20" warningLimitStyle="publish-tweet-counter-limit" />				
+				<div id="heading">
+					<h2>${message:content-main-titre-label}</h2>
 				</div>
 				<div class="clear"></div>
 				<fieldset class="tapestwitter-form">				
 					<input t:type="textarea" class="round" t:value="tweetContentInput" t:id="tweetContentInput" t:rows="2" />	            			
 				</fieldset>
 				<div id="publish-tweet-box-bottom">			
-					<div class="publish-tweet-submit">
-						<div class="tapestwitter-form-submit">
-			                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
-			            </div>
-					</div>
+					<div class="tapestwitter-form-submit">
+		                <t:textCounter textareaId="tweetContentInput" targetElementId="publish-tweet-counter" warningLimit="20" warningLimitStyle="publish-tweet-counter-limit" />
+		                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
+		            </div>
 				</div>
 			</t:form>
 		</div>
+		<div class="clear" />
 	
 		<br />
 		<div id="list-tweets">

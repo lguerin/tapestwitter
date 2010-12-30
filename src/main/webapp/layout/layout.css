@@ -519,33 +519,27 @@ fieldset, img {
 /* Box de publication de tweet */
 
 #publish-tweet-box {
-	width: 100%;	
+	width: 510px;	
 }
 
-#publish-tweet-box-top, #publish-tweet-box-bottom  {
+#publish-tweet-box-top {
 	height: 30px;
 	line-height: 1.9em;
 }
-
+	
 #publish-tweet-box-top h2 {
     float: left;
 }
 
-#publish-tweet-box-top div.publish-tweet-counter, #publish-tweet-box-bottom div.publish-tweet-submit {
+div#publish-tweet-box-bottom {
 	float: right;
-	text-align: right;
-	padding-right: 18px;
 	color: #ccc;
-	font-size: 1.9em;
-	font-weight: bold;
+	font-size: 25px;
+	padding-right: 2px;
 }
 
 #publish-tweet-box-top div.publish-tweet-counter-limit {
 	color: #d40d12;
-}
-
-#publish-tweet-box-bottom div.publish-tweet-submit {
-	padding-top: 10px;	
 }
 
 #publish-tweet-box textarea {
@@ -556,6 +550,17 @@ fieldset, img {
 	padding: 3px;
 	width: 500px;
 }
+
+#publishTweetForm fieldset {
+	padding-top: 10px;
+	padding-bottom: 10px;	
+}
+
+.publish-tweet-counter {
+	float:left;
+	padding-right: 10px;	
+}
+
 
 #list-tweets {
 	width: 518px;
