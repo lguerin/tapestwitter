@@ -5,9 +5,14 @@
       xmlns:p="tapestry:parameter">
 	
 	<div class="content-heading">
-		<h2>
-			${message:page-title}
-		</h2>
+		<div class="heading">
+		    <p class="sign-in">
+		      ${message:nologin.question} <t:pageLink page="signup">${message:nologin.suggestion}</t:pageLink>.
+		    </p>
+			<h2>
+				${message:page-title}
+			</h2>
+		</div>
 	</div>
 	
 	<form class="innerForm" action="${loginUrl}" method="post">
@@ -25,7 +30,7 @@
 				</tr>
 				<tr>
 					<th><label for="j_password">${message:label-password}</label></th>
-					<td><input class="password" id="j_password" name="j_password" type="password" maxlength="30" value="" /><small><a href="/account/resend_password">${message:text-forget}</a></small></td>
+					<td><input class="password" id="j_password" name="j_password" type="password" maxlength="30" value="" /></td>
 				</tr>
 				<tr>
 					<th></th>

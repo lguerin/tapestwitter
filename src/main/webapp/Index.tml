@@ -68,14 +68,14 @@
           <div id="homepage">       
              	  
           	  <!-- Debut Zone #content -->
-              <div id="content">
-              	<div class="homepage">
+              <div id="content" class="homepage">
+              	<div class="homepageContent">
               		<div class="wrapperDamier">
 						<t:damier items="damierItems" />
 					</div>
 					<div class="wrapperTopTweets">
 						<h2>Top Tweets</h2>
-						<t:rollingItems t:id="toptweets" height="210" items="tweets" current="current">
+						<t:rollingItems t:id="toptweets" height="230" items="tweets" current="current">
 								<t:tweetInfosBox tweet="current" />
 						</t:rollingItems>
 					</div>

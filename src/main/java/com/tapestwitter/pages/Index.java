@@ -28,7 +28,7 @@ public class Index
     private RollingItems rollingItems;
 
     @InjectPage
-    private HomePage homePage;
+    private com.tapestwitter.pages.home.Index home;
 
     @InjectPage
     private SearchErrorPage searchErrorPage;
@@ -81,17 +81,16 @@ public class Index
         if (securityCtx.isLoggedIn())
         {
             User userLogged = securityCtx.getUser();
-            if (user.getLogin().equals(userLogged.getLogin())) { return homePage; }
+            if (user.getLogin().equals(userLogged.getLogin())) { return home; }
         }
 
         return null;
     }
 
     /**
-     * Redirige l'utilisateur sur la page d'accueil si celui-ci est
-     * deja authentifie.
+     * Redirect user to his home page if already authenticated.
      * 
-     * @return Page d'accueil si authentifie
+     * @return User Home Page if already authenticated.
      */
     @SuppressWarnings("unused")
     @OnEvent(value = EventConstants.ACTIVATE)
@@ -99,7 +98,7 @@ public class Index
     {
         // Tester par rapport a l'authentification
         boolean isLoggedIn = securityCtx.isLoggedIn();
-        if (isLoggedIn) { return homePage; }
+        if (isLoggedIn) { return home; }
         return null;
     }
 }

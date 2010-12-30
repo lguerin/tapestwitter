@@ -11,64 +11,38 @@
     </head>
     <body>
     	   	
-    	<!-- Debut Zone #wrapper -->
-        <div id="wrapper">
-
-          <!-- Debut Zone #header -->       
-          <div id="header">
-			<div id="headerTop">
-				<div id="logo">
-					<a accesskey="1" title="TapesTwitter / ${title}" href="Index">
-	          			<img width="215" height="40" src="${asset:context:layout/images/tapestwitter_logo_header.gif}" alt="TapesTwitter" />    
-	  				</a>
+		<!-- Init Zone #wrapper -->
+		<div id="wrapper">
+	
+			<!-- Init Zone #header -->       
+			<div id="header">
+				<div id="headerTop">
+					<div id="logo">
+						<a accesskey="1" title="TapesTwitter / ${title}" href="Index">
+							<img src="${asset:context:layout/images/logo_tapestwitter_mini.png}" alt="TapesTwitter" />    
+						</a>
+					</div>
 				</div>
-			</div>
-			<div id="headerD">
-				  <div id="headerD-top-navigation" class="round">
-				  	<ul class="top-navigation">
-					  	<t:security.isAnonymous>
-					  		<li><a id="login-link" t:type="pageLink" t:page="Login" >${message:layout-connexion-label}</a></li>
-          					<li><a id="help-link" accesskey="?" t:type="pageLink" t:page="About" >${message:layout-about-label}</a></li>		                		
-	                		<p:else>
-	                			<li><a id="link-deconnexion" href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>
-	                		</p:else>
-	                	</t:security.isAnonymous>
-				  	</ul>
-				  	
-  				  </div>
-			</div>
-		  <div class="clear"></div>
-		  </div>          
-          <!-- Fin Zone #header -->
-
-          <!-- Debut Zone #page -->
-          <div class="page-top"></div>
-          <div id="page" class="round">       
-             	  
-          	  <!-- Debut Zone #content -->
-              <div id="content" class="round-left">
-              	<t:body/>
-              </div>
-              <!--Fin Zone #content -->
-
-			  <t:rightBar />
-			  			
-			<div class="clear"/>
-			
-        </div>
-        <!-- Fin Zone #page -->
-                                
-        <!-- Debut Zone #footer -->
-        <div id="footer" class="round">
-         	<ul>
-         		<li>Copyright (&copy;) 2010</li> - 
-         		<li><a href="http://tapestry.apache.org/" target="_blank">Tapestry</a></li>
-         	</ul>
-        </div>
-        <!-- Fin Zone #footer -->
+	 			<div class="clear"></div>
+			</div>          
+	       	<!-- End Zone #header -->
+	
+			<!-- Init Zone #page -->
+			<div class="page-top"></div>
+			<div id="page">       
+		  		<!-- Init Zone #content -->
+				<div id="content" class="main">
+					<div id="wrapperContent" class="round">
+						<t:body/>
+					</div>
+				</div>
+				<!-- End Zone #content -->
+				<div class="clear"/>
+	     	</div>
+	     	<!-- Fin Zone #page -->
+	                                
+		</div>
+		<!-- Fin Zone #wrapper -->
         
-        </div>
-        <!-- Fin Zone #wrapper -->
-        
-    </body>
+	</body>
 </html>

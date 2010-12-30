@@ -123,8 +123,7 @@ a.normal {
 
 #header {}
 
-div#headerTop {
-	background: #000 url('images/bg_tapestwitter_header_top.png') repeat-x;
+div#headerTop, div#simpleHeaderTop {
 	height: 40px;
 	width: 100%;
 	margin: 0;
@@ -134,10 +133,13 @@ div#headerTop {
 
 div#simpleHeaderTop {
 	background: #569D2F;
-	height: 40px;
-	padding-left: 273px;
-	margin: 0;	
-	top: 0;
+	padding-left: 275px;
+}
+div#headerTop {
+	background: #000 url('images/bg_tapestwitter_header_top.png') repeat-x;
+	padding-left: 130px;
+	position: fixed;
+	z-index: 5;
 }
 
 div#headerRight {
@@ -370,15 +372,37 @@ div#headerD-top-navigation li {
 
 /* Content */
 div#content {
-	width: 947px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	margin: 0 auto;	
 	word-wrap: break-word;
 }
 
+.main {
+	width: 1040px;	
+}
+
 .homepage {
+	width: 947px;		
+}
+.homepageContent {
 	width: 700px;	
+}
+
+div#wrapperContent {
+	overflow: hidden;
+	height: 100%;	
+	background: #d1e7bf;
+	margin-top: 45px;
+}
+
+div#leftSide {
+	position: relative;
+	float: left;
+	width: 540px;
+	background: white;
+	height: 100%;	
+	padding: 20px 20px 20px 20px;
 }
 
 .wrapperDamier {
@@ -530,7 +554,7 @@ fieldset, img {
 	line-height: 1;
 	overflow: auto;
 	padding: 3px;
-	width: 518px;
+	width: 500px;
 }
 
 #list-tweets {

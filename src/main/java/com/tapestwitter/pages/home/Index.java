@@ -1,13 +1,10 @@
-package com.tapestwitter.pages;
+/**
+ * 
+ */
+package com.tapestwitter.pages.home;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.tapestwitter.components.AjaxMoreResults;
-import com.tapestwitter.domain.business.TweetManager;
-import com.tapestwitter.domain.model.Tweet;
-
-import org.slf4j.Logger;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
@@ -19,11 +16,18 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.beaneditor.Width;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.slf4j.Logger;
+
+import com.tapestwitter.components.AjaxMoreResults;
+import com.tapestwitter.domain.business.TweetManager;
+import com.tapestwitter.domain.model.Tweet;
 
 /**
- * Home Page for the authenticated user.
+ * Home page for authenticated user
+ * 
+ * @author lGuerin
  */
-public class HomePage
+public class Index
 {
     /**
      * Class logger

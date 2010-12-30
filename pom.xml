@@ -330,7 +330,7 @@
 		</plugins>
 	</reporting>
 	
-	<!-- Tapestry Snapshots -->
+	<!-- Tapx Extensions -->
 	<repositories>
 		<repository>
 		    <id>tapestry360-stable</id>

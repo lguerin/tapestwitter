@@ -1,17 +1,5 @@
 package com.tapestwitter.pages;
 
-import com.tapestwitter.common.EnumValidation;
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.exception.BusinessException;
-import com.tapestwitter.domain.exception.UserAlreadyExistsException;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
-import com.tapestwitter.util.ValidationUtils;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.PersistenceConstants;
@@ -27,6 +15,17 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.PasswordField;
 import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.tapestwitter.common.EnumValidation;
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.exception.BusinessException;
+import com.tapestwitter.domain.exception.UserAlreadyExistsException;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.util.ValidationUtils;
 
 /**
  * This page creates a new user and connect him to Tapestwitter
@@ -101,7 +100,7 @@ public class SignUp
     private TapestwitterSecurityContext securityCtx;
 
     @InjectPage
-    private HomePage homePage;
+    private com.tapestwitter.pages.home.Index home;
 
     /**
      * Ajax event that validates the login field
@@ -189,9 +188,9 @@ public class SignUp
 
     /**
      * This method is executed when the user submits the form and the validation is ok Creates a new
-     * user Connects the user Redirects to HomePage
+     * user Connects the user Redirects to User home page
      * 
-     * @return HomePage if success SignUp if error (this)
+     * @return User home page if success SignUp if error (this)
      */
     @OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
     public Object onSuccess()
@@ -218,7 +217,7 @@ public class SignUp
             return this;
         }
         securityCtx.logIn(user);
-        return homePage;
+        return home;
     }
 
     /**

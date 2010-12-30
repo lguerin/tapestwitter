@@ -39,7 +39,7 @@
 		<intercept-url pattern="/login/error*" access="permitAll" />
 		<intercept-url pattern="/signup*" access="permitAll" />
 		<intercept-url pattern="/assets/**" access="permitAll"/>
-		<intercept-url pattern="/homepage**" access="isAuthenticated() or isRememberMe()" />
+		<intercept-url pattern="/home/**" access="isAuthenticated() or isRememberMe()" />
 		<intercept-url pattern="/**" access="permitAll"/>
 		<form-login login-page="${loginFormUrl}" 
 					authentication-failure-url="${authenticationFailureUrl}"
