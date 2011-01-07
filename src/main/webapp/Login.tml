@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input id="login_submit" class="btn" type="submit" value="${message:button-login}" name="commit"/></td>
+					<td><input class="btn" type="submit" value="${message:button-login}" name="commit"/></td>
 				</tr>
 			    </tbody>
 		    </table>

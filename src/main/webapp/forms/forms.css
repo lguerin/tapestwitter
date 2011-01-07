@@ -37,8 +37,10 @@ fieldset.common-form th {
 }
 
 fieldset.common-form th, fieldset.common-form td {
-	padding:10px 5px;
-	vertical-align:top;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 0px;
+	vertical-align: top;
 }
 
 fieldset.common-form label {
@@ -141,25 +143,6 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	padding:4px 8px 5px;
 	text-shadow:1px 1px 0 #FFFFFF;
 	width:auto;
-}
-
-#login_submit {
-	-moz-background-clip:border;
-	-moz-background-inline-policy:continuous;
-	-moz-background-origin:padding;
-	-moz-border-radius-bottomleft:4px;
-	-moz-border-radius-bottomright:4px;
-	-moz-border-radius-topleft:4px;
-	-moz-border-radius-topright:4px;
-	background:#3399DD url("../img/bg-btn-blue.png") repeat-x scroll 0 0;
-	border:1px solid #3399DD;
-	color:#FFFFFF;
-	font-size:11px;
-	font-weight:bold;
-	margin:0 5px 0 0;
-	padding:4px 10px 5px;
-	text-shadow:0 -1px 0 #3399DD;
-	width: auto;
 }
 
 .btn-m, input.btn-m[type="submit"], input.btn-m[type="button"] {
