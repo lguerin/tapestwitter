@@ -181,6 +181,67 @@ div#activeLinks {
 	height: 100%;
 }
 
+div#userMenu {
+	cursor: pointer;
+	float: right;
+	padding: 10px 18px 10px 15px;
+	vertical-align: top;
+	height: 20px;
+}
+
+div#userMenu:hover {
+	background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+	color: #FFFFFF;
+}
+
+.closed {
+	display: none;	
+}
+
+div#userMenu a {
+	color: #bababa;	
+}
+
+ul#userMenuItems {
+	position: absolute;
+	top: 40px;
+	right: 0;
+	-moz-background-origin: padding;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+	background: #121212 none repeat scroll 0 0;
+}
+
+ul#userMenuItems li {
+	background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+	clear: both;
+	display: block;
+	width: 150px;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+ul#userMenuItems li:last-child, ul#userMenuItems li:last-child a {
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+}
+
+ul#userMenuItems li a {
+	clear: both;
+	display: block;
+	padding: 6px 15px;
+	width: 123px;
+}
+
+ul#userMenuItems li a:hover {
+	background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
+	color: #FFFFFF;
+}
+
+
+
 a.signin {
 	background: #92c866 none repeat scroll 0 0;
 	color: #FFFFFF;

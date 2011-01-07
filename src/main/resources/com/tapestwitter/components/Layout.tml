@@ -26,7 +26,12 @@
 								
 					<div id="activeLinks">
 						<t:security.isAuthenticated>
-							<!-- PLACE HOLDER -->
+							<div id="userMenu">
+								<a href="#">${user?.login}</a>							
+								<ul id="userMenuItems" class="closed">
+									<li><a href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>	
+								</ul>
+							</div>
 						</t:security.isAuthenticated>
 					</div>
 					</div>

@@ -18,7 +18,75 @@ Tapestry.Initializer.submitOnChange = function(args)
 		
 	});
 };
+
+/**
+ * Constructor 
+ */
+Tapestwitter.FloatMenu = function(id, target) {
 	
+	this.id = id;
+	
+	/**
+	 * The target element to display / hide
+	 */
+	this.target = target;
+};
+
+Tapestwitter.FloatMenu.CSS_OPENED = "opened";
+Tapestwitter.FloatMenu.CSS_CLOSED = "closed";
+
+/**
+ * Show the menu item
+ * @param id the id of the item to show
+ */
+Tapestwitter.FloatMenu.prototype.open = function(id){
+	var item = YAHOO.util.Dom.get(id);
+	YAHOO.util.Dom.setStyle(item, "visibility", "visible");
+	YAHOO.util.Dom.removeClass(item, Tapestwitter.FloatMenu.CSS_CLOSED);
+	YAHOO.util.Dom.addClass(item, Tapestwitter.FloatMenu.CSS_OPENED);
+};
+
+
+/**
+ * Hides the menu item
+ * @param id the id of the item to hide
+ */
+Tapestwitter.FloatMenu.prototype.close = function(id){
+	YAHOO.util.Dom.removeClass(id, Tapestwitter.FloatMenu.CSS_OPENED);
+	YAHOO.util.Dom.addClass(id, Tapestwitter.FloatMenu.CSS_CLOSED);
+};
+
+
+/**
+ * Determines if an item is opened
+ * @param id the id of the item
+ * @return boolean
+ */
+Tapestwitter.FloatMenu.prototype.isOpened = function(id) {
+	return YAHOO.util.Dom.hasClass(id, Tapestwitter.FloatMenu.CSS_OPENED);
+};
+
+/**
+ * Click handler on an item
+ * @param e the event
+ */
+Tapestwitter.FloatMenu.prototype._click = function(e) {
+	var target = this.target;
+	if (this.isOpened(target)) 
+	{
+		this.close(target);
+	}
+	else 
+	{
+		this.open(target);
+	}
+};
+
+Tapestry.Initializer.initFloatMenu = function(args) {	
+	var menu = new Tapestwitter.FloatMenu(args.id, args.target);
+	YAHOO.util.Event.addListener(menu.id, "click", Tapestwitter.FloatMenu.prototype._click, menu, true);
+};
+
 /** 
  * RollingItems Component
  */
@@ -152,7 +220,7 @@ Tapestwitter.RollingItems.prototype.triggerAnimation = function(id, count, items
 
 /**
  * Initialization of RollingItems component on DOM available
- * @param data The JSON data tu use
+ * @param data The JSON data to use
  */
 Tapestry.Initializer.rollingItemsBuilder = function(data){
 	var rollingItems = new Tapestwitter.RollingItems(data.id, data.height, data.duration, data.period);
