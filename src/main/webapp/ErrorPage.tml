@@ -1,0 +1,12 @@
+<html t:type="simplelayout" p:title="?"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+	
+	<div class="content-heading">
+		<div id="heading">
+			<h2>${message:error-msg}</h2>
+		</div>
+	</div>
+
+</html>
+

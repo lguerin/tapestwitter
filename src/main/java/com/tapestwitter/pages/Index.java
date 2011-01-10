@@ -31,7 +31,7 @@ public class Index
     private com.tapestwitter.pages.home.Index home;
 
     @InjectPage
-    private SearchErrorPage searchErrorPage;
+    private ErrorPage errorPage;
 
     @Inject
     private TapestwitterSecurityContext securityCtx;
@@ -77,7 +77,7 @@ public class Index
     {
         user = userManager.findByUsername(userName);
 
-        if (user == null) { return searchErrorPage; }
+        if (user == null) { return errorPage; }
         if (securityCtx.isLoggedIn())
         {
             User userLogged = securityCtx.getUser();
