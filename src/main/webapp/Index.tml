@@ -41,8 +41,8 @@
           			</div>
           			<div id="logoSearch">
 		          		<div id="logo">
-							<a accesskey="1" title="TapesTwitter" href="Index">
-			          			<img src="${asset:context:layout/images/logo_tapestwitter.png}" alt="TapesTwitter" />    
+							<a accesskey="1" title="Tapestwitter" href="Index">
+			          			<img src="${asset:context:layout/images/logo_tapestwitter.png}" alt="Tapestwitter" />    
 			  				</a>
 						</div>
 						<div id="search">
@@ -58,7 +58,24 @@
 					</div>
 				</div>
           	</div>
+          	
+
+
           	<div id="headerBottom">
+          		<div class="inner">
+	          		<t:trends>
+	          			<ul>
+	          				<li class="label">DOCS</li>
+	          				<li>Apache Tapestry</li>
+	          				<li>http://jumpstart.doublenegative.com.au</li>
+	          				<li class="label">BLOGS</li>
+	          				<li><a href="http://tapestryjava.blogspot.com/" target="_blank">Tapestry Central</a></li>
+	          				<li><a href="http://tapestry5.de/" target="_blank">Tapestry 5 Blog</a></li>
+	          				<li><a href="http://blog.andyhot.gr/" target="_blank">Andy's Blog</a></li>
+	          				<li><a href="http://spreadthesource.com" target="_blank">Spread the source</a></li>
+	          			</ul>
+	          		</t:trends>
+          		</div>
           	</div>
 	   	    <div class="clear"></div>
 		  </div>          

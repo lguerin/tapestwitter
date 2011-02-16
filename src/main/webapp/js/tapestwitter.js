@@ -227,3 +227,79 @@ Tapestry.Initializer.rollingItemsBuilder = function(data){
 	var items = rollingItems.prepareItems(rollingItems.id, rollingItems.height);
 	rollingItems.triggerAnimation(rollingItems.id, rollingItems.count, items, rollingItems.period, rollingItems.height, rollingItems.duration);
 };
+
+/** 
+ * Trends Component
+ */
+
+/** 
+ * Constructor
+ */
+Tapestwitter.Trends = function(id, height, period){
+
+	/**
+	 * Component Id
+	 */
+	this.id = id;
+			
+	/**
+	 * Height of the box, in pixel
+	 */
+	this. height = height;
+	
+	/**
+	 * The speed, in millisecond
+	 */
+	this.period = period;
+	
+	/**
+	 * The initial position
+	 */
+	this.initialPosition = 0;
+	
+	/**
+	 * The current position
+	 */
+	this.currentPosition = 0;
+};
+
+
+/**
+ * Trigger the trends animation
+ */
+Tapestwitter.Trends.prototype.triggerAnimation = function(trends){
+	setInterval(function() {Tapestwitter.Trends.prototype._animateTrends(trends); }, trends.period);
+};
+
+Tapestwitter.Trends.prototype._animateTrends = function(trends){
+	var target = YAHOO.util.Dom.get(trends.id);
+	// Get the region of the target element
+	var elemRegion = YAHOO.util.Dom.getRegion(target);
+	// Work out length of top side
+	var rightSide = elemRegion.right;
+	var leftSide = elemRegion.left;
+	var length = rightSide - leftSide;
+	if(trends.currentPosition < (- length))
+	{
+		trends.currentPosition = trends.initialPosition;
+	} 
+	else 
+	{
+		trends.currentPosition += -1;
+    }
+	YAHOO.util.Dom.setStyle(target, "left", trends.currentPosition + "px");
+};
+
+/**
+ * Initialization of Trends component on DOM available
+ * @param data The JSON data to use
+ */
+Tapestry.Initializer.trendsBuilder = function(data){
+	var trends = new Tapestwitter.Trends(data.id, data.height, data.period);
+	// Fix the height of the container
+	YAHOO.util.Dom.setStyle(trends.id, "height", trends.height + "px");
+	// Trigger animation !
+	trends.initialPosition = YAHOO.util.Dom.getX(trends.id);
+	trends.currentPosition = trends.initialPosition;
+	trends.triggerAnimation(trends);
+};

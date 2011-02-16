@@ -109,6 +109,10 @@ a.normal {
 	-moz-border-radius-topright: 5px;
 }
 
+.fadeLeft {
+   	background: transparent url('images/gradientLeft.png') repeat scroll 0 0 !important;
+}
+
 /************** Container **************/
 
 /* Wrapper */
@@ -323,6 +327,40 @@ div#headerMiddle {
 div#headerBottom {
 	background: #569D2F;
 	height: 35px;	
+}
+
+div#headerBottom .inner {
+	height: 35px;
+}
+
+.trends  {
+	position: absolute;	
+}
+
+div#headerBottom .inner {
+	overflow: hidden;
+}
+
+div#headerBottom .inner ul {
+	line-height: 35px;
+}
+div#headerBottom .inner ul li {
+	padding-right: 10px;
+}
+
+div#headerBottom .inner ul li a {
+	color: #b0d8a8;
+}
+
+div#headerBottom .inner ul li.label {
+	color: white;
+	font-weight: bold;	
+}
+
+div#headerBottom .fadeLeft {
+	height: 35px;
+	width: 60px;
+	display: block;
 }
 
 div#logoSearch {
