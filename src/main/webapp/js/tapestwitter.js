@@ -253,6 +253,11 @@ Tapestwitter.Trends = function(id, height, period){
 	this.period = period;
 	
 	/**
+	 * Length of trends element 
+	 */
+	this.length = 0;
+	
+	/**
 	 * The initial position
 	 */
 	this.initialPosition = 0;
@@ -271,15 +276,24 @@ Tapestwitter.Trends.prototype.triggerAnimation = function(trends){
 	setInterval(function() {Tapestwitter.Trends.prototype._animateTrends(trends); }, trends.period);
 };
 
-Tapestwitter.Trends.prototype._animateTrends = function(trends){
+Tapestwitter.Trends.prototype._prepareTrends = function(trends) {
+	// Fix the height of the container
+	YAHOO.util.Dom.setStyle(trends.id, "height", trends.height + "px");
 	var target = YAHOO.util.Dom.get(trends.id);
-	// Get the region of the target element
-	var elemRegion = YAHOO.util.Dom.getRegion(target);
-	// Work out length of top side
-	var rightSide = elemRegion.right;
-	var leftSide = elemRegion.left;
-	var length = rightSide - leftSide;
-	if(trends.currentPosition < (- length))
+	
+	// Inner element
+	var inner = YAHOO.util.Dom.getFirstChild(target);
+	trends.length = inner.offsetWidth;
+	
+	// Parent element
+	var parent = target.parentNode;
+	trends.initialPosition = parent.offsetWidth;
+	trends.currentPosition = parent.offsetWidth;
+};
+
+Tapestwitter.Trends.prototype._animateTrends = function(trends) {
+	var target = YAHOO.util.Dom.get(trends.id);	
+	if(trends.currentPosition < - trends.length)
 	{
 		trends.currentPosition = trends.initialPosition;
 	} 
@@ -296,10 +310,8 @@ Tapestwitter.Trends.prototype._animateTrends = function(trends){
  */
 Tapestry.Initializer.trendsBuilder = function(data){
 	var trends = new Tapestwitter.Trends(data.id, data.height, data.period);
-	// Fix the height of the container
-	YAHOO.util.Dom.setStyle(trends.id, "height", trends.height + "px");
+	// Prepares trends elements
+	trends._prepareTrends(trends);
 	// Trigger animation !
-	trends.initialPosition = YAHOO.util.Dom.getX(trends.id);
-	trends.currentPosition = trends.initialPosition;
 	trends.triggerAnimation(trends);
 };
