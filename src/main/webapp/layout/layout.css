@@ -331,13 +331,16 @@ div#headerBottom {
 
 
 div#headerBottom div#tapestwitterTrends {
-	overflow: hidden;
-	width: 730px;
+	width: 715px;
 	margin-left: 160px;
+	z-index: 10;
+	position: relative;
+	overflow: hidden;
+	height: 35px;
 }
 
 .trends  {
-	position: relative;
+	position: relative;	
 }
 .trends .inner {
 	position: relative;
