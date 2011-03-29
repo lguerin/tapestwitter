@@ -13,7 +13,6 @@ Build around :
 * Spring (IoC and Spring Security)
 * JPA (with Hibernate implementation)
 * HSQL
-* Unitils
  
 ### Authors ###
 
