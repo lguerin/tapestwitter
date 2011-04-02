@@ -6,8 +6,8 @@
 	<artifactId>tapestwitter</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>TapesTwitter, a twitter like application designed with Tapestry</name>
-	<description>Une application &quot;Twitter like&quot; realisee avec Tapestry 5.</description>
+	<name>TapesTwitter</name>
+	<description>TapesTwitter, a twitter like application designed with Tapestry.</description>
 	<developers>
 		<developer>
 			<id>lguerin</id>
@@ -343,7 +343,7 @@
 	</repositories>
 
 	<properties>
-		<tapestry-release-version>5.2.4</tapestry-release-version>
+		<tapestry-release-version>5.2.5</tapestry-release-version>
 		<tapx-release-version>1.1-SNAPSHOT</tapx-release-version>
 		<hibernate-version>3.2.6.GA</hibernate-version>
 		<hibernate-entitymanager-version>3.3.2.GA</hibernate-entitymanager-version>
