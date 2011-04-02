@@ -346,6 +346,22 @@ div#headerBottom div#tapestwitterTrends {
 	position: relative;
 }
 
+#tapestwitterTrends .fade {
+    padding: 18px 0;
+    position: absolute;
+    top: 0;
+    width: 60px;
+    z-index: 30;
+}
+#tapestwitterTrends .fade-left {
+	background: url('images/tapestwitter-fade-trends-left.png') repeat-y scroll 0 0 transparent;
+    left: 0;
+}
+#tapestwitterTrends .fade-right {
+	background: url('images/tapestwitter-fade-trends-right.png') repeat-y scroll 0 0 transparent;
+    left: 683px;
+}
+
 div#headerBottom .inner ul {
 	line-height: 35px;
 }

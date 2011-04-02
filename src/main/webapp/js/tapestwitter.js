@@ -266,6 +266,11 @@ Tapestwitter.Trends = function(id, height, period){
 	 * The current position
 	 */
 	this.currentPosition = 0;
+	
+	/**
+	 * The timer id
+	 */
+	this.timerId = 0;
 };
 
 
@@ -273,7 +278,7 @@ Tapestwitter.Trends = function(id, height, period){
  * Trigger the trends animation
  */
 Tapestwitter.Trends.prototype.triggerAnimation = function(trends){
-	setInterval(function() {Tapestwitter.Trends.prototype._animateTrends(trends); }, trends.period);
+	trends.timerId = setInterval(function() {Tapestwitter.Trends.prototype._animateTrends(trends); }, trends.period);
 };
 
 Tapestwitter.Trends.prototype._prepareTrends = function(trends) {
@@ -289,6 +294,16 @@ Tapestwitter.Trends.prototype._prepareTrends = function(trends) {
 	var parent = target.parentNode;
 	trends.initialPosition = parent.offsetWidth;
 	trends.currentPosition = parent.offsetWidth;
+	
+	// OnMouseOver and OnMouseOut event handlers
+	YAHOO.util.Event.on(target, "mouseover", function(e) {
+		// Stop annimation
+		clearInterval(trends.timerId);
+	});
+	YAHOO.util.Event.on(target, "mouseout", function(e) {
+		// Trigger animation !
+		trends.triggerAnimation(trends);
+	});
 };
 
 Tapestwitter.Trends.prototype._animateTrends = function(trends) {

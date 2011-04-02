@@ -4,4 +4,6 @@
 			<t:body />
 		</div>
 	</div>
+	<div class="fade fade-left"> </div>
+	<div class="fade fade-right"> </div>
 </t:container>
