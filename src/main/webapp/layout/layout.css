@@ -398,28 +398,23 @@ div#logo, div#search {
 	opacity: 0.6;	
 }
 
-
-
-#searchform_q {
--moz-background-origin:padding;
--moz-border-radius-bottomleft:5px;
--moz-border-radius-topleft:5px;
--x-system-font:none;
-background:#FFFFFF none repeat scroll 0 0;
-border-color:#EEEEEE;
-border-style:solid;
-border-width:1px 0 1px 1px;
-font-family:"Lucida Grande",Arial,Sans-serif;
-font-size:13px;
-font-size-adjust:none;
-font-stretch:normal;
-font-style:normal;
-font-variant:normal;
-font-weight:normal;
-line-height:normal;
-margin:0;
-padding:6px;
-width:226px;
+.searchFormQuery {
+	background: #FFFFFF none repeat scroll 0 0;
+	border-color: #EEEEEE;
+	border-style: solid;
+	border-width: 1px 0 1px 1px;
+	font-family: "Lucida Grande",Arial,Sans-serif;
+	font-size: 13px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	margin: 0;
+	padding: 6px;
+	width: 226px;
+	opacity: 0.6;
 }
 
 .btnShadow {
@@ -434,16 +429,20 @@ padding:6px 12px;
 text-shadow:0 1px 0 #FFFFFF;
 }
 
-#searchform_submit::-moz-focus-inner {
-border:0 none;
-padding:0;
+.searchFormSubmit {
+	opacity: 0.6;
 }
-#searchform_submit:hover, #searchform_submit:focus {
-background-position:0 -5px;
-color:#111111;
-cursor:pointer;
+
+.searchFormSubmit::-moz-focus-inner {
+	border: 0 none;
+	padding: 0;	
 }
-#searchform_submit:active {
+.searchFormSubmit:hover, .searchFormSubmit:focus {
+	background-position: 0 -5px;
+	color: #111111;
+	cursor: pointer;
+}
+.searchFormSubmit:active {
 background-image:none;
 }
 
@@ -551,7 +550,7 @@ div#leftSide {
 	margin: 0;	
 }
 
-.wrapperTopTweets {
+.wrapperContent {
 	position: relative;
 	float: right;
 	width: 460px;
@@ -559,7 +558,7 @@ div#leftSide {
 	margin-top: 6px;
 }
 
-.wrapperTopTweets h2 {
+.wrapperContent h2 {
 	color: #569D2F;
 	font-family: "Helvetica Neue",Arial,Sans-serif;
 	font-size: 20px;
@@ -792,11 +791,32 @@ div.section {
 	font-size: 0.8em;
 	background: #eee url('images/bg_tapestwitter_footer.gif') repeat-x;
 	height: 3em;
+	width: 100%;
+	position: relative;
 }
 
 #footer li, #header li {
 	display: inline;
 	padding: 0 4px;
+}
+
+#footer .copyright-info {
+	float: left;
+	width: 100%;
+}
+
+#footer .language-select ul {
+    color: #666666;
+    font-size: 11px;
+    margin: 0;
+    overflow: hidden;
+}
+#footer .language-select {
+	position: absolute;
+    width: 235px;
+	float: right;
+	text-align: center;
+	left: 880px;
 }
 
 /************* TopTweets : RollingItems Component ************/

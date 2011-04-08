@@ -27,7 +27,7 @@ import com.tapestwitter.domain.model.Tweet;
  * 
  * @author lGuerin
  */
-public class Index
+public class Dashboard
 {
     /**
      * Class logger

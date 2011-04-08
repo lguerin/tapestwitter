@@ -100,7 +100,7 @@ public class SignUp
     private TapestwitterSecurityContext securityCtx;
 
     @InjectPage
-    private com.tapestwitter.pages.home.Index home;
+    private com.tapestwitter.pages.home.Dashboard dashboard;
 
     /**
      * Ajax event that validates the login field
@@ -188,9 +188,9 @@ public class SignUp
 
     /**
      * This method is executed when the user submits the form and the validation is ok Creates a new
-     * user Connects the user Redirects to User home page
+     * user Connects the user Redirects to User dashboard page
      * 
-     * @return User home page if success SignUp if error (this)
+     * @return User dashboard page if success SignUp if error (this)
      */
     @OnEvent(value = EventConstants.SUCCESS, component = "signupForm")
     public Object onSuccess()
@@ -217,7 +217,7 @@ public class SignUp
             return this;
         }
         securityCtx.logIn(user);
-        return home;
+        return dashboard;
     }
 
     /**

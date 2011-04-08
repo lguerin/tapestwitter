@@ -5,7 +5,7 @@ import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
-import com.tapestwitter.pages.home.Index;
+import com.tapestwitter.pages.home.Dashboard;
 import com.tapestwitter.services.TapestwiterURLResolver;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
@@ -23,7 +23,7 @@ public class Login
     @OnEvent(value = EventConstants.ACTIVATE)
     public Object checkSecurityCtx()
     {
-        if (securityContext.isLoggedIn()) { return Index.class; }
+        if (securityContext.isLoggedIn()) { return Dashboard.class; }
         return null;
     }
 

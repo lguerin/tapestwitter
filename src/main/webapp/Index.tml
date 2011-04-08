@@ -6,8 +6,8 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
         <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
-        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>   
-        <title>TapesTwitter</title>
+        <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>
+		<title>TapesTwitter</title>
     </head>
     <body>
     	   	
@@ -47,8 +47,10 @@
 						</div>
 						<div id="search">
 						<p>
-            				<input type="text" tabindex="8" size="30" name="q" id="searchform_q" class="round-left" accesskey="/" />
-            				<input type="submit" value="Rechercher" tabindex="9" name="commit" id="searchform_submit" class="btnShadow round-right" />
+							<form t:type="form" t:id="searchTweetsForm"> 
+            					<input t:type="textfield" tabindex="8" size="30" name="query" t:value="query" class="searchFormQuery round-left" />
+            					<input t:type="submit" value="${message:search-label}" tabindex="9" name="commit"  class="searchFormSubmit btnShadow round-right" />
+            				</form>
           				</p>
 						</div>
 					</div>
@@ -64,8 +66,8 @@
           		<t:trends>
           			<ul>
           				<li class="label">DOCS</li>
-          				<li>Apache Tapestry</li>
-          				<li>http://jumpstart.doublenegative.com.au</li>
+          				<li><a href="http://tapestry.apache.org/" target="_blank">Apache Tapestry</a></li>
+          				<li><a href="http://jumpstart.doublenegative.com.au" target="_blank">Jumpstart</a></li>
           				<li class="label">BLOGS</li>
           				<li><a href="http://tapestryjava.blogspot.com/" target="_blank">Tapestry Central</a></li>
           				<li><a href="http://tapestry5.de/" target="_blank">Tapestry 5 Blog</a></li>
@@ -88,12 +90,27 @@
               		<div class="wrapperDamier">
 						<t:damier items="damierItems" />
 					</div>
-					<div class="wrapperTopTweets">
-						<h2>Top Tweets</h2>
+					<div class="wrapperContent">
+						<t:delegate to="activeBlock" />
+					</div>
+					
+					<t:block t:id="topTweetsBlock">
+						<h2>${message:top-tweets-label}</h2>
 						<t:rollingItems t:id="toptweets" height="230" items="tweets" current="current">
 								<t:tweetInfosBox tweet="current" />
 						</t:rollingItems>
-					</div>
+					</t:block>
+					
+					<t:block t:id="searchResultBlock">
+						<h2>${message:search-result-label}</h2>
+						<ul>
+							<t:loop source="result" value="current">
+								<li>
+									<t:tweetInfosBox p:tweet="current" />
+								</li>
+							</t:loop>
+						</ul>
+					</t:block>
 				</div>
 				<div class="clear"/>
               </div>

@@ -3,14 +3,18 @@
 <t:container xmlns="http://www.w3.org/1999/xhtml"
 	      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
 	      xmlns:p="tapestry:parameter">
-	      
+
 	<!-- Init Zone #footer -->
 	<div id="footer" class="round">
-	 	<ul>
+	 	<ul class="copyright-info">
 	 		<li>&copy; 2011 Tapestwitter</li> - 
 	 		<li>Build with the power of <a href="http://tapestry.apache.org/" target="_blank">Tapestry</a></li>
 	 	</ul>
+	 	<div class="language-select">
+		 	<t:changeLocale />
+	 	</div>
 	</div>
+	
 	<!-- End Zone #footer -->
         
 </t:container>

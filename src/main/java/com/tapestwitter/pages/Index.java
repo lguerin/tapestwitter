@@ -1,12 +1,18 @@
 package com.tapestwitter.pages;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -17,18 +23,20 @@ import com.tapestwitter.domain.business.UserManager;
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
 import com.tapestwitter.model.DamierItemModel;
+import com.tapestwitter.pages.home.Dashboard;
 import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 /**
- * Start page of application tapestwitter.
+ * Start page of TapesTwitter.
  */
 public class Index
 {
+    @SuppressWarnings("unused")
     @Component(id = "toptweets")
     private RollingItems rollingItems;
 
     @InjectPage
-    private com.tapestwitter.pages.home.Index home;
+    private Dashboard dashboard;
 
     @InjectPage
     private ErrorPage errorPage;
@@ -47,14 +55,31 @@ public class Index
     @Inject
     private TweetManager tweetManager;
 
+    @SuppressWarnings("unused")
     @Property
     private List<Tweet> tweets;
 
+    @SuppressWarnings("unused")
     @Property
     private Tweet current;
 
     @Property
     private List<DamierItemModel> damierItems;
+
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String query;
+
+    @SuppressWarnings("unused")
+    @Property
+    @Persist
+    private List<Tweet> result;
+
+    @Inject
+    private Block topTweetsBlock;
+
+    @Inject
+    private Block searchResultBlock;
 
     @SetupRender
     public void setup()
@@ -73,7 +98,8 @@ public class Index
         damierItems.add(new DamierItemModel("mybet", "myBet", "Sports Bets Casino Poker", "http://www.mybet.com/", "mybet.png"));
     }
 
-    public Object onActivate(String userName)
+    @OnEvent(value = EventConstants.ACTIVATE)
+    public Object checkUser(String userName)
     {
         user = userManager.findByUsername(userName);
 
@@ -81,24 +107,46 @@ public class Index
         if (securityCtx.isLoggedIn())
         {
             User userLogged = securityCtx.getUser();
-            if (user.getLogin().equals(userLogged.getLogin())) { return home; }
+            if (user.getLogin().equals(userLogged.getLogin())) { return dashboard; }
         }
 
         return null;
     }
 
     /**
-     * Redirect user to his home page if already authenticated.
+     * Redirect user to his dashboard page if already authenticated.
      * 
-     * @return User Home Page if already authenticated.
+     * @return User Dashboard Page if already authenticated.
      */
     @SuppressWarnings("unused")
     @OnEvent(value = EventConstants.ACTIVATE)
-    private Object redirectToHomePage()
+    private Object redirectToDashboardPage()
     {
-        // Tester par rapport a l'authentification
+        // If the user is logged in, redirect to dashboard page
         boolean isLoggedIn = securityCtx.isLoggedIn();
-        if (isLoggedIn) { return home; }
+        if (isLoggedIn) { return dashboard; }
         return null;
+    }
+
+    @Log
+    @OnEvent(value = EventConstants.SUCCESS, component = "")
+    public void onSearchResults()
+    {
+        result = new LinkedList<Tweet>();
+        if (!StringUtils.isEmpty(query))
+        {
+            result = tweetManager.findTweetByKeyword(query);
+        }
+    }
+
+    /**
+     * Return the active block in the content wrapper of the page
+     * 
+     * @return active block to display
+     */
+    public Object getActiveBlock()
+    {
+        if (!StringUtils.isEmpty(query)) { return searchResultBlock; }
+        return topTweetsBlock;
     }
 }
