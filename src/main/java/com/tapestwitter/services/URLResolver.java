@@ -5,10 +5,10 @@ package com.tapestwitter.services;
  * 
  * @author karesti
  */
-public interface TapestwiterURLResolver
+public interface URLResolver
 {
 
-    String getLoginUrl();
+    String resolveLoginUrl();
 
-    String getLogoutUrl();
+    String resolveLogoutUrl();
 }

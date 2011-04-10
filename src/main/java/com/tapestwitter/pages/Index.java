@@ -18,13 +18,13 @@ import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import com.tapestwitter.components.RollingItems;
-import com.tapestwitter.domain.business.TweetManager;
-import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.business.Authenticator;
+import com.tapestwitter.domain.business.TweetLoader;
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
 import com.tapestwitter.model.DamierItemModel;
 import com.tapestwitter.pages.home.Dashboard;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * Start page of TapesTwitter.
@@ -42,10 +42,10 @@ public class Index
     private ErrorPage errorPage;
 
     @Inject
-    private TapestwitterSecurityContext securityCtx;
+    private SecurityContext securityCtx;
 
     @Inject
-    private UserManager userManager;
+    private Authenticator authenticator;
 
     private User user;
 
@@ -53,7 +53,7 @@ public class Index
      * Manager of {@link Tweet}
      */
     @Inject
-    private TweetManager tweetManager;
+    private TweetLoader tweetLoader;
 
     @SuppressWarnings("unused")
     @Property
@@ -85,7 +85,7 @@ public class Index
     public void setup()
     {
         // Initialize top tweet items
-        tweets = tweetManager.findRecentTweets(5);
+        tweets = tweetLoader.findRecentTweets(5);
 
         // Initialize Dammier items
         damierItems = new ArrayList<DamierItemModel>();
@@ -101,7 +101,7 @@ public class Index
     @OnEvent(value = EventConstants.ACTIVATE)
     public Object checkUser(String userName)
     {
-        user = userManager.findByUsername(userName);
+        user = authenticator.findByUsername(userName);
 
         if (user == null) { return errorPage; }
         if (securityCtx.isLoggedIn())
@@ -135,7 +135,7 @@ public class Index
         result = new LinkedList<Tweet>();
         if (!StringUtils.isEmpty(query))
         {
-            result = tweetManager.findTweetByKeyword(query);
+            result = tweetLoader.findTweetByKeyword(query);
         }
     }
 

@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.tapestwitter.common.DateIntervalBean;
 import com.tapestwitter.common.DateIntervalType;
+import com.tapestwitter.util.DateIntervalUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

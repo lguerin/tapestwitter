@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tapestwitter.components.utils;
+package com.tapestwitter.util;
 
 import java.text.ParseException;
 import java.util.Calendar;

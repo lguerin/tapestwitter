@@ -13,159 +13,162 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
 
 /**
- * Entite representant un utilisateur.
+ * Tapestwitter User. Implements UserDetails as security is implemented with Spring Security 3
  * 
  * @author karesti
- *
  */
 @Entity
+@NamedQueries(
+{ @NamedQuery(name = User.BY_USERNAME, query = "SELECT u FROM User u WHERE u.login LIKE :username"),
+        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u WHERE u.email LIKE :email") })
 public class User implements UserDetails
 {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6157226898787740763L;
+    public static final String BY_USERNAME = "User.BY_USERNAME";
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false, name = "id_user")
-	private Long id;
+    public static final String BY_EMAIL = "User.BY_EMAIL";
 
-	@Column(nullable = false)
-	private String login;
+    private static final long serialVersionUID = -6157226898787740763L;
 
-	@Column(nullable = false)
-	private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, name = "id_user")
+    private Long id;
 
-	@Column(nullable = false)
-	private String fullName;
+    @Column(nullable = false)
+    private String login;
 
-	private String password;
+    @Column(nullable = false)
+    private String email;
 
-	/**
-	 * Relationship owner
-	 * Fetch.EAGER because User needs all the authorities
-	 * all the time  
-	 */
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "jnd_usr_auth", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "auth_fk"))
-	private List<Authority> authorities;
+    @Column(nullable = false)
+    private String fullName;
 
-	public Long getId()
-	{
-		return id;
-	}
+    private String password;
 
-	public String getLogin()
-	{
-		return login;
-	}
+    /**
+     * Relationship owner Fetch.EAGER because User needs all the authorities all the time
+     */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "jnd_usr_auth", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "auth_fk"))
+    private List<Authority> authorities;
 
-	public void setLogin(String login)
-	{
-		this.login = login;
-	}
+    public Long getId()
+    {
+        return id;
+    }
 
-	public String getPassword()
-	{
-		return password;
-	}
+    public String getLogin()
+    {
+        return login;
+    }
 
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
+    public void setLogin(String login)
+    {
+        this.login = login;
+    }
 
-	public String getEmail()
-	{
-		return email;
-	}
+    public String getPassword()
+    {
+        return password;
+    }
 
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
 
-	public String getFullName()
-	{
-		return fullName;
-	}
+    public String getEmail()
+    {
+        return email;
+    }
 
-	public void setFullName(String fullName)
-	{
-		this.fullName = fullName;
-	}
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
 
-	public void addAuthority(Authority authority)
-	{
-		Assert.notNull(authority, "authority");
-		if (authorities == null)
-		{
-			authorities = new ArrayList<Authority>();
-		}
-		authorities.add(authority);
-	}
+    public String getFullName()
+    {
+        return fullName;
+    }
 
-	public void setAuthorities(List<Authority> authorities)
-	{
-		Assert.notNull(authorities);
-		this.authorities = authorities;
-	}
+    public void setFullName(String fullName)
+    {
+        this.fullName = fullName;
+    }
 
-	public Collection<GrantedAuthority> getAuthorities()
-	{
-		List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>(authorities.size());
-		for (Authority authority : authorities)
-		{
-			GrantedAuthority ga = authority;
-			auths.add(ga);
-		}
-		return auths;
-	}
+    public void addAuthority(Authority authority)
+    {
+        Assert.notNull(authority, "authority");
+        if (authorities == null)
+        {
+            authorities = new ArrayList<Authority>();
+        }
+        authorities.add(authority);
+    }
 
-	public boolean isAdmin()
-	{
-		boolean result = false;
-		for (Authority authority : authorities)
-		{
-			if ("ROLE_ADMIN".equals(authority.getAuthority()))
-			{
-				result = true;
-			}
-		}
-		return result;
-	}
+    public void setAuthorities(List<Authority> authorities)
+    {
+        Assert.notNull(authorities);
+        this.authorities = authorities;
+    }
 
-	public String getUsername()
-	{
-		return login;
-	}
+    public Collection<GrantedAuthority> getAuthorities()
+    {
+        List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>(authorities.size());
+        for (Authority authority : authorities)
+        {
+            GrantedAuthority ga = authority;
+            auths.add(ga);
+        }
+        return auths;
+    }
 
-	public boolean isAccountNonExpired()
-	{
-		return true;
-	}
+    public boolean isAdmin()
+    {
+        boolean result = false;
+        for (Authority authority : authorities)
+        {
+            if ("ROLE_ADMIN".equals(authority.getAuthority()))
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
 
-	public boolean isAccountNonLocked()
-	{
-		return true;
-	}
+    public String getUsername()
+    {
+        return login;
+    }
 
-	public boolean isCredentialsNonExpired()
-	{
-		return true;
-	}
+    public boolean isAccountNonExpired()
+    {
+        return true;
+    }
 
-	public boolean isEnabled()
-	{
-		return true;
-	}
+    public boolean isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public boolean isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public boolean isEnabled()
+    {
+        return true;
+    }
 
 }

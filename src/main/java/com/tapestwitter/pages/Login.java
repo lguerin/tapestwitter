@@ -6,17 +6,17 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import com.tapestwitter.pages.home.Dashboard;
-import com.tapestwitter.services.TapestwiterURLResolver;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.URLResolver;
+import com.tapestwitter.services.security.SecurityContext;
 
 @Import(stylesheet = "context:/forms/forms.css")
 public class Login
 {
     @Inject
-    private TapestwitterSecurityContext securityContext;
+    private SecurityContext securityContext;
 
     @Inject
-    private TapestwiterURLResolver urlResolver;
+    private URLResolver urlResolver;
 
     private boolean error;
 
@@ -38,7 +38,7 @@ public class Login
 
     public String getLoginUrl()
     {
-        return urlResolver.getLoginUrl();
+        return urlResolver.resolveLoginUrl();
     }
 
     public boolean isError()

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,107 +17,81 @@ import javax.persistence.TemporalType;
  * Entite representant un message bref (tweet).
  * 
  * @author lguerin
+ * @author karesti
  */
 @Entity
+@NamedQueries(
+{ @NamedQuery(name = Tweet.FIND_BY_KEYWORD, query = "SELECT t FROM Tweet t WHERE t.tweet LIKE :keyword"),
+        @NamedQuery(name = Tweet.ALL_ORDER_BY_DATE_DESC, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
+        @NamedQuery(name = Tweet.FIND_ALL_RECENT, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
+        @NamedQuery(name = Tweet.FIND_ALL_RECENT_WITH_ID, query = "SELECT t FROM Tweet t WHERE t.id < :id ORDER BY t.creationDate DESC"),
+        @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :author") })
 public class Tweet implements Serializable
 {
-    /**
-     * serialUid
-     */
+    public static final String FIND_BY_KEYWORD = "Tweet.searchByKeyword";
+
+    public static final String ALL_ORDER_BY_DATE_DESC = "Tweet.searchAllOrderByDateDesc";
+
+    public static final String FIND_ALL_RECENT = "Tweet.searchAllRecents";
+
+    public static final String FIND_ALL_RECENT_WITH_ID = "Tweet.searchAllRecentsById";
+
+    public static final String COUNT_TWEETS_FOR_USER = "Tweet.countUserTotalTweets";
+
     private static final long serialVersionUID = -297923216288866711L;
 
-    /**
-     * Identifiant du tweet
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    /**
-     * Message a publier
-     */
     private String tweet;
 
-    /**
-     * Auteur du tweet
-     */
     private String author;
 
-    /**
-     * Date de creation du tweet
-     */
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    /**
-     * Constructeur par defaut
-     */
     public Tweet()
     {
     }
 
-    /**
-     * @param tweet
-     * @param author
-     */
     public Tweet(String tweet, String author)
     {
         this.tweet = tweet;
         this.author = author;
     }
 
-    /**
-     * @return the id
-     */
     public Long getId()
     {
         return id;
     }
 
-    /**
-     * @return the tweet
-     */
     public String getTweet()
     {
         return tweet;
     }
 
-    /**
-     * @param tweet the tweet to set
-     */
     public void setTweet(String tweet)
     {
         this.tweet = tweet;
     }
 
-    /**
-     * @return the author
-     */
     public String getAuthor()
     {
         return author;
     }
 
-    /**
-     * @param author the author to set
-     */
     public void setAuthor(String author)
     {
         this.author = author;
     }
 
-    /**
-     * @return the creationDate
-     */
     public Date getCreationDate()
     {
         return creationDate;
     }
 
-    /**
-     * @param creationDate the creationDate to set
-     */
     public void setCreationDate(Date creationDate)
     {
         this.creationDate = creationDate;

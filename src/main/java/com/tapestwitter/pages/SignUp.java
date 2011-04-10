@@ -20,11 +20,11 @@ import org.slf4j.LoggerFactory;
 
 import com.tapestwitter.common.EnumValidation;
 import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.domain.business.UserManager;
+import com.tapestwitter.domain.business.Authenticator;
 import com.tapestwitter.domain.exception.BusinessException;
 import com.tapestwitter.domain.exception.UserAlreadyExistsException;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.security.SecurityContext;
 import com.tapestwitter.util.ValidationUtils;
 
 /**
@@ -94,10 +94,10 @@ public class SignUp
     private EnumValidation validePassword;
 
     @Inject
-    private UserManager userManager;
+    private Authenticator authenticator;
 
     @Inject
-    private TapestwitterSecurityContext securityCtx;
+    private SecurityContext securityCtx;
 
     @InjectPage
     private com.tapestwitter.pages.home.Dashboard dashboard;
@@ -202,7 +202,7 @@ public class SignUp
         user.setEmail(email);
         try
         {
-            userManager.addUser(user);
+            authenticator.createUser(user);
         }
         catch (UserAlreadyExistsException e)
         {
@@ -242,7 +242,7 @@ public class SignUp
         }
         else
         {
-            Boolean result = userManager.isAvailableEmail(email);
+            Boolean result = authenticator.isAvailableEmail(email);
 
             if (result)
             {
@@ -317,7 +317,7 @@ public class SignUp
         else
         {
 
-            Boolean result = userManager.isAvailableName(userLogin);
+            Boolean result = authenticator.isAvailableName(userLogin);
 
             if (result)
             {

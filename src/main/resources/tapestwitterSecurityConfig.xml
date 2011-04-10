@@ -9,8 +9,8 @@
 
  	<global-method-security secured-annotations="enabled" />
 
-	<beans:bean id="tapestwitterUserDetailService" class="com.tapestwitter.services.security.impl.UserDetailsServiceImpl">
-		<beans:constructor-arg ref="userManager" />
+	<beans:bean id="tapestwitterUserDetailService" class="com.tapestwitter.services.security.DefaultUserDetailsService">
+		<beans:constructor-arg ref="authenticator" />
 	</beans:bean>
 	
 	<beans:bean id="tapestwitterPasswordEncoder"
@@ -21,7 +21,7 @@
 		<beans:property name="systemWideSalt" value="${tapestwitter.salt}" />
 	</beans:bean>
 	
-	<beans:bean id="userManager" class="com.tapestwitter.domain.business.impl.UserManagerImpl">
+	<beans:bean id="authenticator" class="com.tapestwitter.domain.business.DefaultAuthenticator">
 		<beans:property name="securityContext" ref="tapestwitterSecurityContext" />
 		<beans:property name="saltSource" ref="tapestwitterSaltSource"/>
     	<beans:property name="passwordEncoder" ref="tapestwitterPasswordEncoder"/>

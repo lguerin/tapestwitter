@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.tapestwitter.model;
 
 import com.tapestwitter.components.Damier;

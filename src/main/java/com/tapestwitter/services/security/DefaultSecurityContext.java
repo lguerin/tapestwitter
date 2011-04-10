@@ -1,24 +1,23 @@
-package com.tapestwitter.services.security.impl;
-
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+package com.tapestwitter.services.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import com.tapestwitter.domain.model.User;
+
 /**
- * Implémentation web du TapestwitterSecurityContext
+ * SecurityContext for Tapestwitter
  * 
  * @author karesti
  */
 @Component("tapestwitterSecurityContext")
-public class TapestwitterSecurityContextImpl implements TapestwitterSecurityContext
+public class DefaultSecurityContext implements SecurityContext
 {
 
     /**
-     * La méthode log in l'utilisateur
+     * La methode log in l'utilisateur
      * Le TOKEN est mis sur le security context
      * 
      * @return

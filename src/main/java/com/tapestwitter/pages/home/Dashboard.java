@@ -19,11 +19,11 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
 import com.tapestwitter.components.AjaxMoreResults;
-import com.tapestwitter.domain.business.TweetManager;
+import com.tapestwitter.domain.business.TweetLoader;
 import com.tapestwitter.domain.model.Tweet;
 
 /**
- * Home page for authenticated user
+ * Dashboard of authenticated user
  * 
  * @author lGuerin
  */
@@ -60,7 +60,7 @@ public class Dashboard
      * Manager of {@link Tweet}
      */
     @Inject
-    private TweetManager tweetManager;
+    private TweetLoader tweetLoader;
 
     @SuppressWarnings("unused")
     @Inject
@@ -98,7 +98,7 @@ public class Dashboard
         {
             logger.debug(">>> Loading the list of tweets");
         }
-        tweets = tweetManager.findRecentTweets(DEFAULT_NUMBER_TWEETS);
+        tweets = tweetLoader.findRecentTweets(DEFAULT_NUMBER_TWEETS);
         if (ajaxResult == null)
         {
             if (tweets.size() > 0)
@@ -122,7 +122,7 @@ public class Dashboard
     public void onPublishTweet()
     {
         logger.info(">>> Publish a new tweet...");
-        tweetManager.createTweet(tweetContentInput);
+        tweetLoader.createTweet(tweetContentInput);
     }
 
     @SuppressWarnings("unused")
@@ -144,7 +144,7 @@ public class Dashboard
 
         if (lastTweetId != null)
         {
-            List<Tweet> recents = tweetManager.findRecentTweets(lastTweetId, range);
+            List<Tweet> recents = tweetLoader.findRecentTweets(lastTweetId, range);
             for (Tweet tweet : recents)
             {
                 if (!ajaxResult.contains(tweet))

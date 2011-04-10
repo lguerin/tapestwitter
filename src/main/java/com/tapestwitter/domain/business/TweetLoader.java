@@ -7,25 +7,27 @@ import java.util.List;
 
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * @author lguerin
  */
-public interface TweetManager
+public interface TweetLoader
 {
     /**
      * Recupere un {@link Tweet} a partir de son identifiant
      * 
-     * @param tweetId Identifiant du tweet a recuperer
+     * @param tweetId
+     *            Identifiant du tweet a recuperer
      * @return {@link Tweet}
      */
     Tweet findTweetById(Long tweetId);
 
     /**
-     * Création d'un tweet
+     * Creation d'un tweet
      * 
-     * @param msg Message du tweet
+     * @param msg
+     *            Message du tweet
      * @return Objet {@link Tweet} créé.
      */
     Tweet createTweet(String msg);
@@ -33,21 +35,24 @@ public interface TweetManager
     /**
      * Met a jour le {@link Tweet}
      * 
-     * @param tweet Tweet a mettre a jour
+     * @param tweet
+     *            Tweet a mettre a jour
      */
     void updateTweet(Tweet tweet);
 
     /**
      * Suppression d'un tweet
      * 
-     * @param tweetId Identifiant du tweet a supprimer
+     * @param tweetId
+     *            Identifiant du tweet a supprimer
      */
     void deleteTweet(Long tweetId);
 
     /**
      * Recuperer l'ensemble des tweet par mot cle.
      * 
-     * @param keyword Mot cle a rechercher
+     * @param keyword
+     *            Mot cle a rechercher
      * @return
      */
     List<Tweet> findTweetByKeyword(String keyword);
@@ -62,8 +67,10 @@ public interface TweetManager
     /**
      * Find a range of recent tweets
      * 
-     * @param id The start id of tweet for the research
-     * @param range The number of tweets to get
+     * @param id
+     *            The start id of tweet for the research
+     * @param range
+     *            The number of tweets to get
      * @return List of tweets
      */
     List<Tweet> findRecentTweets(Long id, Integer range);
@@ -71,7 +78,8 @@ public interface TweetManager
     /**
      * Find a range of recent tweets
      * 
-     * @param range The number of tweets to get
+     * @param range
+     *            The number of tweets to get
      * @return List of tweets
      */
     List<Tweet> findRecentTweets(Integer range);
@@ -79,7 +87,8 @@ public interface TweetManager
     /**
      * Get the count of tweets for a given user identified by his login.
      * 
-     * @param login The login of the {@link User}
+     * @param login
+     *            The login of the {@link User}
      * @return The number of tweets created by a {@link User}
      */
     Integer getNbTweetsByUser(String login);
@@ -87,9 +96,10 @@ public interface TweetManager
     /**
      * Set the security context
      * 
-     * @param securityContext the security context to set
+     * @param securityContext
+     *            the security context to set
      */
-    void setSecurityContext(TapestwitterSecurityContext securityContext);
-    
+    void setSecurityContext(SecurityContext securityContext);
+
     Tweet createTweetFromUser(User user, String msg);
 }

@@ -3,7 +3,7 @@ package com.tapestwitter.components.security;
 import org.apache.tapestry5.corelib.base.AbstractConditional;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * This component helps to know
@@ -14,7 +14,7 @@ import com.tapestwitter.services.security.TapestwitterSecurityContext;
 public class IsAuthenticated extends AbstractConditional
 {
     @Inject
-    private TapestwitterSecurityContext securityCtx;
+    private SecurityContext securityCtx;
 
     @Override
     protected boolean test()

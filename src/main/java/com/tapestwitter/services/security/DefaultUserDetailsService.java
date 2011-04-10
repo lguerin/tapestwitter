@@ -1,8 +1,4 @@
-package com.tapestwitter.services.security.impl;
-
-import com.tapestwitter.domain.business.UserManager;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.util.ValidationUtils;
+package com.tapestwitter.services.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,30 +7,34 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.tapestwitter.domain.business.Authenticator;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.util.ValidationUtils;
+
 /**
  * UserDetailsService implementation to implement
  * Spring Security Login with the security filter chain
  * 
  * @author karesti
  */
-public class UserDetailsServiceImpl implements UserDetailsService
+public class DefaultUserDetailsService implements UserDetailsService
 {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(DefaultUserDetailsService.class);
 
     /**
-     * Tapestwitter UserManager
+     * Tapestwitter authenticator
      */
-    private final UserManager userManager;
+    private final Authenticator authenticator;
 
     /**
      * Constructor
      * 
-     * @param userManager
+     * @param authenticator
      */
-    public UserDetailsServiceImpl(UserManager userManager)
+    public DefaultUserDetailsService(Authenticator authenticator)
     {
-        this.userManager = userManager;
+        this.authenticator = authenticator;
     }
 
     /**
@@ -49,11 +49,11 @@ public class UserDetailsServiceImpl implements UserDetailsService
         User user = null;
         if (ValidationUtils.isEmail(username))
         {
-            user = userManager.findByEmail(username);
+            user = authenticator.findByEmail(username);
         }
         else
         {
-            user = userManager.findByUsername(username);
+            user = authenticator.findByUsername(username);
         }
 
         if (logger.isDebugEnabled())

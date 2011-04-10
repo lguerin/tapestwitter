@@ -1,17 +1,15 @@
-package com.tapestwitter.services.impl;
-
-import com.tapestwitter.services.TapestwiterURLResolver;
+package com.tapestwitter.services;
 
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.Request;
 
 /**
- * Implementation {@link TapestwiterURLResolver}
+ * Implementation {@link URLResolver}
  * 
  * @author karesti
  */
-public class TapestwitterURLResolverImpl implements TapestwiterURLResolver
+public class DefaultURLResolver implements URLResolver
 {
 
     @Inject
@@ -25,12 +23,12 @@ public class TapestwitterURLResolverImpl implements TapestwiterURLResolver
     @Inject
     private Request request;
 
-    public String getLoginUrl()
+    public String resolveLoginUrl()
     {
         return request.getContextPath() + loginUrl;
     }
 
-    public String getLogoutUrl()
+    public String resolveLogoutUrl()
     {
         return request.getContextPath() + logoutUrl;
     }

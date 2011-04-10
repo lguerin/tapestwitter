@@ -8,7 +8,7 @@ import com.tapestwitter.domain.model.User;
  * 
  * @author karesti
  */
-public interface TapestwitterSecurityContext
+public interface SecurityContext
 {
 
     /**

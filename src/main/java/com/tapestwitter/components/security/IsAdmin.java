@@ -1,15 +1,15 @@
 package com.tapestwitter.components.security;
 
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
-
 import org.apache.tapestry5.corelib.base.AbstractConditional;
 import org.apache.tapestry5.ioc.annotations.Inject;
+
+import com.tapestwitter.services.security.SecurityContext;
 
 public class IsAdmin extends AbstractConditional
 {
 
     @Inject
-    private TapestwitterSecurityContext securityCtx;
+    private SecurityContext securityCtx;
 
     @Override
     protected boolean test()

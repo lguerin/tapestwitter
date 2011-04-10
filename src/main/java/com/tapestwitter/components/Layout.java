@@ -10,8 +10,8 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 import com.howardlewisship.tapx.yui.ImportYUI;
 import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.TapestwiterURLResolver;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
+import com.tapestwitter.services.URLResolver;
+import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * Main Layout component for pages of application tapestwitter.
@@ -21,17 +21,17 @@ import com.tapestwitter.services.security.TapestwitterSecurityContext;
 public class Layout extends SimpleLayout
 {
     @Inject
-    private TapestwiterURLResolver urlResolver;
+    private URLResolver urlResolver;
 
     @Inject
-    private TapestwitterSecurityContext securityContext;
+    private SecurityContext securityContext;
 
     @Property(write = false)
     private User user;
 
     public String getLogoutUrl()
     {
-        return urlResolver.getLogoutUrl();
+        return urlResolver.resolveLogoutUrl();
     }
 
     @SetupRender

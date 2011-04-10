@@ -1,14 +1,8 @@
-package com.tapestwitter.domain.business.impl;
+package com.tapestwitter.domain.business;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import com.tapestwitter.domain.business.TweetManager;
-import com.tapestwitter.domain.dao.ITweetDAO;
-import com.tapestwitter.domain.model.Tweet;
-import com.tapestwitter.domain.model.User;
-import com.tapestwitter.services.security.TapestwitterSecurityContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,30 +10,31 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import com.tapestwitter.domain.dao.CrudServiceDAO;
+import com.tapestwitter.domain.dao.QueryParameters;
+import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.SecurityContext;
+
 /**
- * Implementation de la classe de service permettant de gerer
- * les {@link Tweet}.
+ * This class is the Default implementation of the TweetLoader Service {@link TweetLoader}.
  * 
- * @author lguerin
+ * @author karesti
  */
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-@Component("tweetManager")
-public class TweetManagerImpl implements TweetManager
+@Component("tweetLoader")
+public class DefaultTweetLoader implements TweetLoader
 {
 
     @Autowired
-    private ITweetDAO tweetDAO;
+    private CrudServiceDAO crudServiceDAO;
 
     @Autowired
-    private TapestwitterSecurityContext securityContext;
+    private SecurityContext securityContext;
 
-    /*
-     * (non-Javadoc)
-     * @see com.tapestwitter.domain.business.TweetManager#findTweetByKeyword(java.lang.String)
-     */
     public List<Tweet> findTweetByKeyword(String keyword)
     {
-        return tweetDAO.findTweetByKeyword(keyword);
+        return crudServiceDAO.findWithNamedQuery(Tweet.FIND_BY_KEYWORD, QueryParameters.with("keyword", keyword).parameters());
     }
 
     @Transactional(readOnly = false)
@@ -48,7 +43,6 @@ public class TweetManagerImpl implements TweetManager
         Assert.notNull(msg, "message");
         Tweet tweet = new Tweet();
 
-        // Remplissage des proprietes
         tweet.setTweet(msg);
         Date creationDate = Calendar.getInstance().getTime();
         tweet.setCreationDate(creationDate);
@@ -56,8 +50,7 @@ public class TweetManagerImpl implements TweetManager
         String author = user.getLogin();
         tweet.setAuthor(author);
 
-        // Sauvegarde du tweet
-        tweetDAO.create(tweet);
+        crudServiceDAO.create(tweet);
 
         return tweet;
     }
@@ -65,17 +58,9 @@ public class TweetManagerImpl implements TweetManager
     @Transactional(readOnly = false)
     public void deleteTweet(Long tweetId)
     {
-        Assert.notNull(tweetId, "tweetId");
-
-        // Recuperation du tweet a supprimer
-        Tweet t = tweetDAO.findById(tweetId);
-
-        if (t != null)
-        {
-            tweetDAO.delete(t);
-        }
+        crudServiceDAO.delete(Tweet.class, tweetId);
     }
-    
+
     @Transactional(readOnly = false)
     public Tweet createTweetFromUser(User user, String msg)
     {
@@ -83,39 +68,35 @@ public class TweetManagerImpl implements TweetManager
         Assert.notNull(msg, "message");
         Tweet tweet = new Tweet();
 
-        // Remplissage des proprietes
         tweet.setTweet(msg);
         Date creationDate = Calendar.getInstance().getTime();
         tweet.setCreationDate(creationDate);
         String author = user.getLogin();
         tweet.setAuthor(author);
 
-        // Sauvegarde du tweet
-        tweetDAO.create(tweet);
+        crudServiceDAO.create(tweet);
 
         return tweet;
     }
 
     public Tweet findTweetById(Long tweetId)
     {
-        return tweetDAO.findById(tweetId);
+        return crudServiceDAO.find(Tweet.class, tweetId);
     }
 
     public List<Tweet> listAllTweet()
     {
-        return tweetDAO.listAllByCreationDateDesc();
+        return crudServiceDAO.findWithNamedQuery(Tweet.ALL_ORDER_BY_DATE_DESC);
     }
 
     public void updateTweet(Tweet tweet)
     {
-        Assert.notNull(tweet, "tweet");
-        tweetDAO.update(tweet);
+        crudServiceDAO.update(tweet);
     }
 
     public List<Tweet> findRecentTweets(Long id, Integer range)
     {
-        Assert.notNull(range, "range");
-        return tweetDAO.findRecentTweets(id, range);
+        return crudServiceDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT_WITH_ID, QueryParameters.with("id", id).parameters(), range);
     }
 
     public List<Tweet> findRecentTweets(Integer range)
@@ -125,11 +106,12 @@ public class TweetManagerImpl implements TweetManager
 
     public Integer getNbTweetsByUser(String login)
     {
-        return tweetDAO.getNbTweetsByUser(login);
+        return (Integer) crudServiceDAO.findUniqueWithNamedQuery(Tweet.COUNT_TWEETS_FOR_USER, QueryParameters.with("name", login).parameters());
     }
 
-    public void setSecurityContext(TapestwitterSecurityContext securityContext)
+    public void setSecurityContext(SecurityContext securityContext)
     {
         this.securityContext = securityContext;
     }
+
 }

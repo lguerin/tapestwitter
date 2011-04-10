@@ -11,7 +11,7 @@ import java.util.Locale;
 
 import com.tapestwitter.common.DateIntervalBean;
 import com.tapestwitter.common.DateIntervalType;
-import com.tapestwitter.components.utils.DateIntervalUtils;
+import com.tapestwitter.util.DateIntervalUtils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tapestry5.MarkupWriter;
