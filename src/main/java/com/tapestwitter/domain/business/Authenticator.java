@@ -2,6 +2,7 @@ package com.tapestwitter.domain.business;
 
 import com.tapestwitter.domain.exception.BusinessException;
 import com.tapestwitter.domain.exception.UserAlreadyExistsException;
+import com.tapestwitter.domain.model.Authority;
 import com.tapestwitter.domain.model.User;
 
 /**
@@ -52,4 +53,21 @@ public interface Authenticator
      * @return true if available
      */
     boolean isAvailableEmail(String email);
+
+    /**
+     * Creates an authority
+     * 
+     * @param authority
+     * @throws BusinessException
+     */
+    void addAuthority(Authority authority) throws BusinessException;
+
+    /**
+     * This method andd an authory to teh given user
+     * 
+     * @param user
+     * @param authority
+     * @throws BusinessException
+     */
+    void addAuthorityToUser(User user, Authority authority) throws BusinessException;
 }

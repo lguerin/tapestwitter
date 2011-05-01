@@ -9,7 +9,7 @@ import java.util.Map;
  * 
  * @author karesti
  */
-public interface CrudServiceDAO
+public interface CrudDAO
 {
     /**
      * Creates a new object for the given type. After a call to this method the entity will be

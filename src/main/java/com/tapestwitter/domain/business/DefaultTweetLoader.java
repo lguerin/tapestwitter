@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import com.tapestwitter.domain.dao.CrudServiceDAO;
+import com.tapestwitter.domain.dao.CrudDAO;
 import com.tapestwitter.domain.dao.QueryParameters;
 import com.tapestwitter.domain.model.Tweet;
 import com.tapestwitter.domain.model.User;
@@ -27,14 +27,14 @@ public class DefaultTweetLoader implements TweetLoader
 {
 
     @Autowired
-    private CrudServiceDAO crudServiceDAO;
+    private CrudDAO crudDAO;
 
     @Autowired
     private SecurityContext securityContext;
 
     public List<Tweet> findTweetByKeyword(String keyword)
     {
-        return crudServiceDAO.findWithNamedQuery(Tweet.FIND_BY_KEYWORD, QueryParameters.with("keyword", keyword).parameters());
+        return crudDAO.findWithNamedQuery(Tweet.FIND_BY_KEYWORD, QueryParameters.with("keyword", keyword).parameters());
     }
 
     @Transactional(readOnly = false)
@@ -50,7 +50,7 @@ public class DefaultTweetLoader implements TweetLoader
         String author = user.getLogin();
         tweet.setAuthor(author);
 
-        crudServiceDAO.create(tweet);
+        crudDAO.create(tweet);
 
         return tweet;
     }
@@ -58,7 +58,7 @@ public class DefaultTweetLoader implements TweetLoader
     @Transactional(readOnly = false)
     public void deleteTweet(Long tweetId)
     {
-        crudServiceDAO.delete(Tweet.class, tweetId);
+        crudDAO.delete(Tweet.class, tweetId);
     }
 
     @Transactional(readOnly = false)
@@ -74,29 +74,29 @@ public class DefaultTweetLoader implements TweetLoader
         String author = user.getLogin();
         tweet.setAuthor(author);
 
-        crudServiceDAO.create(tweet);
+        crudDAO.create(tweet);
 
         return tweet;
     }
 
     public Tweet findTweetById(Long tweetId)
     {
-        return crudServiceDAO.find(Tweet.class, tweetId);
+        return crudDAO.find(Tweet.class, tweetId);
     }
 
     public List<Tweet> listAllTweet()
     {
-        return crudServiceDAO.findWithNamedQuery(Tweet.ALL_ORDER_BY_DATE_DESC);
+        return crudDAO.findWithNamedQuery(Tweet.ALL_ORDER_BY_DATE_DESC);
     }
 
     public void updateTweet(Tweet tweet)
     {
-        crudServiceDAO.update(tweet);
+        crudDAO.update(tweet);
     }
 
     public List<Tweet> findRecentTweets(Long id, Integer range)
     {
-        return crudServiceDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT_WITH_ID, QueryParameters.with("id", id).parameters(), range);
+        return crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT_WITH_ID, QueryParameters.with("id", id).parameters(), range);
     }
 
     public List<Tweet> findRecentTweets(Integer range)
@@ -106,7 +106,7 @@ public class DefaultTweetLoader implements TweetLoader
 
     public Integer getNbTweetsByUser(String login)
     {
-        return (Integer) crudServiceDAO.findUniqueWithNamedQuery(Tweet.COUNT_TWEETS_FOR_USER, QueryParameters.with("name", login).parameters());
+        return (Integer) crudDAO.findUniqueWithNamedQuery(Tweet.COUNT_TWEETS_FOR_USER, QueryParameters.with("name", login).parameters());
     }
 
     public void setSecurityContext(SecurityContext securityContext)

@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository;
  * @param <T>, type entity
  * @param <PK>, primarykey, the primary key
  */
-@Repository("crudServiceDAO")
-public class JPACrudServiceDAO implements CrudServiceDAO
+@Repository("crudDAO")
+public class JPACrudDAO implements CrudDAO
 {
 
     @PersistenceContext
