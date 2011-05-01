@@ -11,6 +11,7 @@ Build around :
 * Tapestry 5
 * Spring (IoC and Spring Security)
 * JPA (with Hibernate implementation)
+* Spock, Groovy and Unitils with DBUnit for tests
 * HSQL
 
 Tested with :
