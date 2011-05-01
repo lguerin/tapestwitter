@@ -26,6 +26,7 @@ public class Layout extends SimpleLayout
     @Inject
     private SecurityContext securityContext;
 
+    @SuppressWarnings("unused")
     @Property(write = false)
     private User user;
 

@@ -25,6 +25,7 @@ public class Damier
     /**
      * The displayed references
      */
+    @SuppressWarnings("unused")
     @Parameter(required = true)
     @Property
     private List<DamierItemModel> items;

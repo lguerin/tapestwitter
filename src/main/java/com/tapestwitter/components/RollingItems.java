@@ -49,6 +49,7 @@ public class RollingItems
     /**
      * A list of items
      */
+    @SuppressWarnings("unused")
     @Property
     @Parameter(required = true)
     private List<?> items;
@@ -57,6 +58,7 @@ public class RollingItems
     @Inject
     private Block renderableItem;
 
+    @SuppressWarnings("unused")
     @Property
     @Parameter(required = true)
     private Object current;
@@ -83,8 +85,8 @@ public class RollingItems
     @AfterRender
     public void initJs()
     {
-        JSONObject data = new JSONObject("id", clientId, "height", Integer.toString(height), "duration", Float.toString(duration), "period", Integer
-                .toString(period));
+        JSONObject data = new JSONObject("id", clientId, "height", Integer.toString(height), "duration", Float.toString(duration), "period",
+                Integer.toString(period));
         javascriptSupport.addInitializerCall("rollingItemsBuilder", data);
     }
 }
