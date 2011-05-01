@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dataset.xsd">
+    <User id_user="1001" login="laurent" password="laurentpass" email="laurent@tapestwitter.org" fullName="Laurent guerin" />
+    <User id_user="1002" login="katia" password="katiapass" email="katia@tapestwitter.org" fullName="Katia aresti" />
+    <User id_user="1003" login="loic" password="loicpass" email="loic@tapestwitter.org" fullName="Loic Doïn" />
+    <Authority id_authority="2001" authority="ROLE_USER" />
+    <jnd_usr_auth user_fk="1001" auth_fk="2001" />
+    <jnd_usr_auth user_fk="1002" auth_fk="2001" />
+    <jnd_usr_auth user_fk="1003" auth_fk="2001" />
+    <Tweet id="3001" tweet="Tapestry rocks !" author="laurent" creationDate="2010-01-14" />
+</dataset>

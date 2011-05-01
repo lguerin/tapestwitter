@@ -1,11 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TapesTwitter Application Test Suite" annotations="1.5">
-	<test name="TapesTwitter Unit Tests">
-		<groups>
-			<run>
-				<include name="*" />
-				<exclude name="integration" />
-			</run>
-		</groups>
+<suite name="Tapestwitter Tests" verbose="1">
+	<test name="TestsJava">
+		<packages>
+			<package name="com.tapestwitter.util" />
+		</packages>
+	</test>
+	<test name="TestsGroovy" junit="true">
+		<classes>
+			<class name="com.tapestwitter.domain.business.DefaultAuthenticatorTest" />
+		</classes>
 	</test>
 </suite>
