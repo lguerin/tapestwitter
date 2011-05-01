@@ -1,7 +1,6 @@
 package com.tapestwitter.pages;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -85,7 +84,7 @@ public class Index
     public void setup()
     {
         // Initialize top tweet items
-        tweets = tweetLoader.findRecentTweets(5);
+        tweets = tweetLoader.listAllTweet();
 
         // Initialize Dammier items
         damierItems = new ArrayList<DamierItemModel>();
@@ -132,7 +131,7 @@ public class Index
     @OnEvent(value = EventConstants.SUCCESS, component = "")
     public void onSearchResults()
     {
-        result = new LinkedList<Tweet>();
+        result = new ArrayList<Tweet>();
         if (!StringUtils.isEmpty(query))
         {
             result = tweetLoader.findTweetByKeyword(query);
