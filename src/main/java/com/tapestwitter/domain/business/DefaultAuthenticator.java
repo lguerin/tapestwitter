@@ -70,48 +70,53 @@ public class DefaultAuthenticator implements Authenticator
 
     public User findByUsername(String username)
     {
-        return crudDAO.findUniqueWithNamedQuery(User.BY_USERNAME, QueryParameters.with("username", username).parameters());
+        User result;
+        try
+        {
+
+            result = crudDAO.findUniqueWithNamedQuery(User.BY_USERNAME, QueryParameters.with("username", username).parameters());
+        }
+        catch (NoResultException e)
+        {
+            logger.info("User identified by username: " + username + " does not exist");
+            result = null;
+        }
+        catch (EmptyResultDataAccessException e)
+        {
+            logger.info("User identified by username: " + username + " does not exist");
+            result = null;
+        }
+        return result;
     }
 
     public User findByEmail(String email)
     {
-        return crudDAO.findUniqueWithNamedQuery(User.BY_EMAIL, QueryParameters.with("email", email).parameters());
+        User result;
+        try
+        {
+            result = crudDAO.findUniqueWithNamedQuery(User.BY_EMAIL, QueryParameters.with("email", email).parameters());
+        }
+        catch (NoResultException e)
+        {
+            logger.info("User identified by email: " + email + " does not exist");
+            result = null;
+        }
+        catch (EmptyResultDataAccessException e)
+        {
+            logger.info("User identified by email: " + email + " does not exist");
+            result = null;
+        }
+        return result;
     }
 
     public boolean isAvailableName(String username)
     {
-        try
-        {
-            return findByUsername(username) == null;
-        }
-        catch (NoResultException e)
-        {
-            logger.info("User identified by username: " + username + " is available");
-            return true;
-        }
-        catch (EmptyResultDataAccessException e)
-        {
-            logger.info("User identified by username: " + username + " is available");
-            return true;
-        }
+        return findByUsername(username) == null;
     }
 
     public boolean isAvailableEmail(String email)
     {
-        try
-        {
-            return findByEmail(email) == null;
-        }
-        catch (NoResultException e)
-        {
-            logger.info("User identified by email: " + email + " is available");
-            return true;
-        }
-        catch (EmptyResultDataAccessException e)
-        {
-            logger.info("User identified by email: " + email + " is available");
-            return true;
-        }
+        return findByEmail(email) == null;
     }
 
     public SecurityContext getSecurityContext()
