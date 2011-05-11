@@ -98,7 +98,7 @@ public class Dashboard
         {
             logger.debug(">>> Loading the list of tweets");
         }
-        tweets = tweetLoader.findRecentTweets(DEFAULT_NUMBER_TWEETS);
+        tweets = tweetLoader.findRecentTweets();
         if (ajaxResult == null)
         {
             if (tweets.size() > 0)
@@ -144,7 +144,7 @@ public class Dashboard
 
         if (lastTweetId != null)
         {
-            List<Tweet> recents = tweetLoader.findRecentTweets(lastTweetId, range);
+            List<Tweet> recents = tweetLoader.findRecentTweets(lastTweetId.intValue(), range);
             for (Tweet tweet : recents)
             {
                 if (!ajaxResult.contains(tweet))

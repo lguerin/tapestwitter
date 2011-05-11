@@ -4,9 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.tapestwitter.common.TapesTwitterEventConstants;
-import com.tapestwitter.domain.model.Tweet;
-
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentEventCallback;
 import org.apache.tapestry5.ComponentResources;
@@ -17,6 +14,9 @@ import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.internal.util.Holder;
 import org.apache.tapestry5.ioc.annotations.Inject;
+
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.model.Tweet;
 
 /**
  * Provide an Ajax component that implements the Twitter-like "More" event link.

@@ -2,11 +2,10 @@ package com.tapestwitter.util;
 
 import java.util.regex.Pattern;
 
-import com.tapestwitter.common.EnumValidation;
-
+import org.apache.tapestry5.ioc.Messages;
 import org.springframework.util.Assert;
 
-import org.apache.tapestry5.ioc.Messages;
+import com.tapestwitter.common.EnumValidation;
 
 /**
  * Utility class for the Validation
@@ -15,7 +14,6 @@ import org.apache.tapestry5.ioc.Messages;
  */
 public class ValidationUtils
 {
-
     private static final String ATOM = "[^\\x00-\\x1F^\\(^\\)^\\<^\\>^\\@^\\,^\\;^\\:^\\\\^\\\"^\\.^\\[^\\]^\\s]";
 
     private static final String DOMAIN = "(" + ATOM + "+(\\." + ATOM + "+)*";

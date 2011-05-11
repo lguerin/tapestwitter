@@ -238,7 +238,6 @@ public class SignUp
         else if (!ValidationUtils.isEmail(email))
         {
             valideEmail = EnumValidation.FORMAT;
-
         }
         else
         {

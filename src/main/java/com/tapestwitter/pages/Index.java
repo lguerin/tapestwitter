@@ -84,7 +84,7 @@ public class Index
     public void setup()
     {
         // Initialize top tweet items
-        tweets = tweetLoader.listAllTweet();
+        tweets = tweetLoader.findRecentTweets();
 
         // Initialize Dammier items
         damierItems = new ArrayList<DamierItemModel>();

@@ -94,14 +94,14 @@ public class DefaultTweetLoader implements TweetLoader
         crudDAO.update(tweet);
     }
 
-    public List<Tweet> findRecentTweets(Long id, Integer range)
+    public List<Tweet> findRecentTweets(Integer start, Integer range)
     {
-        return crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT_WITH_ID, QueryParameters.with("id", id).parameters(), range);
+        return crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT, start, range);
     }
 
-    public List<Tweet> findRecentTweets(Integer range)
+    public List<Tweet> findRecentTweets()
     {
-        return findRecentTweets(null, range);
+        return findRecentTweets(null, TweetLoader.DEFAULT_LIMIT_SIZE);
     }
 
     public Integer getNbTweetsByUser(String login)
