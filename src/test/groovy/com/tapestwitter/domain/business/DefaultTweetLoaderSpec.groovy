@@ -85,4 +85,13 @@ class DefaultTweetLoaderSpec extends Specification
         13      |0
         12      |1
     }
+
+    def "find my tweets"()
+    {
+        when: "search all my tweets"
+        List<Tweet> myTweets = tweetLoader.findMyTweets();
+
+        then: "check number of elements returned"
+        myTweets.size() == 1
+    }
 }
