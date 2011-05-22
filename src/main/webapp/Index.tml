@@ -47,7 +47,7 @@
 						</div>
 						<div id="search">
 						<p>
-							<form t:type="form" t:id="searchTweetsForm"> 
+							<form t:type="form" t:id="searchTweetsForm" t:autofocus="false"> 
             					<input t:type="textfield" tabindex="8" size="30" name="query" t:value="query" class="searchFormQuery round-left" />
             					<input t:type="submit" value="${message:search-label}" tabindex="9" name="commit"  class="searchFormSubmit btnShadow round-right" />
             				</form>
