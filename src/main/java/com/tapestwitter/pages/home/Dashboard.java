@@ -3,18 +3,19 @@
  */
 package com.tapestwitter.pages.home;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.PersistenceConstants;
+import org.apache.tapestry5.ValueEncoder;
+import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.beaneditor.Width;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
@@ -36,8 +37,10 @@ public class Dashboard
     private Logger logger;
 
     /**
-     * Liste de tweets charges dans la loop
+     * List of tweets
      */
+    @Persist(PersistenceConstants.FLASH)
+    @Property
     private List<Tweet> tweets;
 
     /**
@@ -66,8 +69,8 @@ public class Dashboard
     @Inject
     private Block displayTweetBox;
 
-    @Persist
-    private List<Tweet> ajaxResult;
+    @InjectComponent
+    private Zone tweetsZone;
 
     /**
      * A pointer to the last id af the tweets list
@@ -91,20 +94,18 @@ public class Dashboard
     @Property
     private Tweet current;
 
-    @SetupRender
+    @OnEvent(value = EventConstants.PREPARE)
     public void loadTweets()
     {
         if (logger.isDebugEnabled())
         {
             logger.debug(">>> Loading the list of tweets");
         }
-        tweets = tweetLoader.findRecentTweets();
-        if (ajaxResult == null)
+        tweets = tweetLoader.findMyRecentTweets();
+
+        if (tweets.size() > 0)
         {
-            if (tweets.size() > 0)
-            {
-                lastTweetId = tweets.get(tweets.size() - 1).getId();
-            }
+            lastTweetId = tweets.get(tweets.size() - 1).getId();
         }
 
         if (tweets.size() == DEFAULT_NUMBER_TWEETS)
@@ -119,99 +120,34 @@ public class Dashboard
     }
 
     @OnEvent(value = EventConstants.SUCCESS, component = "publishTweetForm")
-    public void onPublishTweet()
+    void onPublishTweet()
     {
         logger.info(">>> Publish a new tweet...");
-        tweetLoader.createTweet(tweetContentInput);
+        Tweet newTweet = tweetLoader.createTweet(tweetContentInput);
+        tweets.add(newTweet);
     }
 
-    @SuppressWarnings("unused")
-    @Property
-    private Block ajaxResponse;
-
-    @Log
-    public List<Tweet> onProvideMoreResultsFromTest(int range)
+    @SuppressWarnings("rawtypes")
+    public ValueEncoder getEncoder()
     {
-        if (ajaxResult == null)
+        return new ValueEncoder<Tweet>()
         {
-            ajaxResult = new ArrayList<Tweet>();
-        }
-
-        if (logger.isDebugEnabled())
-        {
-            logger.debug(">>> Last ID: " + lastTweetId);
-        }
-
-        if (lastTweetId != null)
-        {
-            List<Tweet> recents = tweetLoader.findRecentTweets(lastTweetId.intValue(), range);
-            for (Tweet tweet : recents)
+            public String toClient(Tweet value)
             {
-                if (!ajaxResult.contains(tweet))
-                {
-                    ajaxResult.add(tweet);
-                }
+                Long id = value.getId();
+                return id.toString();
             }
-        }
 
-        if (ajaxResult.size() > 0)
-        {
-            // Update the value of lastTweetId
-            lastTweetId = ajaxResult.get(ajaxResult.size() - 1).getId();
-        }
-        return ajaxResult;
+            public Tweet toValue(String clientId)
+            {
+                Long id = new Long(clientId);
+                for (Tweet t : tweets)
+                {
+                    if (t.getId().equals(id)) { return t; }
+                }
+                throw new IllegalArgumentException("Unknow id \"" + id + "\" into : " + tweets);
+            }
+        };
     }
 
-    @OnEvent(EventConstants.PASSIVATE)
-    public void clean()
-    {
-        syncTweets();
-    }
-
-    /**
-     * Synchronise items who are contains into the tweets list.
-     */
-    private void syncTweets()
-    {
-        if (ajaxResult != null && tweets != null)
-        {
-            logger.debug(">>>>> Number of tweets: " + tweets.size());
-            tweets.addAll(ajaxResult);
-            lastTweetId = tweets.get(tweets.size() - 1).getId();
-            ajaxResult.clear();
-        }
-        this.setTweets(tweets);
-    }
-
-    /**
-     * @return the result
-     */
-    public List<Tweet> getAjaxResult()
-    {
-        return ajaxResult;
-    }
-
-    /**
-     * @param result the result to set
-     */
-    public void setAjaxResult(List<Tweet> result)
-    {
-        this.ajaxResult = result;
-    }
-
-    /**
-     * @return the tweets
-     */
-    public List<Tweet> getTweets()
-    {
-        return tweets;
-    }
-
-    /**
-     * @param tweets the tweets to set
-     */
-    public void setTweets(List<Tweet> tweets)
-    {
-        this.tweets = tweets;
-    }
 }

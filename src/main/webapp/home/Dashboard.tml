@@ -1,10 +1,12 @@
 <html t:type="layout" p:title="Accueil"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
       xmlns:p="tapestry:parameter">
 	
 	<div id="leftSide" class="round">
+	<t:form t:id="publishTweetForm" >
 		<div id="publish-tweet-box"> 
-			<t:form t:id="publishTweetForm">
+		
+			
 				<div id="heading">
 					<h2>${message:content-main-titre-label}</h2>
 				</div>
@@ -18,41 +20,38 @@
 		                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
 		            </div>
 				</div>
-			</t:form>
+		
 		</div>
 		<div class="clear" />
 	
 		<br />
-		<div id="list-tweets">
-			<h3>
-				<label>${message:section-list-tweets-title}</label>
-			</h3>
-			
-			<ul class="tweetInfosBox">
-				<t:loop source="tweets" value="currentTweet">			
-					<t:delegate to="block:displayTweetBox" />							
-				</t:loop>		
-			</ul>
-		</div>	
-	
+		
+		<t:zone t:id="tweetsZone">
+			<div id="list-tweets">
+				<h3>
+					<label>${message:section-list-tweets-title}</label>
+				</h3>
+				
+				<ul class="tweetInfosBox">
+					<t:ajaxformloop source="tweets" value="currentTweet" t:encoder="encoder">			
+						<t:delegate to="block:displayTweetBox" />							
+					</t:ajaxformloop>		
+				</ul>
+			</div>	
+		</t:zone>
+	</t:form>
 		<t:block t:id="displayTweetBox">
 			<li>
 				<t:tweetInfosBox p:tweet="currentTweet" />
 			</li>
 		</t:block>
 	
-		<t:block t:id="ajaxResponse">
-			<ul>
-				<t:loop source="ajaxResult" value="current">
-					<li>
-						<t:tweetInfosBox p:tweet="current" />
-					</li>
-				</t:loop>
-			</ul>
-		</t:block>	
-		<t:if test="displayAjaxMoreResultsLink">
-			<t:ajaxmoreresults t:id="test" p:renderable="block:ajaxResponse" />
-		</t:if>
+	<!-- 
+			<t:if test="displayAjaxMoreResultsLink">
+				<t:ajaxmoreresults t:id="test" p:renderable="block:ajaxResponse" />
+			</t:if>
+	 -->
+		
 	</div>
 	<div id="rightSide"></div>
 	<div class="clear" />
