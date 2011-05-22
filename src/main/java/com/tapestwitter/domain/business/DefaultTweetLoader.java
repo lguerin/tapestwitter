@@ -114,4 +114,14 @@ public class DefaultTweetLoader implements TweetLoader
         this.securityContext = securityContext;
     }
 
+    public List<Tweet> findMyRecentTweets()
+    {
+        User user = securityContext.getUser();
+        return crudDAO.findMaxResultsWithNamedQuery(
+                Tweet.FIND_ALL_RECENT_BY_AUTHOR,
+                QueryParameters.with("author", user.getLogin()).parameters(),
+                null,
+                TweetLoader.DEFAULT_LIMIT_SIZE);
+    }
+
 }

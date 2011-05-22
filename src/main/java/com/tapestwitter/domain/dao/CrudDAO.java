@@ -93,4 +93,6 @@ public interface CrudDAO
     <T> T findMaxResultsWithNamedQuery(String queryName, int range);
 
     <T> List<T> findMaxResultsWithNamedQuery(String queryName, Integer start, int range);
+
+    <T> List<T> findMaxResultsWithNamedQuery(String queryName, Map<String, Object> params, Integer start, int range);
 }

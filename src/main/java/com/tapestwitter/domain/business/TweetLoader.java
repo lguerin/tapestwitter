@@ -105,4 +105,11 @@ public interface TweetLoader
     void setSecurityContext(SecurityContext securityContext);
 
     Tweet createTweetFromUser(User user, String msg);
+
+    /**
+     * Find recent tweets of the current user
+     * 
+     * @return List of tweets
+     */
+    List<Tweet> findMyRecentTweets();
 }

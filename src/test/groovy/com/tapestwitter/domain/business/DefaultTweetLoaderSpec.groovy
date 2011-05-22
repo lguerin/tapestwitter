@@ -10,6 +10,20 @@ import spock.unitils.UnitilsSupport
 
 import com.tapestwitter.domain.model.Tweet
 import com.tapestwitter.domain.model.User
+import com.tapestwitter.services.security.SecurityContext
+
+
+import org.unitils.dbunit.annotation.DataSet
+import org.unitils.spring.annotation.SpringApplicationContext
+import org.unitils.spring.annotation.SpringBean
+
+import spock.lang.Specification
+import spock.lang.Unroll
+import spock.unitils.UnitilsSupport
+
+import com.tapestwitter.domain.model.Tweet
+import com.tapestwitter.domain.model.User
+import com.tapestwitter.services.security.SecurityContext
 
 @SpringApplicationContext("tapestwitterTest-config.xml")
 @UnitilsSupport
@@ -21,7 +35,9 @@ class DefaultTweetLoaderSpec extends Specification
     private TweetLoader tweetLoader
 
     // expected number of tweets into dataset
-    def datasetTweetsNumber = 1
+    def datasetTweetsNumber = 3
+
+
 
     def "list all the tweets"()
     {
@@ -88,10 +104,19 @@ class DefaultTweetLoaderSpec extends Specification
 
     def "find my tweets"()
     {
+        // Stubs for dependents objects
+        SecurityContext securityContext = Mock()
+        User user = Mock()
+
+        setup:
+        tweetLoader.setSecurityContext(securityContext)
+        user.login >> 'laurent'
+        securityContext.getUser() >> user
+
         when: "search all my tweets"
-        List<Tweet> myTweets = tweetLoader.findMyTweets();
+        List<Tweet> myTweets = tweetLoader.findMyRecentTweets();
 
         then: "check number of elements returned"
-        myTweets.size() == 1
+        myTweets.size() == 2
     }
 }

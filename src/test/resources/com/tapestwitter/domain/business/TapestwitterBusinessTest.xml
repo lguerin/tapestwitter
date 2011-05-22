@@ -8,4 +8,6 @@
     <jnd_usr_auth user_fk="1002" auth_fk="2001" />
     <jnd_usr_auth user_fk="1003" auth_fk="2001" />
     <Tweet id="3001" tweet="Tapestry rocks !" author="laurent" creationDate="2010-01-14" />
+    <Tweet id="3002" tweet="Tapestry, the best web fw !" author="laurent" creationDate="2011-05-22" />
+    <Tweet id="3003" tweet="Test tapestwitter !" author="loic" creationDate="2010-01-14" />
 </dataset>

@@ -108,4 +108,25 @@ public class JPACrudDAO implements CrudDAO
         }
         return (T) query.getSingleResult();
     }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findMaxResultsWithNamedQuery(String queryName, Map<String, Object> params, Integer start, int range)
+    {
+        Query query = entityManager.createNamedQuery(queryName);
+        Set<Entry<String, Object>> rawParameters = params.entrySet();
+
+        for (Entry<String, Object> entry : rawParameters)
+        {
+            query.setParameter(entry.getKey(), entry.getValue());
+
+        }
+
+        if (start != null)
+        {
+            query.setFirstResult(start);
+        }
+
+        query.setMaxResults(range);
+        return query.getResultList();
+    }
 }

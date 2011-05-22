@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 { @NamedQuery(name = Tweet.FIND_BY_KEYWORD, query = "SELECT t FROM Tweet t WHERE t.tweet LIKE :keyword"),
         @NamedQuery(name = Tweet.ALL_ORDER_BY_DATE_DESC, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
         @NamedQuery(name = Tweet.FIND_ALL_RECENT, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
+        @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR, query = "SELECT t FROM Tweet t WHERE t.author = :author ORDER BY t.creationDate DESC"),
         @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :author") })
 public class Tweet implements Serializable
 {
@@ -32,6 +33,8 @@ public class Tweet implements Serializable
     public static final String ALL_ORDER_BY_DATE_DESC = "Tweet.searchAllOrderByDateDesc";
 
     public static final String FIND_ALL_RECENT = "Tweet.searchAllRecents";
+
+    public static final String FIND_ALL_RECENT_BY_AUTHOR = "Tweet.FIND_ALL_RECENT_BY_AUTHOR";
 
     public static final String COUNT_TWEETS_FOR_USER = "Tweet.countUserTotalTweets";
 
