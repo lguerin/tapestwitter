@@ -721,6 +721,12 @@ ul.tweetInfosBox li:hover {
 
 /************** Right Bar **************/
 
+div#rightSide {
+	position: relative;
+	left: 20px;
+	top: 20px;
+}
+
 #rightbar {
 	float: right;
 	width: 200px;	
