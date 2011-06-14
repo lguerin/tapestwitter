@@ -17,7 +17,7 @@ public interface TweetLoader
     /**
      * The default size limit of the range of tweets to load
      */
-    public static final Integer DEFAULT_LIMIT_SIZE = 10;
+    public static final Integer DEFAULT_LIMIT_SIZE = 5;
 
     /**
      * Recupere un {@link Tweet} a partir de son identifiant
@@ -78,7 +78,7 @@ public interface TweetLoader
      *            The number of tweets to get
      * @return List of tweets
      */
-    List<Tweet> findRecentTweets(Integer start, Integer range);
+    List<Tweet> findRecentTweets(Integer range);
 
     /**
      * Find a range of recent tweets
@@ -112,4 +112,15 @@ public interface TweetLoader
      * @return List of tweets
      */
     List<Tweet> findMyRecentTweets();
+
+    /**
+     * Find a range of recent tweets of the authenticated user
+     * 
+     * @param start
+     *            The start id off the research
+     * @param range
+     *            The number of tweets to get
+     * @return List of tweets
+     */
+    List<Tweet> findMyRecentTweets(Long start, Integer range);
 }

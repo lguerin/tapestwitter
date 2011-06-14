@@ -64,7 +64,6 @@ public class JPACrudDAO implements CrudDAO
         for (Entry<String, Object> entry : rawParameters)
         {
             query.setParameter(entry.getKey(), entry.getValue());
-
         }
         return query.getResultList();
     }
@@ -75,18 +74,6 @@ public class JPACrudDAO implements CrudDAO
         Query query = entityManager.createNamedQuery(queryName);
         query.setMaxResults(range);
         return (T) query.getResultList();
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T> List<T> findMaxResultsWithNamedQuery(String queryName, Integer start, int range)
-    {
-        Query query = entityManager.createNamedQuery(queryName);
-        if (start != null)
-        {
-            query.setFirstResult(start);
-        }
-        query.setMaxResults(range);
-        return query.getResultList();
     }
 
     @SuppressWarnings("unchecked")
@@ -104,13 +91,12 @@ public class JPACrudDAO implements CrudDAO
         for (Entry<String, Object> entry : rawParameters)
         {
             query.setParameter(entry.getKey(), entry.getValue());
-
         }
         return (T) query.getSingleResult();
     }
 
     @SuppressWarnings("unchecked")
-    public <T> List<T> findMaxResultsWithNamedQuery(String queryName, Map<String, Object> params, Integer start, int range)
+    public <T> List<T> findMaxResultsWithNamedQuery(String queryName, Map<String, Object> params, int range)
     {
         Query query = entityManager.createNamedQuery(queryName);
         Set<Entry<String, Object>> rawParameters = params.entrySet();
@@ -118,12 +104,6 @@ public class JPACrudDAO implements CrudDAO
         for (Entry<String, Object> entry : rawParameters)
         {
             query.setParameter(entry.getKey(), entry.getValue());
-
-        }
-
-        if (start != null)
-        {
-            query.setFirstResult(start);
         }
 
         query.setMaxResults(range);

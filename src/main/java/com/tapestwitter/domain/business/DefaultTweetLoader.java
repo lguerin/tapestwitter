@@ -94,19 +94,20 @@ public class DefaultTweetLoader implements TweetLoader
         crudDAO.update(tweet);
     }
 
-    public List<Tweet> findRecentTweets(Integer start, Integer range)
+    public List<Tweet> findRecentTweets(Integer range)
     {
-        return crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT, start, range);
+        return crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT, range);
     }
 
     public List<Tweet> findRecentTweets()
     {
-        return findRecentTweets(null, TweetLoader.DEFAULT_LIMIT_SIZE);
+        return findRecentTweets(TweetLoader.DEFAULT_LIMIT_SIZE);
     }
 
     public Integer getNbTweetsByUser(String login)
     {
-        return (Integer) crudDAO.findUniqueWithNamedQuery(Tweet.COUNT_TWEETS_FOR_USER, QueryParameters.with("name", login).parameters());
+        Long res = (Long) crudDAO.findUniqueWithNamedQuery(Tweet.COUNT_TWEETS_FOR_USER, QueryParameters.with("name", login).parameters());
+        return res.intValue();
     }
 
     public void setSecurityContext(SecurityContext securityContext)
@@ -114,14 +115,26 @@ public class DefaultTweetLoader implements TweetLoader
         this.securityContext = securityContext;
     }
 
-    public List<Tweet> findMyRecentTweets()
+    public List<Tweet> findMyRecentTweets(Long start, Integer range)
     {
         User user = securityContext.getUser();
-        return crudDAO.findMaxResultsWithNamedQuery(
-                Tweet.FIND_ALL_RECENT_BY_AUTHOR,
-                QueryParameters.with("author", user.getLogin()).parameters(),
-                null,
-                TweetLoader.DEFAULT_LIMIT_SIZE);
+        List<Tweet> result;
+        if (start != null)
+        {
+            result = crudDAO.findMaxResultsWithNamedQuery(
+                    Tweet.FIND_ALL_RECENT_BY_AUTHOR_WITH_LIMIT,
+                    QueryParameters.with("author", user.getLogin()).and("id", start).parameters(),
+                    range);
+        }
+        else
+        {
+            result = crudDAO.findMaxResultsWithNamedQuery(Tweet.FIND_ALL_RECENT_BY_AUTHOR, QueryParameters.with("author", user.getLogin()).parameters(), range);
+        }
+        return result;
     }
 
+    public List<Tweet> findMyRecentTweets()
+    {
+        return this.findMyRecentTweets(null, TweetLoader.DEFAULT_LIMIT_SIZE);
+    }
 }

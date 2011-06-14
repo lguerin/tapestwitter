@@ -4,13 +4,13 @@
     <Tweet id="2002" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
     <Tweet id="2003" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
     <Tweet id="2004" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2005" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2006" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2007" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2008" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2009" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2010" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2011" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2012" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
-    <Tweet id="2013" tweet="Tweet" author="laurent" creationDate="2010-01-14" />
+    <Tweet id="2005" tweet="Tweet" author="katia" creationDate="2010-01-14" />
+    <Tweet id="2006" tweet="Tweet" author="katia" creationDate="2010-01-14" />
+    <Tweet id="2007" tweet="Tweet" author="katia" creationDate="2010-01-14" />
+    <Tweet id="2008" tweet="Tweet" author="katia" creationDate="2010-01-14" />
+    <Tweet id="2009" tweet="Tweet" author="loic" creationDate="2010-01-14" />
+    <Tweet id="2010" tweet="Tweet" author="loic" creationDate="2010-01-14" />
+    <Tweet id="2011" tweet="Tweet" author="loic" creationDate="2010-01-14" />
+    <Tweet id="2012" tweet="Tweet" author="loic" creationDate="2010-01-14" />
+    <Tweet id="2013" tweet="Tweet" author="loic" creationDate="2010-01-14" />
 </dataset>

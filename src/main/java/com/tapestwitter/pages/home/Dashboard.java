@@ -3,6 +3,7 @@
  */
 package com.tapestwitter.pages.home;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tapestry5.Block;
@@ -10,6 +11,7 @@ import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -17,51 +19,47 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.beaneditor.Width;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 import org.slf4j.Logger;
 
-import com.tapestwitter.components.AjaxMoreResults;
+import com.tapestwitter.common.TapesTwitterEventConstants;
 import com.tapestwitter.domain.business.TweetLoader;
 import com.tapestwitter.domain.model.Tweet;
+import com.tapestwitter.domain.model.User;
+import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * Dashboard of authenticated user
  * 
- * @author lGuerin
+ * @author lguerin
  */
 public class Dashboard
 {
-    /**
-     * Class logger
-     */
     @Inject
     private Logger logger;
 
     /**
      * List of tweets
      */
-    @Persist(PersistenceConstants.FLASH)
+    @Persist
     @Property
     private List<Tweet> tweets;
 
     /**
-     * Element courant de la boucle loop sur la liste de tweets.
+     * Current tweet into the loop
      */
     @SuppressWarnings("unused")
     @Property
     private Tweet currentTweet;
 
     /**
-     * Contenu du champ textarea dans le formulaire de saisie
-     * du message.
+     * Textarea field for tweet message
      */
     @Property
     @Validate("required,maxlength=140")
     @Width(140)
     private String tweetContentInput;
 
-    /**
-     * Manager of {@link Tweet}
-     */
     @Inject
     private TweetLoader tweetLoader;
 
@@ -83,35 +81,65 @@ public class Dashboard
      */
     @SuppressWarnings("unused")
     @Property
-    private boolean displayAjaxMoreResultsLink = false;
+    @Persist(PersistenceConstants.FLASH)
+    private boolean displayAjaxMoreResultsLink;
 
-    /**
-     * The default number of {@link Tweet} to display
-     */
-    private static final Integer DEFAULT_NUMBER_TWEETS = 5;
+    @Property(write = false)
+    private User user;
+
+    @Property(write = false)
+    private Integer nbTweets;
+
+    @Inject
+    private SecurityContext securityContext;
 
     @SuppressWarnings("unused")
     @Property
     private Tweet current;
 
-    @OnEvent(value = EventConstants.PREPARE)
+    @Inject
+    private Request request;
+
+    @OnEvent(value = EventConstants.ACTIVATE)
     public void loadTweets()
     {
         if (logger.isDebugEnabled())
         {
             logger.debug(">>> Loading the list of tweets");
         }
-        tweets = tweetLoader.findMyRecentTweets();
 
-        if (tweets.size() > 0)
+        // Init
+        if (tweets == null)
         {
-            lastTweetId = tweets.get(tweets.size() - 1).getId();
+            tweets = new ArrayList<Tweet>();
         }
 
-        if (tweets.size() == DEFAULT_NUMBER_TWEETS)
+        // Clear when adding new Tweet
+        if (!request.isXHR())
         {
-            displayAjaxMoreResultsLink = true;
+            tweets.clear();
         }
+
+        // Get recents tweets
+        List<Tweet> recents = tweetLoader.findMyRecentTweets();
+        for (Tweet tweet : recents)
+        {
+            if (!tweets.contains(tweet))
+            {
+                tweets.add(tweet);
+            }
+        }
+
+        // Set lastTweetId
+        if (!request.isXHR())
+        {
+            lastTweetId = tweets.isEmpty() ? 0 : tweets.get(tweets.size() - 1).getId();
+        }
+
+        // Handle "More Result" link display status
+        user = securityContext.getUser();
+        nbTweets = tweetLoader.getNbTweetsByUser(user.getLogin());
+        displayAjaxMoreResultsLink = tweets.size() < nbTweets ? true : false;
 
         if (logger.isDebugEnabled())
         {
@@ -123,10 +151,40 @@ public class Dashboard
     void onPublishTweet()
     {
         logger.info(">>> Publish a new tweet...");
-        Tweet newTweet = tweetLoader.createTweet(tweetContentInput);
-        tweets.add(newTweet);
+        Tweet t = tweetLoader.createTweet(tweetContentInput);
+        lastTweetId = t.getId();
     }
 
+    @Log
+    @OnEvent(value = TapesTwitterEventConstants.MORE_TWEETS)
+    Object provideMoreTweets()
+    {
+        if (logger.isDebugEnabled())
+        {
+            logger.debug(">>> Last ID: " + lastTweetId);
+        }
+        if (lastTweetId != null)
+        {
+            List<Tweet> recents = tweetLoader.findMyRecentTweets(lastTweetId, TweetLoader.DEFAULT_LIMIT_SIZE);
+            for (Tweet tweet : recents)
+            {
+                if (!tweets.contains(tweet))
+                {
+                    tweets.add(tweet);
+                    lastTweetId = tweet.getId();
+                }
+            }
+        }
+
+        displayAjaxMoreResultsLink = tweets.size() < nbTweets ? true : false;
+        return tweetsZone.getBody();
+    }
+
+    /**
+     * Encoder for {@link Loop} component
+     * 
+     * @return encoder of {@link Tweet}
+     */
     @SuppressWarnings("rawtypes")
     public ValueEncoder getEncoder()
     {
@@ -141,11 +199,7 @@ public class Dashboard
             public Tweet toValue(String clientId)
             {
                 Long id = new Long(clientId);
-                for (Tweet t : tweets)
-                {
-                    if (t.getId().equals(id)) { return t; }
-                }
-                throw new IllegalArgumentException("Unknow id \"" + id + "\" into : " + tweets);
+                return tweetLoader.findTweetById(id);
             }
         };
     }

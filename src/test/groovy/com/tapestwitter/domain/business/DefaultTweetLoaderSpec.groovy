@@ -37,8 +37,6 @@ class DefaultTweetLoaderSpec extends Specification
     // expected number of tweets into dataset
     def datasetTweetsNumber = 3
 
-
-
     def "list all the tweets"()
     {
         when: "search all the tweets"
@@ -87,19 +85,27 @@ class DefaultTweetLoaderSpec extends Specification
     }
 
     @DataSet("TapestwitterTweetTest.xml")
-    @Unroll("got #nbTweets recents tweets when we start on index #start")
-    def "find recent tweets with start index"()
+    @Unroll("got my #nbTweets recents tweets when we start from #start Tweet id")
+    def "find my recent tweets with start index"()
     {
+        // Stubs for dependents objects
+        SecurityContext securityContext = Mock()
+        User user = Mock()
+
+        setup:
+        tweetLoader.setSecurityContext(securityContext)
+        user.login >> 'laurent'
+        securityContext.getUser() >> user
+
         expect: "we check the expected number of tweets into dataset"
-        List<Tweet> recents = tweetLoader.findRecentTweets(start, TweetLoader.DEFAULT_LIMIT_SIZE)
+        List<Tweet> recents = tweetLoader.findMyRecentTweets(start, TweetLoader.DEFAULT_LIMIT_SIZE)
         recents.size() == nbTweets
 
         where:
-        start   |nbTweets
-        5       |8
-        0       |TweetLoader.DEFAULT_LIMIT_SIZE
-        13      |0
-        12      |1
+        start    |nbTweets
+        2004L    |3
+        2003L    |2
+        1L       |0
     }
 
     def "find my tweets"()
@@ -118,5 +124,19 @@ class DefaultTweetLoaderSpec extends Specification
 
         then: "check number of elements returned"
         myTweets.size() == 2
+    }
+
+    @DataSet("TapestwitterTweetTest.xml")
+    def "get nb tweets by user"()
+    {
+        expect: "we check the expected number of tweets create by username"
+        Integer nbTweets = tweetLoader.getNbTweetsByUser(login)
+        nbTweets == expected
+
+        where:
+        login      |expected
+        'laurent'  |4
+        'katia'    |4
+        'loic'     |5
     }
 }

@@ -3,24 +3,21 @@
       xmlns:p="tapestry:parameter">
 	
 	<div id="leftSide" class="round">
-	<t:form t:id="publishTweetForm" >
+	<t:form t:id="publishTweetForm">
 		<div id="publish-tweet-box"> 
-		
-			
-				<div id="heading">
-					<h2>${message:content-main-titre-label}</h2>
-				</div>
-				<div class="clear"></div>
-				<fieldset class="tapestwitter-form">				
-					<input t:type="textarea" class="round" t:value="tweetContentInput" t:id="tweetContentInput" t:rows="2" />	            			
-				</fieldset>
-				<div id="publish-tweet-box-bottom">			
-					<div class="tapestwitter-form-submit">
-		                <t:textCounter textareaId="tweetContentInput" targetElementId="publish-tweet-counter" warningLimit="20" warningLimitStyle="publish-tweet-counter-limit" />
-		                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
-		            </div>
-				</div>
-		
+			<div id="heading">
+				<h2>${message:content-main-titre-label}</h2>
+			</div>
+			<div class="clear"></div>
+			<fieldset class="tapestwitter-form">				
+				<input t:type="textarea" class="round" t:value="tweetContentInput" t:id="tweetContentInput" t:rows="2" />	            			
+			</fieldset>
+			<div id="publish-tweet-box-bottom">			
+				<div class="tapestwitter-form-submit">
+	                <t:textCounter textareaId="tweetContentInput" targetElementId="publish-tweet-counter" warningLimit="20" warningLimitStyle="publish-tweet-counter-limit" />
+	                <input t:type="submit" value="${message:content-homepage-tweeter-label}" />
+	            </div>
+			</div>
 		</div>
 		<div class="clear" />
 	
@@ -33,24 +30,29 @@
 				</h3>
 				
 				<ul class="tweetInfosBox">
-					<t:ajaxformloop source="tweets" value="currentTweet" t:encoder="encoder">			
-						<t:delegate to="block:displayTweetBox" />							
-					</t:ajaxformloop>		
+					<t:loop source="tweets" value="currentTweet" t:encoder="encoder">			
+						<t:delegate to="block:displayTweetBox" />	
+					</t:loop>		
 				</ul>
-			</div>	
+			</div>
+			
+			<t:if test="displayAjaxMoreResultsLink">
+				<div class="comp-ajax-more-results">
+					<a class="comp-ajax-more-results-link round" t:type="eventlink" t:id="moreTweets" t:zone="tweetsZone" href="#">${message:ajax-more-results-label}</a>
+				</div>
+			</t:if>
 		</t:zone>
 	</t:form>
-		<t:block t:id="displayTweetBox">
-			<li>
-				<t:tweetInfosBox p:tweet="currentTweet" />
-			</li>
-		</t:block>
+
+
 	
-	<!-- 
-			<t:if test="displayAjaxMoreResultsLink">
-				<t:ajaxmoreresults t:id="test" p:renderable="block:ajaxResponse" />
-			</t:if>
-	 -->
+	<t:block t:id="displayTweetBox">
+		<li>
+			<t:tweetInfosBox p:tweet="currentTweet" />
+		</li>
+	</t:block>
+	
+
 		
 	</div>
 	<div id="rightSide"></div>

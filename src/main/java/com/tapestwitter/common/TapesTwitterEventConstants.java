@@ -3,7 +3,6 @@
  */
 package com.tapestwitter.common;
 
-import com.tapestwitter.components.AjaxMoreResults;
 import com.tapestwitter.mixins.AjaxValidation;
 
 /**
@@ -14,14 +13,13 @@ import com.tapestwitter.mixins.AjaxValidation;
 public class TapesTwitterEventConstants
 {
     /**
-     * Event triggered when the {@link AjaxMoreResults} component link is
-     * clicked.
-     */
-    public static final String PROVIDE_MORE_RESULTS = "provideMoreResults";
-
-    /**
      * Event triggered when the {@link AjaxValidation} mixin is
      * activated.
      */
     public static final String AJAX_VALIDATE = "ajaxValidate";
+
+    /**
+     * Event trigered when user click "More" tweets button.
+     */
+    public static final String MORE_TWEETS = "moreTweets";
 }

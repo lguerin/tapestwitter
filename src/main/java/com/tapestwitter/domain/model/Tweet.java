@@ -13,6 +13,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * Entite representant un message bref (tweet).
  * 
@@ -21,11 +24,13 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries(
-{ @NamedQuery(name = Tweet.FIND_BY_KEYWORD, query = "SELECT t FROM Tweet t WHERE t.tweet LIKE :keyword"),
+{
+        @NamedQuery(name = Tweet.FIND_BY_KEYWORD, query = "SELECT t FROM Tweet t WHERE t.tweet LIKE :keyword"),
         @NamedQuery(name = Tweet.ALL_ORDER_BY_DATE_DESC, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
         @NamedQuery(name = Tweet.FIND_ALL_RECENT, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
-        @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR, query = "SELECT t FROM Tweet t WHERE t.author = :author ORDER BY t.creationDate DESC"),
-        @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :author") })
+        @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR, query = "SELECT t FROM Tweet t WHERE t.author = :author ORDER BY t.id DESC"),
+        @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR_WITH_LIMIT, query = "SELECT t FROM Tweet t WHERE t.author = :author AND t.id < :id ORDER BY t.id DESC"),
+        @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :name") })
 public class Tweet implements Serializable
 {
     public static final String FIND_BY_KEYWORD = "Tweet.searchByKeyword";
@@ -34,7 +39,9 @@ public class Tweet implements Serializable
 
     public static final String FIND_ALL_RECENT = "Tweet.searchAllRecents";
 
-    public static final String FIND_ALL_RECENT_BY_AUTHOR = "Tweet.FIND_ALL_RECENT_BY_AUTHOR";
+    public static final String FIND_ALL_RECENT_BY_AUTHOR = "Tweet.findAllRecentByAuthor";
+
+    public static final String FIND_ALL_RECENT_BY_AUTHOR_WITH_LIMIT = "Tweet.findAllRecentByAuthorWithLimit";
 
     public static final String COUNT_TWEETS_FOR_USER = "Tweet.countUserTotalTweets";
 
@@ -95,5 +102,17 @@ public class Tweet implements Serializable
     public void setCreationDate(Date creationDate)
     {
         this.creationDate = creationDate;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return EqualsBuilder.reflectionEquals(this, obj);
     }
 }
