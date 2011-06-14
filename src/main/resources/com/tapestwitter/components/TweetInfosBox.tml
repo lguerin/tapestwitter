@@ -10,6 +10,9 @@
 			 - ${tweet?.tweet}
 			 <div class="comp-tweet-infos-status">
 			 	<t:publicationIntervalRenderer p:publicationDate="${tweet?.creationDate}"/>
+			 	<t:security.isTweetOwner t:tweetId="${tweet?.id}">
+			 		- delete
+			 	</t:security.isTweetOwner>
 			 </div>
 		</div>
 		
