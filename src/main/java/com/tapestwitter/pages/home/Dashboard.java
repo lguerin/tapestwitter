@@ -180,6 +180,13 @@ public class Dashboard
         return tweetsZone.getBody();
     }
 
+    @OnEvent(value = TapesTwitterEventConstants.DELETE_TWEET)
+    void deleteTweet(String tweetId)
+    {
+        logger.info(">>> Delete tweet identified by: " + tweetId);
+        tweetLoader.deleteTweet(Long.valueOf(tweetId));
+    }
+
     /**
      * Encoder for {@link Loop} component
      * 

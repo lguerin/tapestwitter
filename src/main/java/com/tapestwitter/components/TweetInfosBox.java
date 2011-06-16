@@ -1,9 +1,13 @@
 package com.tapestwitter.components;
 
-import com.tapestwitter.domain.model.Tweet;
-
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.Link;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.annotations.Inject;
+
+import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.model.Tweet;
 
 /**
  * Display the main informations about a {@link Tweet}.
@@ -19,4 +23,13 @@ public class TweetInfosBox
     @Property
     @Parameter(allowNull = false, required = true)
     private Tweet tweet;
+
+    @Inject
+    private ComponentResources resources;
+
+    Object onActionFromDeleteFromTweetInfoBox(String tweetId)
+    {
+        Link link = resources.createEventLink(TapesTwitterEventConstants.DELETE_TWEET, tweetId);
+        return link;
+    }
 }

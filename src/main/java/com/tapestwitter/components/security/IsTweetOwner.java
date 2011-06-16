@@ -1,6 +1,6 @@
 package com.tapestwitter.components.security;
 
-import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.corelib.base.AbstractConditional;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -10,15 +10,14 @@ import com.tapestwitter.services.security.SecurityContext;
 
 /**
  * This component verifies that the current
- * user is the twet owner
+ * user is the tweet owner
  * 
  * @author karesti
  */
 public class IsTweetOwner extends AbstractConditional
 {
-
-    @Inject
-    private ComponentResources resources;
+    @Parameter(required = true, allowNull = false)
+    private String tweetId;
 
     @Inject
     private TweetLoader tweetLoader;
@@ -29,8 +28,7 @@ public class IsTweetOwner extends AbstractConditional
     @Override
     protected boolean test()
     {
-        String tweetId = resources.getInformalParameter("tweetId", String.class);
-        Tweet current = tweetLoader.findTweetById(new Long(tweetId));
+        Tweet current = tweetLoader.findTweetById(Long.valueOf(tweetId));
         return securityCtx.getUser() != null && securityCtx.getUser().getLogin().equals(current.getAuthor());
     }
 }

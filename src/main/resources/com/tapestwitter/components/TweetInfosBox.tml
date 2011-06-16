@@ -11,7 +11,7 @@
 			 <div class="comp-tweet-infos-status">
 			 	<t:publicationIntervalRenderer p:publicationDate="${tweet?.creationDate}"/>
 			 	<t:security.isTweetOwner t:tweetId="${tweet?.id}">
-			 		- delete
+			 		- <a t:type="actionlink" t:id="deleteFromTweetInfoBox" t:context="${tweet.id}">${message:delete-label}</a>
 			 	</t:security.isTweetOwner>
 			 </div>
 		</div>
