@@ -110,7 +110,7 @@ a.normal {
 }
 
 .fadeLeft {
-   	background: transparent url('images/gradientLeft.png') repeat scroll 0 0 !important;
+   	background: transparent url('/layout/images/gradientLeft.png') repeat scroll 0 0 !important;
 }
 
 /************** Container **************/
@@ -139,7 +139,7 @@ div#simpleHeaderTop {
 	background: #569D2F;
 }
 div#headerTop {
-	background: #000 url('images/bg_tapestwitter_header_top.png') repeat-x;
+	background: #000 url('/layout/images/bg_tapestwitter_header_top.png') repeat-x;
 	position: fixed;
 	z-index: 5;
 }
@@ -260,7 +260,7 @@ a.signin {
 
 a.signin span {
 	color: #fff;
-	background-image: url('images/toggle_down.png');
+	background-image: url('/layout/images/toggle_down.png');
 	background-position: 100% 50%;
 	background-repeat: no-repeat;
 	padding: 4px 16px 6px 0;
@@ -319,7 +319,7 @@ a.signin span {
 }
 
 div#headerMiddle {
-	background: #8CC35E url('images/bg_tapestwitter_header.gif') no-repeat scroll 50% 0;
+	background: #8CC35E url('/layout/images/bg_tapestwitter_header.gif') no-repeat scroll 50% 0;
 	height: 158px;
 	position: relative;
 }
@@ -354,11 +354,11 @@ div#headerBottom div#tapestwitterTrends {
     z-index: 30;
 }
 #tapestwitterTrends .fade-left {
-	background: url('images/tapestwitter-fade-trends-left.png') repeat-y scroll 0 0 transparent;
+	background: url('/layout/images/tapestwitter-fade-trends-left.png') repeat-y scroll 0 0 transparent;
     left: 0;
 }
 #tapestwitterTrends .fade-right {
-	background: url('images/tapestwitter-fade-trends-right.png') repeat-y scroll 0 0 transparent;
+	background: url('/layout/images/tapestwitter-fade-trends-right.png') repeat-y scroll 0 0 transparent;
     left: 683px;
 }
 
@@ -418,7 +418,7 @@ div#logo, div#search {
 }
 
 .btnShadow {
-background:#BBBBBB url('images/bg_tapestwitter_btn.png') repeat-x scroll 0 0;
+background:#BBBBBB url('/layout/images/bg_tapestwitter_btn.png') repeat-x scroll 0 0;
 border:1px solid #EEEEEE;
 color:#333333;
 font-family:"Lucida Grande",Arial,Sans-serif;
@@ -499,7 +499,7 @@ div#headerD-top-navigation li {
 	/* IE6 Fix */
 	height: 100%;
 	width: 100%;
-	background: #c2e3bb url('images/bg_tapestwitter_clouds.gif') no-repeat top left;
+	background: #c2e3bb url('/layout/images/bg_tapestwitter_clouds.gif') no-repeat top left;
 	min-height: 453px;
 }
 
@@ -795,7 +795,7 @@ div.section {
 	text-align: center;
 	background: white;
 	font-size: 0.8em;
-	background: #eee url('images/bg_tapestwitter_footer.gif') repeat-x;
+	background: #eee url('/layout/images/bg_tapestwitter_footer.gif') repeat-x;
 	height: 3em;
 	width: 100%;
 	position: relative;
@@ -839,9 +839,9 @@ div.section {
 }    
    
 .rolling-fade {
-   	background: transparent url('images/gradient.png') repeat-x scroll center bottom !important;
+   	background: transparent url('/layout/images/gradient.png') repeat-x scroll center bottom !important;
    	background: none;
-   	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='images/gradient.png');
+   	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='layout/images/gradient.png');
 	bottom: 0;
 	height: 30px;
 	left: 0;

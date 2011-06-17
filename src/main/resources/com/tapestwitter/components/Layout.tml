@@ -5,7 +5,7 @@
       xmlns:p="tapestry:parameter">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>    
-        <link href="${asset:context:layout/layout.css}" rel="stylesheet" type="text/css"/>
+        <link href="${asset:context:layout/css/layout.css}" rel="stylesheet" type="text/css"/>
         <link href="${asset:context:components/components.css}" rel="stylesheet" type="text/css"/>   
         <title>TapesTwitter / ${title}</title>
     </head>

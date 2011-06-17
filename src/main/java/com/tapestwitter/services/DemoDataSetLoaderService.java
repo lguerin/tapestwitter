@@ -78,9 +78,15 @@ public class DemoDataSetLoaderService implements DataSetLoaderService
             logger.error("Test data error on user creation: ", e);
         }
 
-        String tweetMsg = "Tapestry 5 rocks";
+        String tweetMsg = "Tapestry 5 rocks !";
         tweetLoader.createTweetFromUser(userLaurent, tweetMsg);
-        tweetLoader.createTweetFromUser(userKatia, tweetMsg);
+        tweetLoader.createTweetFromUser(userKatia, "A must have : 'Tapestry 5 in Action' book by Igor Drobiazko");
+        tweetLoader.createTweetFromUser(userKatia, "RT @laurent " + tweetMsg);
+        tweetLoader.createTweetFromUser(userLaurent, "RT @hlship 5.2.5 does quite well in a not-quite-scientific web framework shootout: http://t.co/KiOW7Ny");
+        tweetLoader.createTweetFromUser(userLaurent, "RT @karesti A must have : Tapestry 5 in Action by Igor Drobiazko");
+        tweetLoader.createTweetFromUser(
+                userKatia,
+                "RT @hlship #tapestry 5.3.0 will be ready in a couple of weeks; it will be the first alpha version of the 5.3 release");
 
         List<Tweet> result = tweetLoader.listAllTweet();
         if (logger.isDebugEnabled())

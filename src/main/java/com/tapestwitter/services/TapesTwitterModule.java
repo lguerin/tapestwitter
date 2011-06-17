@@ -112,7 +112,7 @@ public class TapesTwitterModule
             {
                 invocation.proceed();
                 List<Asset> jsStack = (List<Asset>) invocation.getResult();
-                jsStack.add(source.getClasspathAsset("context:js/tapestwitter.js"));
+                jsStack.add(source.getClasspathAsset("context:layout/js/tapestwitter.js"));
             }
         };
 

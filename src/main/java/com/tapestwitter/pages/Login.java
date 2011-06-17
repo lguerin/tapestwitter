@@ -9,7 +9,7 @@ import com.tapestwitter.pages.home.Dashboard;
 import com.tapestwitter.services.URLResolver;
 import com.tapestwitter.services.security.SecurityContext;
 
-@Import(stylesheet = "context:/forms/forms.css")
+@Import(stylesheet = "context:/layout/css/forms.css")
 public class Login
 {
     @Inject

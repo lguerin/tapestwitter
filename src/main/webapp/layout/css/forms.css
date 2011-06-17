@@ -124,7 +124,7 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	-moz-border-radius-topleft:4px;
 	-moz-border-radius-topright:4px;
 	-x-system-font:none;
-	background:#DDDDDD url(../img/bg-btn.gif) repeat-x scroll 0 0;
+	background:#DDDDDD url(/layout/images/bg-btn.gif) repeat-x scroll 0 0;
 	border-color:#DDDDDD #DDDDDD #CCCCCC;
 	border-style:solid;
 	border-width:1px;
@@ -216,7 +216,7 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 	-moz-background-origin:padding;
 	-moz-border-radius-bottomright:10px;
 	-moz-border-radius-topright:10px;
-	background:#F2F2F2 url(../img/signup_info.gif) no-repeat scroll 13px 50%;
+	background:#F2F2F2 url(/layout/images/signup_info.gif) no-repeat scroll 13px 50%;
 	border-color:#DBDBDB;
 	border-style:solid;
 	border-width:1px 1px 1px 2px;
@@ -230,7 +230,7 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 
 #signup-form div div.col-help .t-label-box.good {
 	background-color:#F0FEE9;
-	background-image:url(../img/signup_check.gif);
+	background-image:url(/layout/images/signup_check.gif);
 	border-color:#E1EFDB;
 }
 
@@ -274,7 +274,7 @@ input.submit, button, input[type="submit"], input[type="button"], input[type="fi
 }
 
 #signup-form div div.col-help .t-ajaxvalidation-icon {
-	background-image:url(../img/indicator_arrows_circle.gif);
+	background-image:url(/layout/images/indicator_arrows_circle.gif);
 	width: 10px;
 	height: 10px;
 }
