@@ -30,7 +30,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
         @NamedQuery(name = Tweet.FIND_ALL_RECENT, query = "SELECT t FROM Tweet t ORDER BY t.creationDate DESC"),
         @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR, query = "SELECT t FROM Tweet t WHERE t.author = :author ORDER BY t.id DESC"),
         @NamedQuery(name = Tweet.FIND_ALL_RECENT_BY_AUTHOR_WITH_LIMIT, query = "SELECT t FROM Tweet t WHERE t.author = :author AND t.id < :id ORDER BY t.id DESC"),
-        @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :name") })
+        @NamedQuery(name = Tweet.COUNT_TWEETS_FOR_USER, query = "SELECT COUNT(t.author) FROM Tweet t WHERE t.author = :name"),
+        @NamedQuery(name = Tweet.EMAIL_ADDRESS_OF_TWEET_OWNER, query = "SELECT u.email FROM Tweet t, User u WHERE t.author = u.login AND t.id = :tweetId") })
 public class Tweet implements Serializable
 {
     public static final String FIND_BY_KEYWORD = "Tweet.searchByKeyword";
@@ -45,6 +46,8 @@ public class Tweet implements Serializable
 
     public static final String COUNT_TWEETS_FOR_USER = "Tweet.countUserTotalTweets";
 
+    public static final String EMAIL_ADDRESS_OF_TWEET_OWNER = "Tweet.emailAdressOfTweetOwner";
+
     private static final long serialVersionUID = -297923216288866711L;
 
     @Id
@@ -53,6 +56,7 @@ public class Tweet implements Serializable
 
     private String tweet;
 
+    @Column(nullable = false)
     private String author;
 
     @Column(nullable = false, updatable = false)

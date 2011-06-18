@@ -137,4 +137,10 @@ public class DefaultTweetLoader implements TweetLoader
     {
         return this.findMyRecentTweets(null, TweetLoader.DEFAULT_LIMIT_SIZE);
     }
+
+    public String getEmailOfTweetOwner(Long tweetId)
+    {
+        return (String) crudDAO.findUniqueWithNamedQuery(Tweet.EMAIL_ADDRESS_OF_TWEET_OWNER, QueryParameters.with("tweetId", Long.valueOf(tweetId))
+                .parameters());
+    }
 }

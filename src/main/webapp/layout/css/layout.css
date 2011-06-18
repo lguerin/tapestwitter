@@ -185,6 +185,12 @@ div#activeLinks {
 	height: 100%;
 }
 
+div#userMenu img {
+	position: absolute;
+	top:0;
+	left:928px;
+}
+
 div#userMenu {
 	cursor: pointer;
 	float: right;

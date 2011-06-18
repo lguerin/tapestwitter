@@ -7,6 +7,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import com.tapestwitter.common.TapesTwitterEventConstants;
+import com.tapestwitter.domain.business.TweetLoader;
 import com.tapestwitter.domain.model.Tweet;
 
 /**
@@ -31,5 +32,13 @@ public class TweetInfosBox
     {
         Link link = resources.createEventLink(TapesTwitterEventConstants.DELETE_TWEET, tweetId);
         return link;
+    }
+
+    @Inject
+    private TweetLoader tweetLoader;
+
+    public String getTweetOwnerEmail()
+    {
+        return tweetLoader.getEmailOfTweetOwner(tweet.getId());
     }
 }

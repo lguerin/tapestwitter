@@ -56,13 +56,13 @@ public class DemoDataSetLoaderService implements DataSetLoaderService
         userLaurent.setFullName("Laurent Guerin");
         userLaurent.setLogin("laurent");
         userLaurent.setPassword("laurentpass");
-        userLaurent.setEmail("laurent@tapestwitter.org");
+        userLaurent.setEmail("laurent@dreamcat.fr");
 
         User userKatia = new User();
         userKatia.setFullName("Katia Aresti");
         userKatia.setLogin("katia");
         userKatia.setPassword("katiapass");
-        userKatia.setEmail("katia@tapestwitter.org");
+        userKatia.setEmail("katiaaresti@gmail.com");
 
         try
         {

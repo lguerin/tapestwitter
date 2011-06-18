@@ -123,4 +123,12 @@ public interface TweetLoader
      * @return List of tweets
      */
     List<Tweet> findMyRecentTweets(Long start, Integer range);
+
+    /**
+     * Get email address of the {@link Tweet} owner
+     * 
+     * @param tweetId id of the tweet
+     * @return email address
+     */
+    String getEmailOfTweetOwner(Long tweetId);
 }

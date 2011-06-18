@@ -139,4 +139,17 @@ class DefaultTweetLoaderSpec extends Specification
         'katia'    |4
         'loic'     |5
     }
+
+    def "get #email address of tweet owner"()
+    {
+        expect: "we check the expected email address of tweet owner"
+        String expectedEmail = tweetLoader.getEmailOfTweetOwner(tweetId)
+        expectedEmail == email
+
+        where:
+        tweetId  |email
+        3001L    |'laurent@tapestwitter.org'
+        3002L    |'laurent@tapestwitter.org'
+        3003L    |'loic@tapestwitter.org'
+    }
 }

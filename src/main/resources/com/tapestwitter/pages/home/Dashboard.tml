@@ -55,7 +55,6 @@
      	<div id="rightbar-content">
 			<div id="rightbar-user-infos">
 				<a href="home" title="${user.fullname}">
-					<img class="rightbar-user-img-thumb" src="${asset:context:components/rightbar/images/tapestry_logo_mini.gif}" alt="${user.fullname}" />
 					<span id="rightbar-user-infos-login">
 						<t:security.isAdmin>
 							Administrator (${user.login})

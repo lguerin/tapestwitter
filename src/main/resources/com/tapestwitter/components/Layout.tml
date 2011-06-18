@@ -27,7 +27,8 @@
 					<div id="activeLinks">
 						<t:security.isAuthenticated>
 							<div id="userMenu">
-								<a href="#">${user?.login}</a>							
+								<t:gravatarIcon email="${user?.email}" size="40" />
+								<a href="#">${user.login}</a>							
 								<ul id="userMenuItems" class="closed">
 									<li><a href="${logoutUrl}">${message:layout-deconnexion-label}</a></li>	
 								</ul>
