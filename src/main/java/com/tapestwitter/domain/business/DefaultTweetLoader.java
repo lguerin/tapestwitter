@@ -34,7 +34,7 @@ public class DefaultTweetLoader implements TweetLoader
 
     public List<Tweet> findTweetByKeyword(String keyword)
     {
-        return crudDAO.findWithNamedQuery(Tweet.FIND_BY_KEYWORD, QueryParameters.with("keyword", keyword).parameters());
+        return crudDAO.findWithNamedQuery(Tweet.FIND_BY_KEYWORD, QueryParameters.with("keyword", "%" + keyword + "%").parameters());
     }
 
     @Transactional(readOnly = false)

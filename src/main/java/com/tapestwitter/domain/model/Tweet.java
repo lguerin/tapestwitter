@@ -56,7 +56,6 @@ public class Tweet implements Serializable
 
     private String tweet;
 
-    @Column(nullable = false)
     private String author;
 
     @Column(nullable = false, updatable = false)
