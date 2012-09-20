@@ -6,6 +6,8 @@ TapesTwitter
 
 TapesTwitter is a "Twitter-like" demo application build with Tapestry 5.
 
+![Tapestwitter](http://cloud.github.com/downloads/lguerin/tapestwitter/tapestwitter-screen.png)
+
 Build around :
 
 * Tapestry 5
